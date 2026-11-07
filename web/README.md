@@ -29,7 +29,7 @@ js/ui.js          header, step line, bottom bar, help
 js/components.js  reusable choices: option cards, chips, error line, privacy note
 js/views.js       which code shows each step; placeholders until a step is ported
 js/steps/*.js     one file per step: render(), onChange(), onClick(), check(), pages()
-js/logic/*.js     counting and matching, kept apart from the screen so it can be tested
+js/logic/*.js     counting, ordering, lens results and comparisons, kept apart from the screen so they can be tested
 data/             made by pipeline/export_web.py; do not edit by hand
 i18n/en.json      English text, the source for every translation
 i18n/<code>.json  translations; missing keys fall back to English
@@ -55,8 +55,17 @@ i18n/<code>.json  translations; missing keys fall back to English
 
 ## Tests against the Java version
 
-From the project root: `node tests/directions.test.mjs` (needs Node.js). It compares Step 2's numbers with
-`tests/java_directions.json`, which `tests/DirectionsDump.java` produced from the Java app's own classes.
+From the project root (needs Node.js):
+
+```bash
+node tests/directions.test.mjs   # Step 2: fields, counts, two-year and four-year summary
+node tests/explore.test.mjs      # Step 4: which colleges appear, their groups and their order
+node tests/evaluate.test.mjs     # College details: every fact, label, reason and next step, word for word
+node tests/compare.test.mjs      # Compare: markers, trade-off summary and degree levels, word for word
+```
+
+Each compares the web version with a JSON file that a `tests/*Dump.java` program produced from the Java app's
+own classes.
 
 ## Checking in the browser console
 
