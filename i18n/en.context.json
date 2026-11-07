@@ -1,0 +1,2217 @@
+{
+  "app.title": {
+    "section": "App"
+  },
+  "app.tagline": {
+    "section": "App"
+  },
+  "app.footer": {
+    "section": "App"
+  },
+  "notReported": {
+    "section": "App"
+  },
+  "unavailable": {
+    "section": "App"
+  },
+  "type.public": {
+    "section": "App"
+  },
+  "type.private": {
+    "section": "App"
+  },
+  "Pathway.NOT_SURE": {
+    "section": "Answer options"
+  },
+  "Pathway.ASSOCIATE": {
+    "section": "Answer options"
+  },
+  "Pathway.BACHELOR": {
+    "section": "Answer options"
+  },
+  "Pathway.BOTH": {
+    "section": "Answer options"
+  },
+  "SatStatus.NOT_SURE": {
+    "section": "Answer options"
+  },
+  "SatStatus.NOT_YET": {
+    "section": "Answer options"
+  },
+  "SatStatus.PROVIDED": {
+    "section": "Answer options"
+  },
+  "SatStatus.PREFER_NOT_TO_SAY": {
+    "section": "Answer options"
+  },
+  "ChoiceStatus.NOT_SURE": {
+    "section": "Answer options"
+  },
+  "ChoiceStatus.KNOWN": {
+    "section": "Answer options"
+  },
+  "ChoiceStatus.PREFER_NOT_TO_SAY": {
+    "section": "Answer options"
+  },
+  "LocationScope.NOT_SURE": {
+    "section": "Answer options"
+  },
+  "LocationScope.PREFERRED_STATE": {
+    "section": "Answer options"
+  },
+  "LocationScope.ANY_STATE": {
+    "section": "Answer options"
+  },
+  "CampusSetting.NOT_SURE": {
+    "section": "Answer options"
+  },
+  "CampusSetting.URBAN": {
+    "section": "Answer options"
+  },
+  "CampusSetting.SUBURBAN": {
+    "section": "Answer options"
+  },
+  "CampusSetting.TOWN": {
+    "section": "Answer options"
+  },
+  "CampusSetting.RURAL": {
+    "section": "Answer options"
+  },
+  "CollegeSize.SMALL": {
+    "section": "Answer options"
+  },
+  "CollegeSize.MEDIUM": {
+    "section": "Answer options"
+  },
+  "CollegeSize.LARGE": {
+    "section": "Answer options"
+  },
+  "CollegeSize.short.SMALL": {
+    "section": "Answer options"
+  },
+  "CollegeSize.short.MEDIUM": {
+    "section": "Answer options"
+  },
+  "CollegeSize.short.LARGE": {
+    "section": "Answer options"
+  },
+  "IncomeBracket.NOT_SURE": {
+    "section": "Answer options"
+  },
+  "IncomeBracket.UNDER_30K": {
+    "section": "Answer options"
+  },
+  "IncomeBracket.FROM_30K_TO_48K": {
+    "section": "Answer options"
+  },
+  "IncomeBracket.FROM_48K_TO_75K": {
+    "section": "Answer options"
+  },
+  "IncomeBracket.FROM_75K_TO_110K": {
+    "section": "Answer options"
+  },
+  "IncomeBracket.ABOVE_110K": {
+    "section": "Answer options"
+  },
+  "IncomeBracket.PREFER_NOT_TO_SAY": {
+    "section": "Answer options"
+  },
+  "AidEligibility.NOT_SURE": {
+    "section": "Answer options"
+  },
+  "AidEligibility.YES": {
+    "section": "Answer options"
+  },
+  "AidEligibility.NO": {
+    "section": "Answer options"
+  },
+  "AidEligibility.PREFER_NOT_TO_SAY": {
+    "section": "Answer options"
+  },
+  "error.sat": {
+    "section": "Input errors"
+  },
+  "error.budget": {
+    "section": "Input errors"
+  },
+  "error.state": {
+    "section": "Input errors"
+  },
+  "error.preferredState": {
+    "section": "Input errors"
+  },
+  "error.number": {
+    "section": "Input errors"
+  },
+  "error.title": {
+    "section": "Card and details",
+    "note": "=================== v0.3 journey ==================="
+  },
+  "money.notReported": {
+    "section": "Money"
+  },
+  "form.title": {
+    "section": "Form"
+  },
+  "form.subtitle": {
+    "section": "Form"
+  },
+  "form.section.goals": {
+    "section": "Form"
+  },
+  "form.section.social": {
+    "section": "Form"
+  },
+  "form.section.financial": {
+    "section": "Form"
+  },
+  "form.pathway": {
+    "section": "Form"
+  },
+  "form.program": {
+    "section": "Form"
+  },
+  "form.program.hint": {
+    "section": "Form"
+  },
+  "form.programHint": {
+    "section": "Form"
+  },
+  "form.search": {
+    "section": "Form"
+  },
+  "form.add": {
+    "section": "Form"
+  },
+  "form.more": {
+    "section": "Form"
+  },
+  "form.clearAll": {
+    "section": "Form"
+  },
+  "form.remove": {
+    "section": "Form"
+  },
+  "form.sat": {
+    "section": "Form"
+  },
+  "form.satReading": {
+    "section": "Form"
+  },
+  "form.satMath": {
+    "section": "Form"
+  },
+  "form.where": {
+    "section": "Form"
+  },
+  "form.where.hint": {
+    "section": "Form"
+  },
+  "form.setting": {
+    "section": "Form"
+  },
+  "form.size": {
+    "section": "Form"
+  },
+  "form.multi.hint": {
+    "section": "Form"
+  },
+  "form.home": {
+    "section": "Form"
+  },
+  "form.home.hint": {
+    "section": "Form"
+  },
+  "form.budget": {
+    "section": "Form"
+  },
+  "form.budgetAmount": {
+    "section": "Form"
+  },
+  "form.income": {
+    "section": "Form"
+  },
+  "form.income.hint": {
+    "section": "Form"
+  },
+  "form.aid": {
+    "section": "Form"
+  },
+  "form.notSure": {
+    "section": "Form"
+  },
+  "form.example": {
+    "section": "Form"
+  },
+  "form.explore": {
+    "section": "Form"
+  },
+  "program.notSure": {
+    "section": "Program check"
+  },
+  "program.family": {
+    "section": "Program check"
+  },
+  "program.family.short": {
+    "section": "Program check"
+  },
+  "prog.label.none": {
+    "section": "Program check"
+  },
+  "prog.none": {
+    "section": "Program check"
+  },
+  "prog.none.note": {
+    "section": "Program check"
+  },
+  "prog.next.none": {
+    "section": "Program check"
+  },
+  "prog.level.2": {
+    "section": "Program check"
+  },
+  "prog.level.3": {
+    "section": "Program check"
+  },
+  "prog.part.awarded": {
+    "section": "Program check"
+  },
+  "prog.part.zero": {
+    "section": "Program check"
+  },
+  "prog.part.missing": {
+    "section": "Program check"
+  },
+  "prog.part.noRecord": {
+    "section": "Program check"
+  },
+  "prog.part.family": {
+    "section": "Program check"
+  },
+  "prog.part.family.one": {
+    "section": "Program check"
+  },
+  "prog.part.family.none": {
+    "section": "Program check"
+  },
+  "prog.value.AWARDED": {
+    "section": "Program check"
+  },
+  "prog.value.ZERO_AWARDS": {
+    "section": "Program check"
+  },
+  "prog.value.NOT_CONFIRMED": {
+    "section": "Program check"
+  },
+  "prog.label.one.AWARDED": {
+    "section": "Program check"
+  },
+  "prog.label.one.ZERO_AWARDS": {
+    "section": "Program check"
+  },
+  "prog.label.one.NOT_CONFIRMED": {
+    "section": "Program check"
+  },
+  "prog.label.many": {
+    "section": "Program check"
+  },
+  "prog.reason": {
+    "section": "Program check"
+  },
+  "prog.next.verify.one": {
+    "section": "Program check"
+  },
+  "prog.next.verify": {
+    "section": "Program check"
+  },
+  "prog.next.others": {
+    "section": "Program check"
+  },
+  "prog.moreAwarded": {
+    "section": "Program check"
+  },
+  "prog.others": {
+    "section": "Program check"
+  },
+  "prog.others.value": {
+    "section": "Program check"
+  },
+  "prog.others.note": {
+    "section": "Program check"
+  },
+  "prog.andMore": {
+    "section": "Program check"
+  },
+  "and": {
+    "section": "Program check"
+  },
+  "prog.next.license": {
+    "section": "Program check"
+  },
+  "prog.next.zero": {
+    "section": "Program check"
+  },
+  "prog.next.confirm": {
+    "section": "Program check"
+  },
+  "ac.policy": {
+    "section": "Academic lens"
+  },
+  "ac.open": {
+    "section": "Academic lens"
+  },
+  "ac.open.note": {
+    "section": "Academic lens"
+  },
+  "ac.rate": {
+    "section": "Academic lens"
+  },
+  "ac.rate.note": {
+    "section": "Academic lens"
+  },
+  "ac.rate.unusable": {
+    "section": "Academic lens"
+  },
+  "ac.rate.unusable.note": {
+    "section": "Academic lens"
+  },
+  "ac.test": {
+    "section": "Academic lens"
+  },
+  "ac.test.1": {
+    "section": "Academic lens"
+  },
+  "ac.test.2": {
+    "section": "Academic lens"
+  },
+  "ac.test.3": {
+    "section": "Academic lens"
+  },
+  "ac.test.5": {
+    "section": "Academic lens"
+  },
+  "ac.test.note": {
+    "section": "Academic lens"
+  },
+  "ac.sat": {
+    "section": "Academic lens"
+  },
+  "ac.sat.notAssessed": {
+    "section": "Academic lens"
+  },
+  "ac.sat.notAssessed.note": {
+    "section": "Academic lens"
+  },
+  "ac.sat.noRanges": {
+    "section": "Academic lens"
+  },
+  "ac.sat.noRanges.note": {
+    "section": "Academic lens"
+  },
+  "ac.sat.reading": {
+    "section": "Academic lens"
+  },
+  "ac.sat.math": {
+    "section": "Academic lens"
+  },
+  "ac.sat.range.note": {
+    "section": "Academic lens"
+  },
+  "ac.band.BELOW": {
+    "section": "Academic lens"
+  },
+  "ac.band.WITHIN": {
+    "section": "Academic lens"
+  },
+  "ac.band.ABOVE": {
+    "section": "Academic lens"
+  },
+  "ac.program": {
+    "section": "Academic lens"
+  },
+  "ac.program.value": {
+    "section": "Academic lens"
+  },
+  "ac.program.note": {
+    "section": "Academic lens"
+  },
+  "ac.label.selective": {
+    "section": "Academic lens"
+  },
+  "ac.label.sat.BELOW": {
+    "section": "Academic lens"
+  },
+  "ac.label.sat.WITHIN": {
+    "section": "Academic lens"
+  },
+  "ac.label.sat.ABOVE": {
+    "section": "Academic lens"
+  },
+  "ac.label.sat.MIXED": {
+    "section": "Academic lens"
+  },
+  "ac.label.rate": {
+    "section": "Academic lens"
+  },
+  "ac.label.unknown": {
+    "section": "Academic lens"
+  },
+  "ac.reason.open": {
+    "section": "Academic lens"
+  },
+  "ac.reason.rate": {
+    "section": "Academic lens"
+  },
+  "ac.reason.sat": {
+    "section": "Academic lens"
+  },
+  "ac.next": {
+    "section": "Academic lens"
+  },
+  "fin.cost": {
+    "section": "Financial lens"
+  },
+  "fin.cost.note": {
+    "section": "Financial lens"
+  },
+  "fin.cost.public.note": {
+    "section": "Financial lens"
+  },
+  "fin.tuitionIn": {
+    "section": "Financial lens"
+  },
+  "fin.tuitionIn.note": {
+    "section": "Financial lens"
+  },
+  "fin.tuitionOut": {
+    "section": "Financial lens"
+  },
+  "fin.tuition": {
+    "section": "Financial lens"
+  },
+  "fin.oosEstimate": {
+    "section": "Financial lens"
+  },
+  "fin.oosEstimate.note": {
+    "section": "Financial lens"
+  },
+  "fin.net": {
+    "section": "Financial lens"
+  },
+  "fin.net.bracket": {
+    "section": "Financial lens"
+  },
+  "fin.net.all": {
+    "section": "Financial lens"
+  },
+  "fin.net.note": {
+    "section": "Financial lens"
+  },
+  "fin.net.public.note": {
+    "section": "Financial lens"
+  },
+  "fin.net.negative.note": {
+    "section": "Financial lens"
+  },
+  "fin.net.oos": {
+    "section": "Financial lens"
+  },
+  "fin.net.oos.note": {
+    "section": "Financial lens"
+  },
+  "fin.budget": {
+    "section": "Financial lens"
+  },
+  "fin.budget.note": {
+    "section": "Financial lens"
+  },
+  "fin.basis.net": {
+    "section": "Financial lens"
+  },
+  "fin.basis.published": {
+    "section": "Financial lens"
+  },
+  "fin.label.insufficient": {
+    "section": "Financial lens"
+  },
+  "fin.label.verify": {
+    "section": "Financial lens"
+  },
+  "fin.label.within": {
+    "section": "Financial lens"
+  },
+  "fin.label.beforeAid": {
+    "section": "Financial lens"
+  },
+  "fin.label.slightly": {
+    "section": "Financial lens"
+  },
+  "fin.label.above": {
+    "section": "Financial lens"
+  },
+  "fin.reason.net": {
+    "section": "Financial lens"
+  },
+  "fin.reason.within": {
+    "section": "Financial lens"
+  },
+  "fin.next": {
+    "section": "Financial lens"
+  },
+  "fin.next.residency": {
+    "section": "Financial lens"
+  },
+  "fin.next.noNpc": {
+    "section": "Financial lens"
+  },
+  "soc.state": {
+    "section": "Social lens"
+  },
+  "soc.setting": {
+    "section": "Social lens"
+  },
+  "soc.size": {
+    "section": "Social lens"
+  },
+  "soc.size.value": {
+    "section": "Social lens"
+  },
+  "soc.size.online": {
+    "section": "Social lens"
+  },
+  "soc.youChose": {
+    "section": "Social lens"
+  },
+  "soc.noPreference": {
+    "section": "Social lens"
+  },
+  "soc.dataMissing": {
+    "section": "Social lens"
+  },
+  "soc.label": {
+    "section": "Social lens"
+  },
+  "soc.label.none": {
+    "section": "Social lens"
+  },
+  "soc.reason": {
+    "section": "Social lens"
+  },
+  "soc.next.none": {
+    "section": "Social lens"
+  },
+  "soc.next.flexible": {
+    "section": "Social lens"
+  },
+  "step.pathway": {
+    "section": "Next steps from \"not sure\" answers"
+  },
+  "step.program": {
+    "section": "Next steps from \"not sure\" answers"
+  },
+  "step.sat": {
+    "section": "Next steps from \"not sure\" answers"
+  },
+  "step.aid": {
+    "section": "Next steps from \"not sure\" answers"
+  },
+  "step.budget": {
+    "section": "Next steps from \"not sure\" answers"
+  },
+  "step.income": {
+    "section": "Next steps from \"not sure\" answers"
+  },
+  "step.support": {
+    "section": "Next steps from \"not sure\" answers"
+  },
+  "SortOrder.BEST_FIT": {
+    "section": "Sorting"
+  },
+  "SortOrder.EASIER_ADMISSION": {
+    "section": "Sorting"
+  },
+  "SortOrder.LOWEST_COST": {
+    "section": "Sorting"
+  },
+  "SortOrder.NAME": {
+    "section": "Sorting"
+  },
+  "sort.label": {
+    "section": "Sorting"
+  },
+  "sort.explain.BEST_FIT": {
+    "section": "Sorting"
+  },
+  "sort.explain.EASIER_ADMISSION": {
+    "section": "Sorting"
+  },
+  "sort.explain.LOWEST_COST": {
+    "section": "Sorting"
+  },
+  "sort.explain.NAME": {
+    "section": "Sorting"
+  },
+  "results.title": {
+    "section": "Results"
+  },
+  "results.count": {
+    "section": "Results"
+  },
+  "results.matches": {
+    "section": "Results"
+  },
+  "results.matches.filtered": {
+    "section": "Results"
+  },
+  "results.filter": {
+    "section": "Results"
+  },
+  "results.focus": {
+    "section": "Results"
+  },
+  "results.focus.all": {
+    "section": "Results"
+  },
+  "results.elsewhere": {
+    "section": "Results"
+  },
+  "results.elsewhere.note": {
+    "section": "Results"
+  },
+  "results.none": {
+    "section": "Results"
+  },
+  "results.answers": {
+    "section": "Results"
+  },
+  "results.steps": {
+    "section": "Results"
+  },
+  "results.edit": {
+    "section": "Results"
+  },
+  "results.startOver": {
+    "section": "Results"
+  },
+  "results.startOver.tip": {
+    "section": "Results"
+  },
+  "results.startOver.confirm": {
+    "section": "Results"
+  },
+  "results.legend": {
+    "section": "Results"
+  },
+  "results.source": {
+    "section": "Results"
+  },
+  "list.button": {
+    "section": "My list"
+  },
+  "list.title": {
+    "section": "My list"
+  },
+  "list.save": {
+    "section": "My list"
+  },
+  "list.saved": {
+    "section": "My list"
+  },
+  "list.remove": {
+    "section": "My list"
+  },
+  "list.empty": {
+    "section": "My list"
+  },
+  "list.export": {
+    "section": "My list"
+  },
+  "list.exported": {
+    "section": "My list"
+  },
+  "list.exportFailed": {
+    "section": "My list"
+  },
+  "list.privacy": {
+    "section": "My list"
+  },
+  "list.privacy.confirm": {
+    "section": "My list"
+  },
+  "list.compare": {
+    "section": "My list"
+  },
+  "list.compare.pick": {
+    "section": "My list"
+  },
+  "list.compare.need": {
+    "section": "My list"
+  },
+  "compare.title": {
+    "section": "My list"
+  },
+  "compare.place": {
+    "section": "My list"
+  },
+  "compare.verify": {
+    "section": "My list"
+  },
+  "export.college": {
+    "section": "My list"
+  },
+  "export.city": {
+    "section": "My list"
+  },
+  "export.state": {
+    "section": "My list"
+  },
+  "export.steps": {
+    "section": "My list"
+  },
+  "export.note": {
+    "section": "My list"
+  },
+  "lens.program": {
+    "section": "Card and details"
+  },
+  "lens.academic": {
+    "section": "Card and details"
+  },
+  "lens.financial": {
+    "section": "Card and details"
+  },
+  "lens.social": {
+    "section": "Card and details"
+  },
+  "card.details": {
+    "section": "Card and details"
+  },
+  "details.title": {
+    "section": "Card and details"
+  },
+  "details.undergrads": {
+    "section": "Card and details"
+  },
+  "details.why": {
+    "section": "Card and details"
+  },
+  "details.why.none": {
+    "section": "Card and details"
+  },
+  "details.verify": {
+    "section": "Card and details"
+  },
+  "details.website": {
+    "section": "Card and details"
+  },
+  "details.npc": {
+    "section": "Card and details"
+  },
+  "details.openSite": {
+    "section": "Card and details"
+  },
+  "details.openNpc": {
+    "section": "Card and details"
+  },
+  "details.noNpc": {
+    "section": "Card and details"
+  },
+  "details.copy": {
+    "section": "Card and details"
+  },
+  "details.copied": {
+    "section": "Card and details"
+  },
+  "details.openFailed": {
+    "section": "Card and details"
+  },
+  "details.disclaimer": {
+    "section": "Card and details"
+  },
+  "nav.back": {
+    "section": "Card and details",
+    "note": "=================== v0.3 journey ==================="
+  },
+  "nav.help": {
+    "section": "Card and details",
+    "note": "=================== v0.3 journey ==================="
+  },
+  "nav.mine": {
+    "section": "Card and details",
+    "note": "=================== v0.3 journey ==================="
+  },
+  "help.text": {
+    "section": "Card and details",
+    "note": "=================== v0.3 journey ==================="
+  },
+  "step.1": {
+    "section": "Card and details",
+    "note": "=================== v0.3 journey ==================="
+  },
+  "step.2": {
+    "section": "Card and details",
+    "note": "=================== v0.3 journey ==================="
+  },
+  "step.3": {
+    "section": "Card and details",
+    "note": "=================== v0.3 journey ==================="
+  },
+  "step.4": {
+    "section": "Card and details",
+    "note": "=================== v0.3 journey ==================="
+  },
+  "step.5": {
+    "section": "Card and details",
+    "note": "=================== v0.3 journey ==================="
+  },
+  "startOver": {
+    "section": "Card and details",
+    "note": "=================== v0.3 journey ==================="
+  },
+  "startOver.confirm": {
+    "section": "Card and details",
+    "note": "=================== v0.3 journey ==================="
+  },
+  "compare.full": {
+    "section": "Card and details",
+    "note": "=================== v0.3 journey ==================="
+  },
+  "start.title": {
+    "section": "Step 1"
+  },
+  "start.subtitle": {
+    "section": "Step 1"
+  },
+  "start.SUBJECT": {
+    "section": "Step 1"
+  },
+  "start.SUBJECT.desc": {
+    "section": "Step 1"
+  },
+  "start.PLACE": {
+    "section": "Step 1"
+  },
+  "start.PLACE.desc": {
+    "section": "Step 1"
+  },
+  "start.PATHWAY": {
+    "section": "Step 1"
+  },
+  "start.PATHWAY.desc": {
+    "section": "Step 1"
+  },
+  "start.NOT_SURE": {
+    "section": "Step 1"
+  },
+  "start.NOT_SURE.desc": {
+    "section": "Step 1"
+  },
+  "start.continue": {
+    "section": "Step 1"
+  },
+  "start.privacy": {
+    "section": "Step 1"
+  },
+  "dir.title.SUBJECT": {
+    "section": "Step 2"
+  },
+  "dir.title.PLACE": {
+    "section": "Step 2"
+  },
+  "dir.title.PATHWAY": {
+    "section": "Step 2"
+  },
+  "dir.subtitle": {
+    "section": "Step 2"
+  },
+  "dir.goals": {
+    "section": "Step 2"
+  },
+  "dir.place": {
+    "section": "Step 2"
+  },
+  "dir.programs": {
+    "section": "Step 2"
+  },
+  "dir.programs.hint": {
+    "section": "Step 2"
+  },
+  "dir.programs.none": {
+    "section": "Step 2"
+  },
+  "dir.degree": {
+    "section": "Step 2"
+  },
+  "dir.degree.hint": {
+    "section": "Step 2"
+  },
+  "dir.where": {
+    "section": "Step 2"
+  },
+  "dir.addState": {
+    "section": "Step 2"
+  },
+  "dir.states.none": {
+    "section": "Step 2"
+  },
+  "dir.setting": {
+    "section": "Step 2"
+  },
+  "dir.size": {
+    "section": "Step 2"
+  },
+  "dir.optional": {
+    "section": "Step 2"
+  },
+  "dir.optionalParen": {
+    "section": "Step 2"
+  },
+  "dir.extras": {
+    "section": "Step 2"
+  },
+  "dir.extras.hint": {
+    "section": "Step 2"
+  },
+  "dir.next": {
+    "section": "Step 2"
+  },
+  "dir.privacy": {
+    "section": "Step 2"
+  },
+  "how.title": {
+    "section": "Step 2"
+  },
+  "how.program": {
+    "section": "Step 2"
+  },
+  "how.place": {
+    "section": "Step 2"
+  },
+  "how.extras": {
+    "section": "Step 2"
+  },
+  "extra.sat": {
+    "section": "Step 2"
+  },
+  "extra.home": {
+    "section": "Step 2"
+  },
+  "extra.budget": {
+    "section": "Step 2"
+  },
+  "extra.income": {
+    "section": "Step 2"
+  },
+  "extra.aid": {
+    "section": "Step 2"
+  },
+  "unsure.title": {
+    "section": "Step 2: not sure"
+  },
+  "unsure.subtitle": {
+    "section": "Step 2: not sure"
+  },
+  "unsure.liveIn": {
+    "section": "Step 2: not sure"
+  },
+  "unsure.explore": {
+    "section": "Step 2: not sure"
+  },
+  "unsure.inState": {
+    "section": "Step 2: not sure"
+  },
+  "unsure.anywhere": {
+    "section": "Step 2: not sure"
+  },
+  "unsure.step1": {
+    "section": "Step 2: not sure"
+  },
+  "unsure.step2": {
+    "section": "Step 2: not sure"
+  },
+  "unsure.both": {
+    "section": "Step 2: not sure"
+  },
+  "unsure.two": {
+    "section": "Step 2: not sure"
+  },
+  "unsure.four": {
+    "section": "Step 2: not sure"
+  },
+  "unsure.fieldCount": {
+    "section": "Step 2: not sure"
+  },
+  "unsure.countNote": {
+    "section": "Step 2: not sure"
+  },
+  "unsure.noFields": {
+    "section": "Step 2: not sure"
+  },
+  "unsure.summary": {
+    "section": "Step 2: not sure"
+  },
+  "unsure.common.title": {
+    "section": "Step 2: not sure"
+  },
+  "unsure.common.subtitle": {
+    "section": "Step 2: not sure"
+  },
+  "unsure.pathway.title": {
+    "section": "Step 2: not sure"
+  },
+  "unsure.pathway.subtitle": {
+    "section": "Step 2: not sure"
+  },
+  "unsure.next.fields": {
+    "section": "Step 2: not sure"
+  },
+  "unsure.next.continue": {
+    "section": "Step 2: not sure"
+  },
+  "unsure.interest.title": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "unsure.interest.subtitle": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "unsure.interest.example": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "unsure.interest.max": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "unsure.interest.notSure": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "unsure.interest.notSure.text": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "unsure.interest.source": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "unsure.interest.summary": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "unsure.interest.none": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "interest.R": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "interest.R.ex1": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "interest.R.ex2": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "interest.I": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "interest.I.ex1": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "interest.I.ex2": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "interest.A": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "interest.A.ex1": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "interest.A.ex2": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "interest.S": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "interest.S.ex1": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "interest.S.ex2": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "interest.E": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "interest.E.ex1": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "interest.E.ex2": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "interest.C": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "interest.C.ex1": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "interest.C.ex2": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
+  },
+  "unsure.fields.title": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "unsure.fields.subtitle": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "unsure.fields.meta": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "unsure.fields.careers": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "unsure.fields.programs": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "unsure.fields.programCount": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "unsure.fields.showAll": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "unsure.fields.showFewer": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "unsure.fields.empty": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "unsure.fields.liberal": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "unsure.fields.liberal.text": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "unsure.fields.source": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "jobZone.3": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "jobZone.4": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "jobZone.5": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "pathway.us": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "pathway.two": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "pathway.two.tag": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "pathway.two.text": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "pathway.four": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "pathway.four.tag": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "pathway.four.text": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "field.52": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "field.51": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "field.11": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "field.50": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "field.24": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "field.26": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "field.42": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "field.45": {
+    "section": "Step 2: not sure",
+    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
+  },
+  "options.title": {
+    "section": "Step 3"
+  },
+  "options.topic.all": {
+    "section": "Step 3"
+  },
+  "options.topic.more": {
+    "section": "Step 3"
+  },
+  "options.in": {
+    "section": "Step 3"
+  },
+  "options.anywhere": {
+    "section": "Step 3"
+  },
+  "options.direction": {
+    "section": "Step 3"
+  },
+  "options.change": {
+    "section": "Step 3"
+  },
+  "options.anyLevel": {
+    "section": "Step 3"
+  },
+  "options.count": {
+    "section": "Step 3"
+  },
+  "options.showing": {
+    "section": "Step 3"
+  },
+  "options.order": {
+    "section": "Step 3"
+  },
+  "options.more": {
+    "section": "Step 3"
+  },
+  "options.none": {
+    "section": "Step 3"
+  },
+  "options.toMine": {
+    "section": "Step 3"
+  },
+  "options.footnote.bracket": {
+    "section": "Step 3"
+  },
+  "options.footnote.all": {
+    "section": "Step 3"
+  },
+  "Order.RECENT_DEGREES": {
+    "section": "Step 3"
+  },
+  "Order.EASIER_ADMISSION": {
+    "section": "Step 3"
+  },
+  "Order.LOWEST_COST": {
+    "section": "Step 3"
+  },
+  "Order.NAME": {
+    "section": "Step 3"
+  },
+  "group.TWO_YEAR": {
+    "section": "Step 3"
+  },
+  "group.TWO_YEAR.sub": {
+    "section": "Step 3"
+  },
+  "group.PUBLIC_FOUR_YEAR": {
+    "section": "Step 3"
+  },
+  "group.PUBLIC_FOUR_YEAR.sub": {
+    "section": "Step 3"
+  },
+  "group.PRIVATE_FOUR_YEAR.sub": {
+    "section": "Step 3"
+  },
+  "tag.TWO_YEAR": {
+    "section": "Step 3"
+  },
+  "tag.PUBLIC_FOUR_YEAR": {
+    "section": "Step 3"
+  },
+  "tag.PRIVATE_FOUR_YEAR": {
+    "section": "Step 3"
+  },
+  "level.associate": {
+    "section": "Step 3"
+  },
+  "level.bachelor": {
+    "section": "Step 3"
+  },
+  "level.both": {
+    "section": "Step 3"
+  },
+  "card.program.one": {
+    "section": "Step 3"
+  },
+  "card.program.awarded": {
+    "section": "Step 3"
+  },
+  "card.program.many": {
+    "section": "Step 3"
+  },
+  "card.program.all": {
+    "section": "Step 3"
+  },
+  "card.cost.both": {
+    "section": "Step 3"
+  },
+  "card.cost.published": {
+    "section": "Step 3"
+  },
+  "card.cost.oos": {
+    "section": "Step 3"
+  },
+  "card.cost.avgOnly": {
+    "section": "Step 3"
+  },
+  "card.cost.none": {
+    "section": "Step 3"
+  },
+  "card.size.SMALL": {
+    "section": "Step 3"
+  },
+  "card.size.MEDIUM": {
+    "section": "Step 3"
+  },
+  "card.size.LARGE": {
+    "section": "Step 3"
+  },
+  "card.size.UNKNOWN": {
+    "section": "Step 3"
+  },
+  "card.social.none": {
+    "section": "Step 3"
+  },
+  "prog.reason.count": {
+    "section": "Step 3"
+  },
+  "details.back": {
+    "section": "Step 4"
+  },
+  "details.kind.TWO_YEAR": {
+    "section": "Step 4"
+  },
+  "details.kind.PUBLIC_FOUR_YEAR": {
+    "section": "Step 4"
+  },
+  "details.compare": {
+    "section": "Step 4"
+  },
+  "details.inCompare": {
+    "section": "Step 4"
+  },
+  "details.programAcademic": {
+    "section": "Step 4"
+  },
+  "details.site": {
+    "section": "Step 4"
+  },
+  "details.addInfo": {
+    "section": "Step 4"
+  },
+  "details.place.note": {
+    "section": "Step 4"
+  },
+  "tab.overview": {
+    "section": "Step 4"
+  },
+  "tab.program": {
+    "section": "Step 4"
+  },
+  "tab.costs": {
+    "section": "Step 4"
+  },
+  "tab.place": {
+    "section": "Step 4"
+  },
+  "tile.degrees": {
+    "section": "Step 4"
+  },
+  "tile.degreesAll": {
+    "section": "Step 4"
+  },
+  "tile.admission": {
+    "section": "Step 4"
+  },
+  "tile.admission.note": {
+    "section": "Step 4"
+  },
+  "tile.cost": {
+    "section": "Step 4"
+  },
+  "tile.cost.public": {
+    "section": "Step 4"
+  },
+  "tile.cost.private": {
+    "section": "Step 4"
+  },
+  "tile.cost.oos": {
+    "section": "Step 4"
+  },
+  "tile.completion": {
+    "section": "Step 4"
+  },
+  "tile.completion.within": {
+    "section": "Step 4"
+  },
+  "tile.size": {
+    "section": "Step 4"
+  },
+  "tile.size.note": {
+    "section": "Step 4"
+  },
+  "mine.title": {
+    "section": "Step 5"
+  },
+  "mine.subtitle": {
+    "section": "Step 5"
+  },
+  "mine.pick": {
+    "section": "Step 5"
+  },
+  "mine.empty": {
+    "section": "Step 5"
+  },
+  "mine.placeholder": {
+    "section": "Step 5"
+  },
+  "mine.avg.bracket": {
+    "section": "Step 5"
+  },
+  "mine.avg.all": {
+    "section": "Step 5"
+  },
+  "mine.completion": {
+    "section": "Step 5"
+  },
+  "mine.todo": {
+    "section": "Step 5"
+  },
+  "mine.questions": {
+    "section": "Step 5"
+  },
+  "mine.q1": {
+    "section": "Step 5"
+  },
+  "mine.q2": {
+    "section": "Step 5"
+  },
+  "mine.q3": {
+    "section": "Step 5"
+  },
+  "mine.q4": {
+    "section": "Step 5"
+  },
+  "mine.q.programFallback": {
+    "section": "Step 5"
+  },
+  "mine.back": {
+    "section": "Step 5"
+  },
+  "mine.export": {
+    "section": "Step 5"
+  },
+  "mine.privacy": {
+    "section": "Step 5"
+  },
+  "prog.note.ZERO_AWARDS": {
+    "section": "Step 5"
+  },
+  "prog.note.NOT_CONFIRMED": {
+    "section": "Step 5"
+  },
+  "ac.rateLabel": {
+    "section": "Step 5"
+  },
+  "fin.tuitionOut.note": {
+    "section": "Step 5"
+  },
+  "fin.tuition.note": {
+    "section": "Step 5"
+  },
+  "group.COMMUNITY_COLLEGE": {
+    "section": "Step 5"
+  },
+  "group.COMMUNITY_COLLEGE.sub": {
+    "section": "Step 5"
+  },
+  "group.PRIVATE": {
+    "section": "Step 5"
+  },
+  "group.PRIVATE.sub": {
+    "section": "Step 5"
+  },
+  "details.kind.COMMUNITY_COLLEGE": {
+    "section": "Step 5"
+  },
+  "details.kind.PRIVATE": {
+    "section": "Step 5"
+  },
+  "tag.COMMUNITY_COLLEGE": {
+    "section": "Step 5"
+  },
+  "tag.PRIVATE": {
+    "section": "Step 5"
+  },
+  "tile.admissionRate": {
+    "section": "Step 5"
+  },
+  "tile.admission.open": {
+    "section": "Step 5"
+  },
+  "order.explain.RECENT_DEGREES": {
+    "section": "Step 5"
+  },
+  "order.explain.EASIER_ADMISSION": {
+    "section": "Step 5"
+  },
+  "order.explain.LOWEST_COST": {
+    "section": "Step 5"
+  },
+  "order.explain.NAME": {
+    "section": "Step 5"
+  },
+  "dir.count.us": {
+    "section": "Step 5"
+  },
+  "dir.count.state": {
+    "section": "Step 5"
+  },
+  "dir.count.none": {
+    "section": "Step 5"
+  },
+  "dir.count.yourStates": {
+    "section": "Step 5"
+  },
+  "nav.home": {
+    "section": "Step 5"
+  },
+  "nav.home.tip": {
+    "section": "Step 5"
+  },
+  "help.data.title": {
+    "section": "Step 5"
+  },
+  "help.data": {
+    "section": "Step 5"
+  },
+  "error.sat.missing": {
+    "section": "Step 5"
+  },
+  "error.budget.missing": {
+    "section": "Step 5"
+  },
+  "mine.exportAll": {
+    "section": "Step 5"
+  },
+  "tag.two": {
+    "section": "Step 5"
+  },
+  "tag.four": {
+    "section": "Step 5"
+  },
+  "step.6": {
+    "section": "Step 5"
+  },
+  "then": {
+    "section": "Step 5"
+  },
+  "error.priorities": {
+    "section": "Step 5"
+  },
+  "Priority.COSTS": {
+    "section": "Step 5"
+  },
+  "Priority.GRADUATION": {
+    "section": "Step 5"
+  },
+  "Priority.ADMISSION": {
+    "section": "Step 5"
+  },
+  "Priority.STUDY": {
+    "section": "Step 5"
+  },
+  "Priority.CAMPUS": {
+    "section": "Step 5"
+  },
+  "pri.title": {
+    "section": "Step 5"
+  },
+  "pri.subtitle": {
+    "section": "Step 5"
+  },
+  "pri.topic": {
+    "section": "Step 5"
+  },
+  "pri.desc.COSTS": {
+    "section": "Step 5"
+  },
+  "pri.desc.GRADUATION": {
+    "section": "Step 5"
+  },
+  "pri.desc.ADMISSION": {
+    "section": "Step 5"
+  },
+  "pri.desc.STUDY": {
+    "section": "Step 5"
+  },
+  "pri.desc.CAMPUS": {
+    "section": "Step 5"
+  },
+  "pri.basis.COSTS": {
+    "section": "Step 5"
+  },
+  "pri.basis.GRADUATION": {
+    "section": "Step 5"
+  },
+  "pri.basis.ADMISSION": {
+    "section": "Step 5"
+  },
+  "pri.basis.STUDY": {
+    "section": "Step 5"
+  },
+  "pri.basis.CAMPUS": {
+    "section": "Step 5"
+  },
+  "pri.how.title": {
+    "section": "Step 5"
+  },
+  "pri.how": {
+    "section": "Step 5"
+  },
+  "pri.order": {
+    "section": "Step 5"
+  },
+  "pri.order.none": {
+    "section": "Step 5"
+  },
+  "pri.clear": {
+    "section": "Step 5"
+  },
+  "pri.skip": {
+    "section": "Step 5"
+  },
+  "pri.next": {
+    "section": "Step 5"
+  },
+  "pri.footnote": {
+    "section": "Step 5"
+  },
+  "explore.orderedBy": {
+    "section": "Step 5"
+  },
+  "explore.orderedDefault": {
+    "section": "Step 5"
+  },
+  "explore.changePriorities": {
+    "section": "Step 5"
+  },
+  "explore.counts": {
+    "section": "Step 5"
+  },
+  "explore.toCompare": {
+    "section": "Step 5"
+  },
+  "order.short.COSTS": {
+    "section": "Step 5"
+  },
+  "order.short.GRADUATION": {
+    "section": "Step 5"
+  },
+  "order.short.ADMISSION": {
+    "section": "Step 5"
+  },
+  "order.short.STUDY": {
+    "section": "Step 5"
+  },
+  "order.short.CAMPUS": {
+    "section": "Step 5"
+  },
+  "card.detailsShort": {
+    "section": "Step 5"
+  },
+  "card.label.COSTS": {
+    "section": "Step 5"
+  },
+  "card.label.GRADUATION": {
+    "section": "Step 5"
+  },
+  "card.label.ADMISSION": {
+    "section": "Step 5"
+  },
+  "card.label.STUDY": {
+    "section": "Step 5"
+  },
+  "card.label.CAMPUS": {
+    "section": "Step 5"
+  },
+  "card.cost.oosNotComparable": {
+    "section": "Step 5"
+  },
+  "card.cost.notReported": {
+    "section": "Step 5"
+  },
+  "card.completion.measure": {
+    "section": "Step 5"
+  },
+  "card.admission.rate": {
+    "section": "Step 5"
+  },
+  "keep.keep": {
+    "section": "Step 5"
+  },
+  "keep.kept": {
+    "section": "Step 5"
+  },
+  "keep.not": {
+    "section": "Step 5"
+  },
+  "not.title": {
+    "section": "Step 5"
+  },
+  "not.question": {
+    "section": "Step 5"
+  },
+  "not.save": {
+    "section": "Step 5"
+  },
+  "not.cancel": {
+    "section": "Step 5"
+  },
+  "not.section": {
+    "section": "Step 5"
+  },
+  "not.reasonLine": {
+    "section": "Step 5"
+  },
+  "not.noReason": {
+    "section": "Step 5"
+  },
+  "not.undo": {
+    "section": "Step 5"
+  },
+  "not.edit": {
+    "section": "Step 5"
+  },
+  "reason.COST": {
+    "section": "Step 5"
+  },
+  "reason.FAR": {
+    "section": "Step 5"
+  },
+  "reason.ADMISSION": {
+    "section": "Step 5"
+  },
+  "reason.PROGRAM": {
+    "section": "Step 5"
+  },
+  "reason.SIZE": {
+    "section": "Step 5"
+  },
+  "reason.OTHER": {
+    "section": "Step 5"
+  },
+  "tip.text": {
+    "section": "Step 5"
+  },
+  "tip.notNow": {
+    "section": "Step 5"
+  },
+  "tip.ask.COST": {
+    "section": "Step 5"
+  },
+  "tip.do.COST": {
+    "section": "Step 5"
+  },
+  "tip.ask.FAR": {
+    "section": "Step 5"
+  },
+  "tip.do.FAR": {
+    "section": "Step 5"
+  },
+  "tip.ask.ADMISSION": {
+    "section": "Step 5"
+  },
+  "tip.do.ADMISSION": {
+    "section": "Step 5"
+  },
+  "tip.ask.PROGRAM": {
+    "section": "Step 5"
+  },
+  "tip.do.PROGRAM": {
+    "section": "Step 5"
+  },
+  "tip.ask.SIZE": {
+    "section": "Step 5"
+  },
+  "tip.do.SIZE": {
+    "section": "Step 5"
+  },
+  "details.backCompare": {
+    "section": "Step 5"
+  },
+  "cmp.title": {
+    "section": "Step 5"
+  },
+  "cmp.subtitle": {
+    "section": "Step 5"
+  },
+  "cmp.none": {
+    "section": "Step 5"
+  },
+  "cmp.one": {
+    "section": "Step 5"
+  },
+  "cmp.degreeBanner": {
+    "section": "Step 5"
+  },
+  "cmp.row.DEGREE": {
+    "section": "Step 5"
+  },
+  "cmp.row.DEGREE.note": {
+    "section": "Step 5"
+  },
+  "cmp.row.COSTS": {
+    "section": "Step 5"
+  },
+  "cmp.row.COSTS.note": {
+    "section": "Step 5"
+  },
+  "cmp.row.GRADUATION": {
+    "section": "Step 5"
+  },
+  "cmp.row.GRADUATION.note": {
+    "section": "Step 5"
+  },
+  "cmp.row.ADMISSION": {
+    "section": "Step 5"
+  },
+  "cmp.row.ADMISSION.note": {
+    "section": "Step 5"
+  },
+  "cmp.row.STUDY": {
+    "section": "Step 5"
+  },
+  "cmp.row.STUDY.note": {
+    "section": "Step 5"
+  },
+  "cmp.row.CAMPUS": {
+    "section": "Step 5"
+  },
+  "cmp.row.CAMPUS.note": {
+    "section": "Step 5"
+  },
+  "cmp.row.REASONS": {
+    "section": "Step 5"
+  },
+  "cmp.row.REASONS.note": {
+    "section": "Step 5"
+  },
+  "cmp.costBefore": {
+    "section": "Step 5"
+  },
+  "keepReason.COSTS": {
+    "section": "Step 5"
+  },
+  "keepReason.STUDY": {
+    "section": "Step 5"
+  },
+  "keepReason.GRADUATION": {
+    "section": "Step 5"
+  },
+  "keepReason.ADMISSION": {
+    "section": "Step 5"
+  },
+  "keepReason.CAMPUS": {
+    "section": "Step 5"
+  },
+  "keepReason.OTHER": {
+    "section": "Step 5"
+  },
+  "cmp.mark.differentPath": {
+    "section": "Step 5"
+  },
+  "cmp.mark.notComparable": {
+    "section": "Step 5"
+  },
+  "cmp.mark.lowerCost": {
+    "section": "Step 5"
+  },
+  "cmp.mark.higherRate": {
+    "section": "Step 5"
+  },
+  "cmp.mark.measurePrefix": {
+    "section": "Step 5"
+  },
+  "cmp.mark.measure.6": {
+    "section": "Step 5"
+  },
+  "cmp.mark.measure.3": {
+    "section": "Step 5"
+  },
+  "cmp.mark.higherAdmit": {
+    "section": "Step 5"
+  },
+  "cmp.mark.moreGraduates": {
+    "section": "Step 5"
+  },
+  "cmp.tradeoffs": {
+    "section": "Step 5"
+  },
+  "cmp.degree": {
+    "section": "Step 5"
+  },
+  "cmp.degree.part": {
+    "section": "Step 5"
+  },
+  "cmp.cost.similar": {
+    "section": "Step 5"
+  },
+  "cmp.cost.lower": {
+    "section": "Step 5"
+  },
+  "cmp.cost.none": {
+    "section": "Step 5"
+  },
+  "cmp.cost.notComparable": {
+    "section": "Step 5"
+  },
+  "cmp.grad.higher.6": {
+    "section": "Step 5"
+  },
+  "cmp.grad.higher.3": {
+    "section": "Step 5"
+  },
+  "cmp.grad.similar.6": {
+    "section": "Step 5"
+  },
+  "cmp.grad.similar.3": {
+    "section": "Step 5"
+  },
+  "cmp.grad.single.6": {
+    "section": "Step 5"
+  },
+  "cmp.grad.single.3": {
+    "section": "Step 5"
+  },
+  "cmp.grad.missing": {
+    "section": "Step 5"
+  },
+  "cmp.grad.note": {
+    "section": "Step 5"
+  },
+  "cmp.adm.open": {
+    "section": "Step 5"
+  },
+  "cmp.adm.higher": {
+    "section": "Step 5"
+  },
+  "cmp.study.more": {
+    "section": "Step 5"
+  },
+  "cmp.campus": {
+    "section": "Step 5"
+  },
+  "cmp.closing": {
+    "section": "Step 5"
+  },
+  "cmp.glance": {
+    "section": "Step 5"
+  },
+  "cmp.glance.types": {
+    "section": "Step 5"
+  },
+  "cmp.glance.degrees": {
+    "section": "Step 5"
+  },
+  "cmp.glance.admission": {
+    "section": "Step 5"
+  },
+  "cmp.glance.note": {
+    "section": "Step 5"
+  },
+  "cmp.footer": {
+    "section": "Step 5"
+  },
+  "cmp.back": {
+    "section": "Step 5"
+  },
+  "cmp.next": {
+    "section": "Step 5"
+  },
+  "next.title": {
+    "section": "Step 5"
+  },
+  "next.subtitle": {
+    "section": "Step 5"
+  },
+  "next.myReasons": {
+    "section": "Step 5"
+  },
+  "next.noReasons": {
+    "section": "Step 5"
+  },
+  "next.back": {
+    "section": "Step 5"
+  },
+  "export.reasons": {
+    "section": "Step 5"
+  },
+  "cmp.admission.rate": {
+    "section": "Step 5"
+  },
+  "prog.earnings": {
+    "section": "Step 5"
+  },
+  "prog.earnings.note": {
+    "section": "Step 5"
+  },
+  "details.academics": {
+    "section": "Step 5"
+  },
+  "details.part.0": {
+    "section": "Step 5"
+  },
+  "details.part.1": {
+    "section": "Step 5"
+  },
+  "details.part.2": {
+    "section": "Step 5"
+  },
+  "details.part.3": {
+    "section": "Step 5"
+  },
+  "out.completion": {
+    "section": "Step 5"
+  },
+  "out.completion.note": {
+    "section": "Step 5"
+  },
+  "out.transfer": {
+    "section": "Step 5"
+  },
+  "out.transfer.note.two": {
+    "section": "Step 5"
+  },
+  "out.transfer.note.four": {
+    "section": "Step 5"
+  },
+  "res.ratio": {
+    "section": "Step 5"
+  },
+  "res.ratio.value": {
+    "section": "Step 5"
+  },
+  "res.ratio.note": {
+    "section": "Step 5"
+  },
+  "res.explore": {
+    "section": "Step 5"
+  },
+  "options.showAll": {
+    "section": "Step 5"
+  },
+  "options.backToAll": {
+    "section": "Step 5"
+  },
+  "options.none.bachelor": {
+    "section": "Step 5"
+  },
+  "options.none.associate": {
+    "section": "Step 5"
+  },
+  "options.includeAssociate": {
+    "section": "Step 5"
+  },
+  "options.includeBachelor": {
+    "section": "Step 5"
+  },
+  "order.how.title": {
+    "section": "Step 5"
+  },
+  "order.how.evidence": {
+    "section": "Step 5"
+  },
+  "order.how.COSTS": {
+    "section": "Step 5"
+  },
+  "order.how.GRADUATION": {
+    "section": "Step 5"
+  },
+  "order.how.ADMISSION": {
+    "section": "Step 5"
+  },
+  "order.how.STUDY": {
+    "section": "Step 5"
+  },
+  "order.how.CAMPUS": {
+    "section": "Step 5"
+  },
+  "order.how.degrees": {
+    "section": "Step 5"
+  },
+  "order.how.name": {
+    "section": "Step 5"
+  },
+  "order.how.note": {
+    "section": "Step 5"
+  },
+  "web.link.title": {
+    "section": "Step 5"
+  },
+  "web.link": {
+    "section": "Step 5"
+  },
+  "web.exported": {
+    "section": "Step 5"
+  }
+}
