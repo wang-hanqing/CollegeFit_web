@@ -2258,5 +2258,23 @@
   },
   "web.steps": {
     "section": "Web app"
+  },
+  "web.start.legend": {
+    "section": "Web app: Get started"
+  },
+  "web.start.error": {
+    "section": "Web app: Get started"
+  },
+  "web.grade.question": {
+    "section": "Web app: Get started"
+  },
+  "web.grade.hint": {
+    "section": "Web app: Get started"
+  },
+  "web.grade.option": {
+    "section": "Web app: Get started"
+  },
+  "web.grade.none": {
+    "section": "Web app: Get started"
   }
 }

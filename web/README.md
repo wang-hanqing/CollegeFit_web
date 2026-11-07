@@ -26,7 +26,9 @@ js/state.js       the student's answers, saved links, reload protection
 js/i18n.js        translations, text direction, number formatting
 js/data.js        loads data/*.json and builds lookups
 js/ui.js          header, step line, bottom bar, help
-js/views.js       one function per step (placeholders until each step is ported from Java)
+js/components.js  reusable choices: option cards, chips, error line, privacy note
+js/views.js       which code shows each step; placeholders until a step is ported
+js/steps/*.js     one file per step: render(), onChange(), check()
 data/             made by pipeline/export_web.py; do not edit by hand
 i18n/en.json      English text, the source for every translation
 i18n/<code>.json  translations; missing keys fall back to English
@@ -42,6 +44,13 @@ i18n/<code>.json  translations; missing keys fall back to English
 - **Direction.** Use `inset-inline-start`, `margin-inline-end`, `padding-inline` and so on, never left/right.
   Icons that point forward or back get the class `directional` so they flip in Arabic and Dari.
 - **Numbers.** Use `formatNumber` and `formatMoney` from `i18n.js`, not `toLocaleString`.
+
+## Porting a step from Java
+
+1. Create `js/steps/<step>.js` with `render(ctx)` and, if needed, `onChange(event, ctx)` and `check(answers)`.
+2. Import it in `js/views.js` in place of the placeholder.
+3. Reuse keys from `i18n/en.json`; shorten the English while porting and add new keys with a `web.` prefix.
+4. Check the page in English and Arabic, on a phone-sized window.
 
 ## Checking in the browser console
 

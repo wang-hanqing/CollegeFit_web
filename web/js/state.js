@@ -13,8 +13,8 @@ const SESSION_KEY = "collegefit.answers";
 export function emptyAnswers() {
   return {
     v: VERSION,
-    grade: null,       // 10, 11, 12 or null when not given
-    start: null,       // which first question the student picked
+    grade: null,       // 9, 10, 11, 12, "none" (prefer not to say) or null (not answered)
+    start: null,       // "subject", "place", "pathway" or "not_sure"
     interests: [],     // O*NET interest types, e.g. ["I", "C"]
     fields: [],        // program families (2-digit CIP)
     states: [],        // state codes, e.g. ["NY"]

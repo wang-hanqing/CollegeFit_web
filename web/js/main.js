@@ -35,12 +35,16 @@ function render({ focus = false } = {}) {
   if (!app.data) return; // still loading; the progress bar is in place
 
   $("journey").innerHTML = stepLine(index);
-  $("main").innerHTML = views[app.step]({ data: app.data, answers: app.answers, update });
+  $("main").innerHTML = views[app.step].render(context());
   $("moves").innerHTML = footer(index);
   if (focus) $("page-title")?.focus();
 }
 
-// Views call this when a student changes an answer.
+function context() {
+  return { data: app.data, answers: app.answers, update };
+}
+
+// Steps call this when a student changes an answer.
 function update(changes) {
   Object.assign(app.answers, changes);
   saveSession(app.answers);
@@ -92,7 +96,18 @@ async function onClick(event) {
     case "home": goTo(STEPS[0].id, lang); break;
     case "step": goTo(target.dataset.step, lang); break;
     case "back": goTo(stepAt(index - 1), lang); break;
-    case "continue": goTo(stepAt(index + 1), lang); break;
+    case "continue": {
+      const problem = views[app.step].check?.(app.answers);
+      if (problem) {
+        const error = $("step-error");
+        error.textContent = problem;
+        error.scrollIntoView({ block: "center", behavior: "smooth" });
+        document.querySelector("#main input")?.focus({ preventScroll: true });
+      } else {
+        goTo(stepAt(index + 1), lang);
+      }
+      break;
+    }
     case "mine": goTo("compare", lang); break;
     case "help": $("help").showModal(); break;
     case "reload": location.reload(); break;
@@ -101,6 +116,10 @@ async function onClick(event) {
 }
 
 async function onChange(event) {
+  if (event.target.closest("#main")) {
+    views[app.step].onChange?.(event, context());
+    return;
+  }
   if (event.target.dataset.action !== "language") return;
   const language = await setLanguage(event.target.value);
   replaceAddress(app.step, language.code);
