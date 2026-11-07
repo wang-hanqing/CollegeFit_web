@@ -2462,5 +2462,95 @@
   },
   "web.extras.hint": {
     "section": "Web app: College details"
+  },
+  "web.cmp.subtitle": {
+    "section": "Web app: Compare and Next steps"
+  },
+  "web.cmp.toExplore": {
+    "section": "Web app: Compare and Next steps"
+  },
+  "web.perYearShort": {
+    "section": "Web app: Compare and Next steps"
+  },
+  "web.next.privacy": {
+    "section": "Web app: Compare and Next steps"
+  },
+  "web.next.export": {
+    "section": "Web app: Compare and Next steps"
+  },
+  "web.next.print": {
+    "section": "Web app: Compare and Next steps"
+  },
+  "web.next.exported": {
+    "section": "Web app: Compare and Next steps"
+  },
+  "web.startOver.confirm": {
+    "section": "Web app: Compare and Next steps"
+  },
+  "web.startOver.yes": {
+    "section": "Web app: Compare and Next steps"
+  },
+  "web.grade.steps": {
+    "section": "Web app: Compare and Next steps"
+  },
+  "web.grade.9.1": {
+    "section": "Web app: Compare and Next steps",
+    "note": "New content for the web version, not in the Java app. Review with IRC staff before students use it."
+  },
+  "web.grade.9.2": {
+    "section": "Web app: Compare and Next steps",
+    "note": "New content for the web version, not in the Java app. Review with IRC staff before students use it."
+  },
+  "web.grade.9.3": {
+    "section": "Web app: Compare and Next steps",
+    "note": "New content for the web version, not in the Java app. Review with IRC staff before students use it."
+  },
+  "web.grade.10.1": {
+    "section": "Web app: Compare and Next steps",
+    "note": "New content for the web version, not in the Java app. Review with IRC staff before students use it."
+  },
+  "web.grade.10.2": {
+    "section": "Web app: Compare and Next steps",
+    "note": "New content for the web version, not in the Java app. Review with IRC staff before students use it."
+  },
+  "web.grade.10.3": {
+    "section": "Web app: Compare and Next steps",
+    "note": "New content for the web version, not in the Java app. Review with IRC staff before students use it."
+  },
+  "web.grade.11.1": {
+    "section": "Web app: Compare and Next steps",
+    "note": "New content for the web version, not in the Java app. Review with IRC staff before students use it."
+  },
+  "web.grade.11.2": {
+    "section": "Web app: Compare and Next steps",
+    "note": "New content for the web version, not in the Java app. Review with IRC staff before students use it."
+  },
+  "web.grade.11.3": {
+    "section": "Web app: Compare and Next steps",
+    "note": "New content for the web version, not in the Java app. Review with IRC staff before students use it."
+  },
+  "web.grade.11.4": {
+    "section": "Web app: Compare and Next steps",
+    "note": "New content for the web version, not in the Java app. Review with IRC staff before students use it."
+  },
+  "web.grade.12.1": {
+    "section": "Web app: Compare and Next steps",
+    "note": "New content for the web version, not in the Java app. Review with IRC staff before students use it."
+  },
+  "web.grade.12.2": {
+    "section": "Web app: Compare and Next steps",
+    "note": "New content for the web version, not in the Java app. Review with IRC staff before students use it."
+  },
+  "web.grade.12.3": {
+    "section": "Web app: Compare and Next steps",
+    "note": "New content for the web version, not in the Java app. Review with IRC staff before students use it."
+  },
+  "web.grade.12.4": {
+    "section": "Web app: Compare and Next steps",
+    "note": "New content for the web version, not in the Java app. Review with IRC staff before students use it."
+  },
+  "web.grade.12.5": {
+    "section": "Web app: Compare and Next steps",
+    "note": "New content for the web version, not in the Java app. Review with IRC staff before students use it."
   }
 }

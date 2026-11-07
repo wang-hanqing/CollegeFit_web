@@ -37,7 +37,7 @@ export function emptyAnswers() {
     kept: [],          // UNITIDs of colleges the student kept, in the order kept
     compare: [],       // up to 3 kept UNITIDs shown side by side
     notForMe: {},      // UNITID -> reason key ("" = no reason given)
-    reasons: {},       // UNITID -> reasons for keeping
+    reasons: {},       // UNITID -> reasons for keeping, e.g. ["COSTS", "STUDY"]
   };
 }
 

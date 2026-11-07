@@ -490,6 +490,57 @@ input:checked ~ .tick { background: var(--route); border-color: var(--route); co
   border: 2px solid var(--rule); border-radius: var(--radius);
 }
 
+
+/* ---------- Compare and Next steps ---------- */
+
+.compare-picker { margin-block: 1rem 0.5rem; }
+.compare-picker .chip span { font-weight: 600; }
+.table-wrap { margin-block: 1rem 1.5rem; }
+.compare-table { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
+.compare-table th, .compare-table td { text-align: start; vertical-align: top; padding: 0.7rem 0.6rem; border-block-start: 1px solid var(--wash); }
+.compare-table thead th { border: 0; }
+.compare-table thead .college-name { display: block; font-size: var(--step-0); line-height: 1.3; }
+.compare-table th .muted { display: block; font-weight: 400; font-size: 0.78rem; }
+.compare-table tbody th { width: 11rem; font-weight: 700; }
+.compare-table td strong { font-size: 1.05rem; }
+.compare-table td .muted { display: block; font-size: 0.78rem; }
+.marker { display: inline-block; margin-top: 0.35rem; padding: 0.1rem 0.5rem; border-radius: 999px; font-size: 0.75rem; font-weight: 700; background: #E8F5EE; color: #1F6B45; }
+.marker.warn { background: #FFF6D6; color: #7A5300; }
+.reasons .chip span { min-height: 2.25rem; padding: 0.25rem 0.7rem; font-size: 0.8rem; }
+
+/* Phones: each row becomes a block, each college value is labeled with its name */
+@media (max-width: 40rem) {
+  .compare-table thead { display: none; }
+  .compare-table, .compare-table tbody, .compare-table tr, .compare-table th, .compare-table td { display: block; width: auto; }
+  .compare-table tr { padding-block: 0.6rem; border-block-start: 2px solid var(--rule); }
+  .compare-table th, .compare-table td { border: 0; padding: 0.3rem 0; }
+  .compare-table td::before { content: attr(data-college); display: block; font-size: 0.75rem; font-weight: 700; color: var(--muted); }
+}
+
+.tradeoffs, .glance, .plan { border-radius: var(--radius); padding: 1rem 1.1rem; }
+.tradeoffs { background: var(--wash); }
+.glance, .plan { border: 2px solid var(--rule); }
+.tradeoffs h2, .glance h2, .plan h2 { font-size: var(--step-0); margin-bottom: 0.5rem; }
+.tradeoffs ul, .glance ul, .plan ul { margin: 0; padding-inline-start: 1.1rem; display: grid; gap: 0.45rem; font-size: var(--step--1); }
+.glance .muted { margin: 0.6rem 0 0; font-size: 0.8rem; }
+
+.next-cards { margin-block: 1.25rem; }
+.reasons-line { font-size: var(--step--1); margin: 0.25rem 0 0.5rem; }
+.grade-plan { margin-bottom: 0.75rem; background: #FFF6D6; border-color: var(--signal); }
+.checklist { list-style: none; padding: 0 !important; }
+.checklist label { display: flex; gap: 0.6rem; align-items: flex-start; cursor: pointer; }
+.checklist input { width: 1.1rem; height: 1.1rem; margin-top: 0.15rem; flex: none; accent-color: var(--route); }
+.checklist input:checked + span { color: var(--muted); text-decoration: line-through; }
+.questions ul { list-style: disc; }
+button[disabled] { opacity: 0.5; cursor: not-allowed; }
+
+@media print {
+  .top, .journey, .moves-bar, .no-print, .skip, .link-status, [data-action="details"], [data-action="to-explore"] { display: none !important; }
+  main { max-width: none; padding: 0; }
+  .college-card, .plan, .tradeoffs { break-inside: avoid; border-color: #999; }
+  body { font-size: 11pt; }
+}
+
 /* ---------- Bottom bar ---------- */
 
 .moves-bar {

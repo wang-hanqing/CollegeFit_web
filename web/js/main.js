@@ -2,7 +2,7 @@
 import { STEPS } from "./config.js";
 import { setLanguage, detectLanguage, findLanguage, currentLanguage, t } from "./i18n.js";
 import { readAddress, address, goTo, replaceAddress, stepIndex, stepAt } from "./router.js";
-import { emptyAnswers, encodeAnswers, decodeAnswers, saveSession, loadSession } from "./state.js";
+import { emptyAnswers, encodeAnswers, decodeAnswers, saveSession, loadSession, clearSession } from "./state.js";
 import { loadData } from "./data.js";
 import { header, stepLine, footer, loading, loadError, helpContent, escapeHtml } from "./ui.js";
 import { views } from "./views.js";
@@ -45,7 +45,16 @@ function render({ focus = false } = {}) {
 
 function context() {
   return { data: app.data, answers: app.answers, page: app.page, update, rerender,
-    go: (step, page) => goTo(step, currentLanguage().code, page) };
+    go: (step, page) => goTo(step, currentLanguage().code, page), reset };
+}
+
+// Start over: forget every answer in this browser and go back to the first step
+function reset() {
+  app.answers = emptyAnswers();
+  clearSession();
+  saveSession(app.answers);
+  goTo(STEPS[0].id, currentLanguage().code);
+  render();
 }
 
 // Redraw the current page after a change, keeping keyboard focus on the same control.

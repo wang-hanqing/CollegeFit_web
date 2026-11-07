@@ -195,7 +195,8 @@ function levelText(r) {
   return t(r.bachelorAwarded ? "level.bachelor" : "level.associate");
 }
 
-function programLine(r, profile, data) {
+// r: an Explore result or an evaluateAll(...).program result (same fields)
+export function programLine(r, profile, data) {
   if (!profile.programs.length) return t("card.program.all", formatNumber(r.recentDegrees));
   if (profile.programs.length === 1) {
     const name = programName(profile.programs[0], data);
