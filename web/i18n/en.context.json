@@ -2276,5 +2276,164 @@
   },
   "web.grade.none": {
     "section": "Web app: Get started"
+  },
+  "family.01": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.03": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.04": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.05": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.09": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.10": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.11": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.12": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.13": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.14": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.15": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.16": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.19": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.22": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.23": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.24": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.25": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.26": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.27": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.28": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.29": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.30": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.31": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.38": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.39": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.40": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.41": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.42": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.43": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.44": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.45": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.46": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.47": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.48": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.49": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.50": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.51": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.52": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "family.54": {
+    "section": "Program fields (2-digit CIP)"
+  },
+  "web.family.unknown": {
+    "section": "Web app: Your direction"
+  },
+  "web.direction.other": {
+    "section": "Web app: Your direction"
+  },
+  "web.colleges.in": {
+    "section": "Web app: Your direction"
+  },
+  "web.fields.careerCount": {
+    "section": "Web app: Your direction"
+  },
+  "web.fields.liberal.note": {
+    "section": "Web app: Your direction"
+  },
+  "web.jobZone.3": {
+    "section": "Web app: Your direction"
+  },
+  "web.jobZone.4": {
+    "section": "Web app: Your direction"
+  },
+  "web.jobZone.5": {
+    "section": "Web app: Your direction"
+  },
+  "web.path.cost": {
+    "section": "Web app: Your direction"
+  },
+  "web.path.transfer": {
+    "section": "Web app: Your direction"
+  },
+  "web.path.public": {
+    "section": "Web app: Your direction"
+  },
+  "web.path.private": {
+    "section": "Web app: Your direction"
+  },
+  "web.path.costNote": {
+    "section": "Web app: Your direction"
+  },
+  "web.path.choice": {
+    "section": "Web app: Your direction"
   }
 }

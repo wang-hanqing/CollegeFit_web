@@ -7,6 +7,8 @@
 //   a saved link    only when the student asks for one; the answers sit after the # in the link,
 //                   and browsers never send that part to the website
 
+import { DEFAULT_HOME_STATE } from "./config.js";
+
 const VERSION = 1;
 const SESSION_KEY = "collegefit.answers";
 
@@ -15,10 +17,12 @@ export function emptyAnswers() {
     v: VERSION,
     grade: null,       // 9, 10, 11, 12, "none" (prefer not to say) or null (not answered)
     start: null,       // "subject", "place", "pathway" or "not_sure"
-    interests: [],     // O*NET interest types, e.g. ["I", "C"]
-    fields: [],        // program families (2-digit CIP)
-    states: [],        // state codes, e.g. ["NY"]
-    degree: null,      // "associate", "bachelor", "either" or null
+    home: DEFAULT_HOME_STATE, // state the student lives in, e.g. "NY"; "" = not sure
+    scope: "state",    // explore colleges "state" (in the home state) or "anywhere"
+    interests: [],     // O*NET interest types, up to 2, e.g. ["I", "C"]
+    interestsUnsure: false, // "I'm not sure yet" on the interest page
+    fields: [],        // program families (2-digit CIP), e.g. ["51", "52"]
+    degree: "both",    // "both", "two" (two-year) or "four" (four-year)
     priorities: [],    // up to three, in order
     kept: [],          // UNITIDs of colleges the student kept
     notForMe: [],      // UNITIDs set aside

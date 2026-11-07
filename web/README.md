@@ -28,7 +28,8 @@ js/data.js        loads data/*.json and builds lookups
 js/ui.js          header, step line, bottom bar, help
 js/components.js  reusable choices: option cards, chips, error line, privacy note
 js/views.js       which code shows each step; placeholders until a step is ported
-js/steps/*.js     one file per step: render(), onChange(), check()
+js/steps/*.js     one file per step: render(), onChange(), onClick(), check(), pages()
+js/logic/*.js     counting and matching, kept apart from the screen so it can be tested
 data/             made by pipeline/export_web.py; do not edit by hand
 i18n/en.json      English text, the source for every translation
 i18n/<code>.json  translations; missing keys fall back to English
@@ -51,6 +52,11 @@ i18n/<code>.json  translations; missing keys fall back to English
 2. Import it in `js/views.js` in place of the placeholder.
 3. Reuse keys from `i18n/en.json`; shorten the English while porting and add new keys with a `web.` prefix.
 4. Check the page in English and Arabic, on a phone-sized window.
+
+## Tests against the Java version
+
+From the project root: `node tests/directions.test.mjs` (needs Node.js). It compares Step 2's numbers with
+`tests/java_directions.json`, which `tests/DirectionsDump.java` produced from the Java app's own classes.
 
 ## Checking in the browser console
 

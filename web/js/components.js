@@ -14,25 +14,35 @@ export function icon(name, extraClass = "") {
   return `<svg class="icon ${extraClass}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[name] || ""}</svg>`;
 }
 
-// Large cards, one choice. options: [{ value, title, description, icon }]
-export function optionCards({ name, legend, options, selected }) {
+// Large cards. options: [{ value, title, description, icon, aside, checked }]
+// type "radio" = one choice (selected), "checkbox" = several (each option's checked).
+// aside: optional HTML shown at the end of the card, such as a big number.
+export function optionCards({ name, legend, options, selected, type = "radio", className = "" }) {
   const cards = options.map((o) => {
     const id = `${name}-${o.value}`;
+    const on = type === "radio" ? o.value === selected : o.checked;
     return `
       <label class="option-card" for="${id}">
-        <input type="radio" id="${id}" name="${name}" value="${escapeHtml(o.value)}"${o.value === selected ? " checked" : ""}>
+        <input type="${type}" id="${id}" name="${name}" value="${escapeHtml(o.value)}"${on ? " checked" : ""}>
         ${o.icon ? `<span class="option-icon">${icon(o.icon)}</span>` : ""}
+        ${type === "checkbox" ? `<span class="tick" aria-hidden="true">${icon("check")}</span>` : ""}
         <span class="option-text">
           <span class="option-title">${escapeHtml(o.title)}</span>
           ${o.description ? `<span class="option-description">${escapeHtml(o.description)}</span>` : ""}
         </span>
+        ${o.aside || ""}
       </label>`;
   }).join("");
   return `
-    <fieldset class="option-cards">
+    <fieldset class="option-cards ${className}">
       <legend class="visually-hidden">${escapeHtml(legend)}</legend>
       ${cards}
     </fieldset>`;
+}
+
+// A big number with a short label under it, e.g. 137 / colleges in New York
+export function bigNumber(number, label) {
+  return `<span class="big-number"><span class="big-number-value">${escapeHtml(number)}</span><span class="big-number-label">${escapeHtml(label)}</span></span>`;
 }
 
 // Small pills in a row, one choice. options: [{ value, label }]
@@ -62,4 +72,5 @@ export function privacyNote(text) {
   return `<p class="privacy">${icon("shield")}${escapeHtml(text)}</p>`;
 }
 
+ICONS.check = '<path d="M5 12.5l4.5 4.5L19 7.5"/>';
 ICONS.shield = '<path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/>';

@@ -9,6 +9,7 @@ import { views } from "./views.js";
 
 const app = {
   step: STEPS[0].id,
+  page: null,
   answers: emptyAnswers(),
   data: null,
   failed: false,
@@ -36,12 +37,31 @@ function render({ focus = false } = {}) {
 
   $("journey").innerHTML = stepLine(index);
   $("main").innerHTML = views[app.step].render(context());
-  $("moves").innerHTML = footer(index);
+  $("moves").innerHTML = footer(index, pagesOf(app.step).indexOf(app.page));
   if (focus) $("page-title")?.focus();
 }
 
 function context() {
-  return { data: app.data, answers: app.answers, update };
+  return { data: app.data, answers: app.answers, page: app.page, update, rerender };
+}
+
+// Redraw the current page after a change, keeping keyboard focus on the same control.
+function rerender() {
+  const active = document.activeElement;
+  const selector = active?.id ? `#${CSS.escape(active.id)}`
+    : active?.name ? `[name="${CSS.escape(active.name)}"]` : null;
+  render();
+  if (selector) document.querySelector(`#main ${selector}`)?.focus();
+}
+
+// Pages inside a step (most steps have one). The first page is used when none is given.
+function pagesOf(step) {
+  return views[step].pages?.(app.answers) || [null];
+}
+
+function validPage(step, page) {
+  const pages = pagesOf(step);
+  return pages.includes(page) ? page : pages[0];
 }
 
 // Steps call this when a student changes an answer.
@@ -73,16 +93,20 @@ async function onAddressChange() {
   if (target.lang && target.lang !== currentLanguage().code && findLanguage(target.lang)) {
     await setLanguage(target.lang);
   }
-  const moved = target.step !== app.step;
+  const page = validPage(target.step, target.page);
+  const moved = target.step !== app.step || page !== app.page;
   app.step = target.step;
-  replaceAddress(app.step, currentLanguage().code); // keeps answers out of the address bar
+  app.page = page;
+  replaceAddress(app.step, currentLanguage().code, app.page); // keeps answers out of the address bar
   render({ focus: moved });
+  if (moved) window.scrollTo(0, 0);
   if (linkFailed) setStatus(escapeHtml(t("web.save.invalid")));
 }
 
 // ---------- Clicks and changes ----------
 
 async function onClick(event) {
+  if (app.data && event.target.closest("#main")) views[app.step].onClick?.(event, context());
   const target = event.target.closest("[data-action]");
   if (!target || target.tagName === "SELECT") return;
   const action = target.dataset.action;
@@ -95,17 +119,26 @@ async function onClick(event) {
     case "skip": $("main-content").focus(); break;
     case "home": goTo(STEPS[0].id, lang); break;
     case "step": goTo(target.dataset.step, lang); break;
-    case "back": goTo(stepAt(index - 1), lang); break;
+    case "back": {
+      const pages = pagesOf(app.step);
+      const at = pages.indexOf(app.page);
+      if (at > 0) goTo(app.step, lang, pages[at - 1]);
+      else if (index > 0) goTo(stepAt(index - 1), lang, pagesOf(stepAt(index - 1)).at(-1));
+      break;
+    }
     case "continue": {
-      const problem = views[app.step].check?.(app.answers);
+      const problem = views[app.step].check?.(app.answers, app.page);
       if (problem) {
         const error = $("step-error");
         error.textContent = problem;
         error.scrollIntoView({ block: "center", behavior: "smooth" });
         document.querySelector("#main input")?.focus({ preventScroll: true });
-      } else {
-        goTo(stepAt(index + 1), lang);
+        break;
       }
+      const pages = pagesOf(app.step);
+      const at = pages.indexOf(app.page);
+      if (at < pages.length - 1) goTo(app.step, lang, pages[at + 1]);
+      else goTo(stepAt(index + 1), lang);
       break;
     }
     case "mine": goTo("compare", lang); break;
@@ -122,14 +155,14 @@ async function onChange(event) {
   }
   if (event.target.dataset.action !== "language") return;
   const language = await setLanguage(event.target.value);
-  replaceAddress(app.step, language.code);
+  replaceAddress(app.step, language.code, app.page);
   render();
   document.querySelector('[data-action="language"]')?.focus();
 }
 
 async function copySavedLink() {
   const link = location.origin + location.pathname +
-    address(app.step, currentLanguage().code, encodeAnswers(app.answers));
+    address(app.step, currentLanguage().code, encodeAnswers(app.answers), app.page);
   try {
     await navigator.clipboard.writeText(link);
     setStatus(`${escapeHtml(t("web.save.copied"))} ${escapeHtml(t("web.save.hint"))}`);
@@ -163,7 +196,8 @@ async function start() {
 
   const language = await setLanguage(findLanguage(target.lang) ? target.lang : detectLanguage());
   app.step = target.step;
-  replaceAddress(app.step, language.code);
+  app.page = validPage(app.step, target.page);
+  replaceAddress(app.step, language.code, app.page);
 
   document.addEventListener("click", onClick);
   document.addEventListener("change", onChange);

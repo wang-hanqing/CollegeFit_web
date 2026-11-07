@@ -48,8 +48,8 @@ export function stepLine(currentIndex) {
   return `<p class="step-counter">${escapeHtml(counter)}</p><ol class="line">${stops}</ol>`;
 }
 
-export function footer(currentIndex) {
-  const back = currentIndex > 0
+export function footer(currentIndex, pageIndex = 0) {
+  const back = currentIndex > 0 || pageIndex > 0
     ? `<button type="button" class="secondary" data-action="back"><svg class="icon directional" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>${escapeHtml(t("nav.back"))}</button>`
     : "<span></span>";
   const next = currentIndex < STEPS.length - 1

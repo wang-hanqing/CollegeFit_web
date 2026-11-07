@@ -10,15 +10,7 @@ function toObjects({ fields, rows }) {
   });
 }
 
-function groupBy(items, key) {
-  const groups = new Map();
-  for (const item of items) {
-    const id = item[key];
-    if (!groups.has(id)) groups.set(id, []);
-    groups.get(id).push(item);
-  }
-  return groups;
-}
+const positive = (n) => n != null && n > 0;
 
 export async function loadData(onProgress = () => {}) {
   let done = 0;
@@ -31,15 +23,53 @@ export async function loadData(onProgress = () => {}) {
       onProgress(++done, DATA_FILES.length);
     })
   );
+  return prepareData(loaded);
+}
 
+// Separate from loading so tests can run it on files read from disk.
+export function prepareData(loaded) {
   const colleges = toObjects(loaded.colleges);
   const programs = toObjects(loaded.programs);
+
+  // Per college: programs (4-digit CIP) with a positive award count in either year, at either level,
+  // and whether it awards associate (2) or bachelor's (3) degrees at all. Same rules as College.java.
+  const awarded = new Map();
+  const levels = new Map();
+  const programsByCollege = new Map();
+  for (const p of programs) {
+    if (!programsByCollege.has(p.UNITID)) programsByCollege.set(p.UNITID, []);
+    programsByCollege.get(p.UNITID).push(p);
+    if (positive(p.IPEDSCOUNT1) || positive(p.IPEDSCOUNT2)) {
+      if (!awarded.has(p.UNITID)) awarded.set(p.UNITID, new Set());
+      awarded.get(p.UNITID).add(p.CIPCODE);
+      if (!levels.has(p.UNITID)) levels.set(p.UNITID, new Set());
+      levels.get(p.UNITID).add(p.CREDLEV);
+    }
+  }
+  for (const c of colleges) {
+    c.awarded = awarded.get(c.UNITID) || new Set();
+    const lv = levels.get(c.UNITID) || new Set();
+    c.twoYear = lv.has(2) && !lv.has(3);
+  }
+
+  // interest -> family -> career code -> { soc, title, jobZone, cip6Links, cip4: Set }
+  const interestLinks = {};
+  for (const row of toObjects(loaded.interest_links)) {
+    const families = (interestLinks[row.INTEREST] ??= {});
+    const careers = (families[row.FAMILY] ??= {});
+    const career = (careers[row.SOC] ??= {
+      soc: row.SOC, title: row.TITLE, jobZone: row.JOB_ZONE, cip6Links: row.CIP6_LINKS, cip4: new Set(),
+    });
+    career.cip4.add(row.CIP4);
+  }
+
   return {
     meta: loaded.meta,
     colleges,
     collegeById: new Map(colleges.map((c) => [c.UNITID, c])),
-    programsByCollege: groupBy(programs, "UNITID"),
+    programsByCollege,
     programNames: loaded.cip,            // "1205" -> "Culinary Arts and Related Services"
-    interestLinks: toObjects(loaded.interest_links),
+    interestLinks,
+    states: [...new Set(colleges.map((c) => c.STABBR))].sort(),
   };
 }
