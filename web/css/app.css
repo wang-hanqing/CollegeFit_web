@@ -342,6 +342,28 @@ input:checked ~ .tick { background: var(--route); border-color: var(--route); co
   .careers, .programs { padding-inline-start: 0; }
 }
 
+
+/* ---------- Priorities (Step 3) ---------- */
+
+.context { font-size: var(--step--1); color: var(--muted); margin-top: -0.5rem; }
+.priority-list { display: grid; gap: 0.75rem; margin-block: 1.25rem 0.5rem; }
+.priority .field-head { align-items: center; }
+.priority .option-icon { background: var(--wash); }
+.priority.is-chosen .option-icon { background: var(--route); color: var(--paper); }
+.rank {
+  display: grid; place-items: center; flex: none; margin-inline-start: auto;
+  width: 2.5rem; height: 2.5rem; border-radius: 50%;
+  border: 2px solid var(--rule); font-weight: 800; font-size: var(--step--1);
+}
+.rank.on { background: var(--route); border-color: var(--route); color: var(--paper); }
+.basis { padding-inline-start: 4rem; }
+.basis p { margin: 0.25rem 0 0; color: var(--ink); }
+.priority-tools { min-height: 1.5rem; }
+.how { margin-top: 1.5rem; padding: 0.9rem 1rem; background: var(--wash); border-radius: var(--radius); font-size: var(--step--1); }
+.how summary { cursor: pointer; font-weight: 700; }
+.how p { margin: 0.5rem 0 0; }
+@media (max-width: 40rem) { .basis { padding-inline-start: 0; } }
+
 /* ---------- Bottom bar ---------- */
 
 .moves-bar {

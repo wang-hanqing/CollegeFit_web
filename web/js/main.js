@@ -37,7 +37,8 @@ function render({ focus = false } = {}) {
 
   $("journey").innerHTML = stepLine(index);
   $("main").innerHTML = views[app.step].render(context());
-  $("moves").innerHTML = footer(index, pagesOf(app.step).indexOf(app.page));
+  $("moves").innerHTML = footer(index, pagesOf(app.step).indexOf(app.page),
+    views[app.step].continueLabel?.(app.answers, app.page));
   if (focus) $("page-title")?.focus();
 }
 

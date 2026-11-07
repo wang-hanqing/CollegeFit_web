@@ -2435,5 +2435,17 @@
   },
   "web.path.choice": {
     "section": "Web app: Your direction"
+  },
+  "web.pri.subtitle": {
+    "section": "Web app: Priorities"
+  },
+  "web.pri.how": {
+    "section": "Web app: Priorities"
+  },
+  "web.pri.basis": {
+    "section": "Web app: Priorities"
+  },
+  "web.pri.rank": {
+    "section": "Web app: Priorities"
   }
 }
