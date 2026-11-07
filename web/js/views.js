@@ -5,12 +5,14 @@
 //   check(answers, page) -> text to show if the student can't continue yet, or null (optional)
 //   pages(answers)       -> page names when a step has several pages, in order (optional)
 //   continueLabel(answers, page) -> text for the Continue button (optional)
-// ctx = { data, answers, page, update, rerender }
+//   onToggle(event, ctx)    when a <details> inside it opens or closes (optional)
+// ctx = { data, answers, page, update, rerender, go(step, page) }
 import { t } from "./i18n.js";
 import { escapeHtml } from "./ui.js";
 import * as start from "./steps/start.js";
 import * as direction from "./steps/direction.js";
 import * as priorities from "./steps/priorities.js";
+import * as explore from "./steps/explore.js";
 
 function placeholder(labelKey) {
   return {
@@ -24,7 +26,7 @@ export const views = {
   start,
   direction,
   priorities,
-  explore: placeholder("step.4"),
+  explore,
   compare: placeholder("step.5"),
   next: placeholder("step.6"),
 };

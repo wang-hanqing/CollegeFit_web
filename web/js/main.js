@@ -43,7 +43,8 @@ function render({ focus = false } = {}) {
 }
 
 function context() {
-  return { data: app.data, answers: app.answers, page: app.page, update, rerender };
+  return { data: app.data, answers: app.answers, page: app.page, update, rerender,
+    go: (step, page) => goTo(step, currentLanguage().code, page) };
 }
 
 // Redraw the current page after a change, keeping keyboard focus on the same control.
@@ -202,6 +203,10 @@ async function start() {
 
   document.addEventListener("click", onClick);
   document.addEventListener("change", onChange);
+  // <details> open/close does not bubble, so listen while it travels down
+  document.addEventListener("toggle", (event) => {
+    if (app.data && event.target.closest?.("#main")) views[app.step].onToggle?.(event, context());
+  }, true);
   window.addEventListener("hashchange", onAddressChange);
 
   render();

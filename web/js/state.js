@@ -24,8 +24,9 @@ export function emptyAnswers() {
     fields: [],        // program families (2-digit CIP), e.g. ["51", "52"]
     degree: "both",    // "both", "two" (two-year) or "four" (four-year)
     priorities: [],    // up to three, in order
-    kept: [],          // UNITIDs of colleges the student kept
-    notForMe: [],      // UNITIDs set aside
+    kept: [],          // UNITIDs of colleges the student kept, in the order kept
+    compare: [],       // up to 3 kept UNITIDs shown side by side
+    notForMe: {},      // UNITID -> reason key ("" = no reason given)
     reasons: {},       // UNITID -> reasons for keeping
   };
 }

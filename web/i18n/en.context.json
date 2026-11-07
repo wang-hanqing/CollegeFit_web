@@ -2447,5 +2447,14 @@
   },
   "web.pri.rank": {
     "section": "Web app: Priorities"
+  },
+  "web.perYear": {
+    "section": "Web app: Explore"
+  },
+  "web.admitted": {
+    "section": "Web app: Explore"
+  },
+  "web.showFewer": {
+    "section": "Web app: Explore"
   }
 }

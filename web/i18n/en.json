@@ -791,5 +791,8 @@
   "web.pri.subtitle": "Pick up to 3, most important first. They set the order of your colleges.",
   "web.pri.how": "Colleges are ordered by your #1 priority. When colleges are close or data is missing, #2 decides, then #3. Priorities change the order, not which colleges appear. There is no overall score.",
   "web.pri.basis": "What we use",
-  "web.pri.rank": "Priority number {0}"
+  "web.pri.rank": "Priority number {0}",
+  "web.perYear": "a year",
+  "web.admitted": "admitted",
+  "web.showFewer": "Show fewer"
 }

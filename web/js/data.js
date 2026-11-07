@@ -49,7 +49,16 @@ export function prepareData(loaded) {
   for (const c of colleges) {
     c.awarded = awarded.get(c.UNITID) || new Set();
     const lv = levels.get(c.UNITID) || new Set();
-    c.twoYear = lv.has(2) && !lv.has(3);
+    c.offers2 = lv.has(2);
+    c.offers3 = lv.has(3);
+    c.twoYear = c.offers2 && !c.offers3;
+    c.isPublic = c.CONTROL === 1;
+    c.type = !c.isPublic ? "PRIVATE" : c.twoYear ? "COMMUNITY_COLLEGE" : "PUBLIC_FOUR_YEAR";
+    c.openAdmission = c.OPENADMP === 1 ? true : c.OPENADMP === 2 ? false : null;
+    // four-year completion within 6 years if reported, otherwise two-year completion within 3 years
+    c.completionRate = c.C150_4 ?? c.C150_L4 ?? null;
+    c.completionYears = c.C150_4 != null ? 6 : c.C150_L4 != null ? 3 : 0;
+    c.programs = programsByCollege.get(c.UNITID) || [];
   }
 
   // interest -> family -> career code -> { soc, title, jobZone, cip6Links, cip4: Set }
