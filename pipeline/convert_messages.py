@@ -2,14 +2,17 @@
 Step 3: Java screen text -> i18n/en.json (the source file for all translations)
 
 Reads messages_en.properties from the Java version and writes:
-  i18n/en.json          key -> English text, in the original order
-  i18n/en.context.json  key -> section and comments, to help translators and reviewers
+  web/i18n/en.json          key -> English text, in the original order
+  web/i18n/en.context.json  key -> section and comments, to help translators and reviewers
+
+en.json is edited by hand after the first run, so this script will not overwrite it
+unless you add --force.
 
 Placeholders change from Java's %s to numbered {0}, {1}, ... so that translations
 can put them in a different order. A literal %% becomes %.
 
 Run from the project root:
-  python pipeline/convert_messages.py path/to/JAVA_CollegeFit/src/messages_en.properties
+  python pipeline/convert_messages.py path/to/JAVA_CollegeFit/src/messages_en.properties [--force]
 """
 from pathlib import Path
 import json
@@ -17,7 +20,7 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / "i18n"
+OUT = ROOT / "web" / "i18n"
 
 SECTION = re.compile(r"^#\s*-+\s*(.+?)\s*-+\s*$")
 ESCAPES = {"n": "\n", "t": "\t", "\\": "\\", "=": "=", ":": ":", " ": " ", "#": "#", "!": "!"}
@@ -62,9 +65,12 @@ def parse(path):
 
 
 def main():
-    if len(sys.argv) != 2:
+    args = [a for a in sys.argv[1:] if a != "--force"]
+    if len(args) != 1:
         sys.exit(__doc__)
-    source = Path(sys.argv[1])
+    if (OUT / "en.json").exists() and "--force" not in sys.argv:
+        sys.exit("web/i18n/en.json already exists and may have hand edits. Add --force to replace it.")
+    source = Path(args[0])
     messages, context = parse(source)
 
     OUT.mkdir(parents=True, exist_ok=True)

@@ -4,7 +4,7 @@ Turns public raw data into the small files the web app loads. Nothing here touch
 
 ```
 data/raw/        ->  build_data.py  ->  data/processed/*.csv  ->  export_web.py  ->  web/data/*.json
-Java messages    ->  convert_messages.py                      ->  i18n/en.json
+Java messages    ->  convert_messages.py                      ->  web/i18n/en.json
 ```
 
 ## 1. Get the raw data (not stored in Git)
@@ -32,7 +32,8 @@ python pipeline/export_web.py
 python pipeline/convert_messages.py ../JAVA_CollegeFit/src/messages_en.properties
 ```
 
-The last command only needs to run once: after that, `i18n/en.json` is edited directly.
+The last command only needs to run once: after that, `web/i18n/en.json` is edited directly
+(the script refuses to overwrite it unless you add `--force`).
 
 ## 3. Check
 
@@ -57,5 +58,5 @@ The last command only needs to run once: after that, `i18n/en.json` is edited di
 ## Yearly update
 
 When a new College Scorecard release comes out: replace the two CSV files in `data/raw/`, run steps 2 and 3,
-compare the new row counts with the old ones, update the release date in `help.data` in `i18n/en.json`, and commit
+compare the new row counts with the old ones, update the release date in `help.data` in `web/i18n/en.json`, and commit
 `data/processed/` and `web/data/` together.

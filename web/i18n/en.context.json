@@ -2213,5 +2213,50 @@
   },
   "web.exported": {
     "section": "Step 5"
+  },
+  "web.skip": {
+    "section": "Web app"
+  },
+  "web.lang.label": {
+    "section": "Web app"
+  },
+  "web.step.of": {
+    "section": "Web app"
+  },
+  "web.continue": {
+    "section": "Web app"
+  },
+  "web.loading": {
+    "section": "Web app"
+  },
+  "web.loading.error": {
+    "section": "Web app"
+  },
+  "web.reload": {
+    "section": "Web app"
+  },
+  "web.save.button": {
+    "section": "Web app"
+  },
+  "web.save.copied": {
+    "section": "Web app"
+  },
+  "web.save.manual": {
+    "section": "Web app"
+  },
+  "web.save.hint": {
+    "section": "Web app"
+  },
+  "web.save.invalid": {
+    "section": "Web app"
+  },
+  "web.placeholder": {
+    "section": "Web app"
+  },
+  "web.close": {
+    "section": "Web app"
+  },
+  "web.steps": {
+    "section": "Web app"
   }
 }

@@ -1,0 +1,222 @@
+/* CollegeFit web skeleton.
+   Every side-specific rule uses logical properties (inline-start / inline-end), so Arabic and Dari
+   mirror automatically when <html dir="rtl">. Avoid left/right in new rules.
+   Colors and sizes live in the tokens below; the visual redesign changes these first. */
+
+:root {
+  --ink: #1B2A4E;          /* text */
+  --muted: #55607A;        /* secondary text */
+  --paper: #FFFFFF;        /* page */
+  --wash: #EEF2F8;         /* quiet surfaces */
+  --rule: #C9D1DF;         /* borders, unfinished route */
+  --route: #2F55D4;        /* actions and the finished route */
+  --route-dark: #2242AE;
+  --signal: #FFC629;       /* where the student is now */
+  --alert: #A4262C;
+
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Arabic", "Geeza Pro",
+          Tahoma, "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-brand: Georgia, "Times New Roman", serif;
+
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;     /* 17px body: easier for students reading in a new language */
+  --step-1: 1.3rem;
+  --step-2: 1.7rem;
+  --space: 1rem;
+  --measure: 44rem;
+  --radius: 10px;
+
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--step-0);
+  line-height: 1.55;
+}
+
+/* Arabic script needs taller lines for its ascenders and dots */
+:lang(ar), :lang(fa-AF) { line-height: 1.85; }
+
+h1, h2 { line-height: 1.2; margin-block: 0 0.6em; }
+h1 { font-size: var(--step-2); }
+h2 { font-size: var(--step-1); }
+p { margin-block: 0 1em; max-width: 65ch; }
+
+:focus-visible { outline: 3px solid var(--route); outline-offset: 2px; border-radius: 4px; }
+#page-title:focus, main:focus { outline: none; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+.skip {
+  position: absolute; inset-inline-start: var(--space); top: -4rem; z-index: 10;
+  padding: 0.5rem 1rem; background: var(--ink); color: var(--paper); border-radius: var(--radius);
+}
+.skip:focus { top: var(--space); }
+
+.icon { width: 1.15em; height: 1.15em; fill: none; stroke: currentColor; stroke-width: 2;
+        stroke-linecap: round; stroke-linejoin: round; flex: none; }
+[dir="rtl"] .icon.directional { transform: scaleX(-1); }
+
+/* ---------- Header ---------- */
+
+.top {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space);
+  flex-wrap: wrap;
+  padding-block: calc(0.75rem + env(safe-area-inset-top)) 0.75rem;
+  padding-inline: max(var(--space), env(safe-area-inset-left)) max(var(--space), env(safe-area-inset-right));
+  border-block-end: 1px solid var(--rule);
+}
+
+.brand {
+  font-family: var(--font-brand); font-size: 1.35rem; font-weight: 700;
+  color: var(--ink); text-decoration: none;
+}
+
+.header-tools { display: flex; align-items: center; gap: 0.25rem; }
+.mine-count { display: none; font-weight: 700; }
+.mine-button .icon { display: none; }
+@media (max-width: 40rem) {
+  .mine-count, .mine-button .icon { display: inline; }
+}
+
+/* Phones: one header row. Help becomes an icon; the language menu narrows. */
+@media (max-width: 40rem) {
+  .top { flex-wrap: nowrap; gap: 0.5rem; }
+  .brand { font-size: 1.15rem; }
+  .language { padding-inline: 0; }
+  .language .icon { display: none; }
+  .language select { max-width: 6.5rem; }
+  .mine-text { display: none; }
+  .help-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .quiet { padding-inline: 0.4rem; }
+}
+
+.language {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding-inline: 0.5rem; color: var(--muted);
+}
+.language select {
+  font: inherit; font-size: var(--step--1); color: var(--ink);
+  padding: 0.35rem 0.5rem; border: 1px solid var(--rule); border-radius: 6px; background: var(--paper);
+}
+
+/* ---------- Buttons ---------- */
+
+button { font: inherit; cursor: pointer; }
+
+.primary, .secondary, .quiet {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  min-height: 2.75rem; padding: 0.5rem 1.1rem;
+  border-radius: var(--radius); font-weight: 600;
+}
+.primary { background: var(--route); color: var(--paper); border: 2px solid var(--route); }
+.primary:hover { background: var(--route-dark); border-color: var(--route-dark); }
+.secondary { background: var(--paper); color: var(--ink); border: 2px solid var(--rule); }
+.secondary:hover { border-color: var(--ink); }
+.quiet { white-space: nowrap; background: none; border: 0; color: var(--ink); font-size: var(--step--1); min-height: 2.5rem; padding-inline: 0.6rem; }
+.quiet:hover { background: var(--wash); }
+.link { background: none; border: 0; padding: 0; color: var(--route); text-decoration: underline;
+        text-underline-offset: 3px; font-size: var(--step--1); }
+
+/* ---------- Journey line ---------- */
+
+.journey {
+  width: 100%; max-width: calc(var(--measure) + 2 * var(--space)); margin-inline: auto;
+  padding: 1.25rem var(--space) 0;
+}
+
+.step-counter { margin: 0 0 0.5rem; font-size: var(--step--1); color: var(--muted); }
+
+.line { list-style: none; margin: 0; padding: 0; display: flex; }
+
+.line li { flex: 1; position: relative; display: flex; justify-content: center; }
+
+/* the route between stops */
+.line li::before {
+  content: ""; position: absolute; top: 0.95rem; height: 4px;
+  inset-inline-start: -50%; inset-inline-end: 50%;
+  background: var(--rule);
+  z-index: 0;
+}
+.line li:first-child::before { display: none; }
+.line li.done::before, .line li.current::before { background: var(--route); }
+
+.line a, .line span[aria-current], .line li > span {
+  position: relative; display: flex; flex-direction: column; align-items: center; gap: 0.35rem;
+  color: inherit; text-decoration: none; text-align: center;
+  z-index: 1;
+}
+
+.stop {
+  display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%;
+  font-size: var(--step--1); font-weight: 700;
+  background: var(--paper); border: 3px solid var(--rule); color: var(--muted);
+}
+.done .stop { background: var(--route); border-color: var(--route); color: var(--paper); }
+.current .stop { background: var(--signal); border-color: var(--ink); color: var(--ink); width: 2.25rem; height: 2.25rem; margin-top: -0.125rem; }
+
+.stop-label { font-size: 0.8rem; line-height: 1.25; color: var(--muted); max-width: 7rem; }
+.current .stop-label { color: var(--ink); font-weight: 700; }
+.line a:hover .stop-label { color: var(--route); text-decoration: underline; }
+
+/* Phones: the counter names the step; the labels would not fit */
+@media (max-width: 40rem) {
+  .stop-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+}
+@media (min-width: 40.01rem) {
+  .step-counter { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+}
+
+/* ---------- Main ---------- */
+
+main { flex: 1; width: 100%; max-width: calc(var(--measure) + 2 * var(--space)); margin-inline: auto; padding: 2rem var(--space) 3rem; }
+
+.lede { font-size: var(--step-1); color: var(--ink); }
+.placeholder { color: var(--muted); padding: 1rem; border: 2px dashed var(--rule); border-radius: var(--radius); }
+
+.loading { padding-block: 3rem; }
+.loading progress { width: 100%; max-width: 20rem; height: 0.6rem; accent-color: var(--route); }
+
+.notice { padding: 1rem; border-inline-start: 4px solid var(--alert); background: var(--wash); border-radius: 0 var(--radius) var(--radius) 0; }
+[dir="rtl"] .notice { border-radius: var(--radius) 0 0 var(--radius); }
+
+/* ---------- Bottom bar ---------- */
+
+.moves-bar {
+  position: sticky; bottom: 0; z-index: 5;
+  background: var(--paper); border-block-start: 1px solid var(--rule);
+  padding-block: 0.75rem calc(0.75rem + env(safe-area-inset-bottom));
+  padding-inline: max(var(--space), env(safe-area-inset-left)) max(var(--space), env(safe-area-inset-right));
+}
+.moves-bar:empty { display: none; }
+
+.moves { display: flex; justify-content: space-between; gap: var(--space); max-width: var(--measure); margin-inline: auto; }
+
+.save { max-width: var(--measure); margin: 0 auto 0.5rem; }
+.save-status { margin: 0.35rem 0 0; font-size: var(--step--1); color: var(--muted); }
+.save-status:empty { display: none; }
+.save-status input { display: block; width: 100%; margin-block: 0.35rem; padding: 0.45rem; font: inherit; font-size: var(--step--1); direction: ltr; }
+
+/* ---------- Help ---------- */
+
+.help { max-width: min(36rem, calc(100vw - 2rem)); border: 0; border-radius: var(--radius); padding: 1.5rem; color: var(--ink); }
+.help::backdrop { background: rgb(27 42 78 / 0.45); }
+.help p { font-size: var(--step--1); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+}

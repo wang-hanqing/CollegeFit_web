@@ -713,5 +713,20 @@
   "order.how.note": "Each group (community, four-year public, private) is ordered separately. There is no overall score.",
   "web.link.title": "College link",
   "web.link": "Copy this link and open it in a new browser tab.",
-  "web.exported": "Your list is ready. Click \"Download my list\" above the app to save it to this device. It is removed from the browser when you click Start over or reload the page."
+  "web.exported": "Your list is ready. Click \"Download my list\" above the app to save it to this device. It is removed from the browser when you click Start over or reload the page.",
+  "web.skip": "Skip to main content",
+  "web.lang.label": "Language",
+  "web.step.of": "Step {0} of {1}",
+  "web.continue": "Continue",
+  "web.loading": "Loading college data",
+  "web.loading.error": "College data did not load. Check your internet connection, then reload the page.",
+  "web.reload": "Reload",
+  "web.save.button": "Copy link to continue later",
+  "web.save.copied": "Link copied. Open it later to pick up where you left off.",
+  "web.save.manual": "Copy this link to continue later:",
+  "web.save.hint": "The link holds your choices only. It never includes your name.",
+  "web.save.invalid": "This link could not be opened. You can start again.",
+  "web.placeholder": "This step is being rebuilt for the web version.",
+  "web.close": "Close",
+  "web.steps": "Steps"
 }

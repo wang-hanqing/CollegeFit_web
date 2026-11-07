@@ -1,0 +1,78 @@
+// A student's answers and saved colleges. Nothing here is sent to a server.
+//
+// Three places the answers can live:
+//   memory          while the page is open
+//   sessionStorage  so a reload does not lose them; cleared when the tab closes,
+//                   which matters on shared computers at school or at IRC
+//   a saved link    only when the student asks for one; the answers sit after the # in the link,
+//                   and browsers never send that part to the website
+
+const VERSION = 1;
+const SESSION_KEY = "collegefit.answers";
+
+export function emptyAnswers() {
+  return {
+    v: VERSION,
+    grade: null,       // 10, 11, 12 or null when not given
+    start: null,       // which first question the student picked
+    interests: [],     // O*NET interest types, e.g. ["I", "C"]
+    fields: [],        // program families (2-digit CIP)
+    states: [],        // state codes, e.g. ["NY"]
+    degree: null,      // "associate", "bachelor", "either" or null
+    priorities: [],    // up to three, in order
+    kept: [],          // UNITIDs of colleges the student kept
+    notForMe: [],      // UNITIDs set aside
+    reasons: {},       // UNITID -> reasons for keeping
+  };
+}
+
+function cleanUp(data) {
+  const answers = emptyAnswers();
+  if (!data || typeof data !== "object" || data.v !== VERSION) return null;
+  for (const key of Object.keys(answers)) {
+    if (key in data && typeof data[key] === typeof answers[key]) answers[key] = data[key];
+    else if (key in data && answers[key] === null) answers[key] = data[key];
+  }
+  return answers;
+}
+
+// Answers -> short text that is safe inside a link (base64url of UTF-8 JSON)
+export function encodeAnswers(answers) {
+  const bytes = new TextEncoder().encode(JSON.stringify(answers));
+  let binary = "";
+  bytes.forEach((b) => (binary += String.fromCharCode(b)));
+  return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+export function decodeAnswers(text) {
+  try {
+    const base64 = text.replace(/-/g, "+").replace(/_/g, "/");
+    const binary = atob(base64);
+    const bytes = Uint8Array.from(binary, (c) => c.charCodeAt(0));
+    return cleanUp(JSON.parse(new TextDecoder().decode(bytes)));
+  } catch {
+    return null;
+  }
+}
+
+export function saveSession(answers) {
+  try {
+    sessionStorage.setItem(SESSION_KEY, JSON.stringify(answers));
+  } catch {
+    // private browsing or storage turned off: the app still works, answers just don't survive a reload
+  }
+}
+
+export function loadSession() {
+  try {
+    return cleanUp(JSON.parse(sessionStorage.getItem(SESSION_KEY)));
+  } catch {
+    return null;
+  }
+}
+
+export function clearSession() {
+  try {
+    sessionStorage.removeItem(SESSION_KEY);
+  } catch {}
+}
