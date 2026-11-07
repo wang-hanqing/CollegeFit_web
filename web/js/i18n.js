@@ -39,8 +39,10 @@ export async function setLanguage(code) {
     }
   }
   current = language;
-  document.documentElement.lang = language.html;
-  document.documentElement.dir = language.dir;
+  if (typeof document !== "undefined") {
+    document.documentElement.lang = language.html;
+    document.documentElement.dir = language.dir;
+  }
   return language;
 }
 

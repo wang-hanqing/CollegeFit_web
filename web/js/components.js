@@ -75,5 +75,6 @@ export function privacyNote(text) {
 ICONS.dollar = '<path d="M12 3v18"/><path d="M16.5 7.5c-.8-1.3-2.4-2-4.5-2-2.6 0-4 1.3-4 3s1.5 2.6 4 3.2 4.5 1.4 4.5 3.3-1.8 3.3-4.5 3.3c-2.2 0-3.9-.8-4.8-2.3"/>';
 ICONS.book = '<path d="M4 5.5C4 4.7 4.7 4 5.5 4H11v16H5.5c-.8 0-1.5-.7-1.5-1.5z"/><path d="M20 5.5c0-.8-.7-1.5-1.5-1.5H13v16h5.5c.8 0 1.5-.7 1.5-1.5z"/>';
 ICONS.door = '<path d="M5 21V4.5C5 3.7 5.7 3 6.5 3h11c.8 0 1.5.7 1.5 1.5V21"/><path d="M3 21h18"/><path d="M14.5 12.5v.5"/>';
+ICONS.back = '<path d="M15 5l-7 7 7 7"/>';
 ICONS.check = '<path d="M5 12.5l4.5 4.5L19 7.5"/>';
 ICONS.shield = '<path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/>';

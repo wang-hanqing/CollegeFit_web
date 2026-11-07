@@ -794,5 +794,7 @@
   "web.pri.rank": "Priority number {0}",
   "web.perYear": "a year",
   "web.admitted": "admitted",
-  "web.showFewer": "Show fewer"
+  "web.showFewer": "Show fewer",
+  "web.details.missing": "This college is not in the data. Go back to your colleges.",
+  "web.extras.hint": "These details only explain colleges. They never hide any. They stay in this browser."
 }

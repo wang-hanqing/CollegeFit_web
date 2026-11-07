@@ -13,6 +13,12 @@ import { familyName } from "./direction.js";
 import {
   profileFrom, recommend, groups, GROUPS, comparableCost, outOfStatePublic, orderUsed,
 } from "../logic/explore.js";
+import { collegeIdFrom, pageFor, renderDetails, onDetailsClick, onDetailsChange } from "./details.js";
+
+// #/explore/college-<UNITID> opens one college
+export function isPage(page) {
+  return collegeIdFrom(page) != null;
+}
 
 const FIRST = 2;          // cards per group before "Show all"
 const BATCH = 12;         // cards added by each "Show more"
@@ -27,6 +33,8 @@ const dismissedTips = new Set();
 let pendingReason = null;         // UNITID waiting for a reason in the dialog
 
 export function render(ctx) {
+  const id = collegeIdFrom(ctx.page);
+  if (id != null) return renderDetails(ctx, id) + reasonDialog();
   const { data, answers } = ctx;
   const profile = profileFrom(answers);
   const ranked = recommend(data, profile);
@@ -169,6 +177,7 @@ function card(r, answers, profile, data) {
         <button type="button" class="${kept ? "primary" : "secondary"} small" data-action="keep" data-id="${id}" aria-pressed="${kept}">
           ${kept ? icon("check") : ""}${escapeHtml(t(kept ? "keep.kept" : "keep.keep"))}</button>
         <button type="button" class="quiet small" data-action="not-for-me" data-id="${id}">${escapeHtml(t("keep.not"))}</button>
+        <button type="button" class="link details-link" data-action="details" data-id="${id}">${escapeHtml(t("card.detailsShort"))}</button>
       </div>
     </article>`;
 }
@@ -268,9 +277,14 @@ function reasonDialog() {
 
 // ---------- clicks ----------
 
+export function onChange(event, ctx) {
+  onDetailsChange(event, ctx);
+}
+
 export function onClick(event, ctx) {
   const target = event.target.closest("[data-action]");
   if (!target) return;
+  if (onDetailsClick(event, ctx)) return;
   const { answers, update, rerender, go } = ctx;
   const id = target.dataset.id != null ? Number(target.dataset.id) : null;
   const group = target.dataset.group;
@@ -318,6 +332,7 @@ export function onClick(event, ctx) {
     case "show-more": shown[group] = (shown[group] || FIRST) + BATCH; rerender(); break;
     case "show-fewer": shown[group] = FIRST; rerender(); document.getElementById(`group-${group}`)?.scrollIntoView(); break;
     case "include-both": update({ degree: "both" }); rerender(); break;
+    case "details": go("explore", pageFor(id)); break;
     case "change-direction": go("direction"); break;
     case "change-priorities": go("priorities"); break;
     case "tip-dismiss": dismissedTips.add(target.dataset.reason); rerender(); break;

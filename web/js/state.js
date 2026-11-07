@@ -24,6 +24,16 @@ export function emptyAnswers() {
     fields: [],        // program families (2-digit CIP), e.g. ["51", "52"]
     degree: "both",    // "both", "two" (two-year) or "four" (four-year)
     priorities: [],    // up to three, in order
+    // Optional details that explain colleges but never filter them ("Add scores or cost details")
+    satStatus: "NOT_SURE",   // "NOT_SURE", "NOT_YET", "PROVIDED" or "PREFER_NOT_TO_SAY"
+    satReading: null,        // 200-800 when PROVIDED
+    satMath: null,
+    budgetStatus: "NOT_SURE", // "NOT_SURE", "KNOWN" or "PREFER_NOT_TO_SAY"
+    budget: null,            // dollars a year when KNOWN
+    income: "NOT_SURE",      // IncomeBracket value, e.g. "UNDER_30K"
+    aid: "NOT_SURE",         // can apply for federal aid: "NOT_SURE", "YES", "NO", "PREFER_NOT_TO_SAY"
+    settings: [],            // campus settings wanted, e.g. ["URBAN"]; empty = no preference
+    sizes: [],               // college sizes wanted, e.g. ["LARGE"]
     kept: [],          // UNITIDs of colleges the student kept, in the order kept
     compare: [],       // up to 3 kept UNITIDs shown side by side
     notForMe: {},      // UNITID -> reason key ("" = no reason given)

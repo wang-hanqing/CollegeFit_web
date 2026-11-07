@@ -37,7 +37,8 @@ function render({ focus = false } = {}) {
 
   $("journey").innerHTML = stepLine(index);
   $("main").innerHTML = views[app.step].render(context());
-  $("moves").innerHTML = footer(index, pagesOf(app.step).indexOf(app.page),
+  const pageAt = pagesOf(app.step).indexOf(app.page);
+  $("moves").innerHTML = footer(index, pageAt === -1 ? 1 : pageAt,
     views[app.step].continueLabel?.(app.answers, app.page));
   if (focus) $("page-title")?.focus();
 }
@@ -63,6 +64,7 @@ function pagesOf(step) {
 
 function validPage(step, page) {
   const pages = pagesOf(step);
+  if (page && views[step].isPage?.(page, app.answers)) return page; // e.g. one college's details
   return pages.includes(page) ? page : pages[0];
 }
 
@@ -124,7 +126,8 @@ async function onClick(event) {
     case "back": {
       const pages = pagesOf(app.step);
       const at = pages.indexOf(app.page);
-      if (at > 0) goTo(app.step, lang, pages[at - 1]);
+      if (at === -1) goTo(app.step, lang, pages[0]); // from a details page back to the list
+      else if (at > 0) goTo(app.step, lang, pages[at - 1]);
       else if (index > 0) goTo(stepAt(index - 1), lang, pagesOf(stepAt(index - 1)).at(-1));
       break;
     }
@@ -139,7 +142,7 @@ async function onClick(event) {
       }
       const pages = pagesOf(app.step);
       const at = pages.indexOf(app.page);
-      if (at < pages.length - 1) goTo(app.step, lang, pages[at + 1]);
+      if (at !== -1 && at < pages.length - 1) goTo(app.step, lang, pages[at + 1]);
       else goTo(stepAt(index + 1), lang);
       break;
     }

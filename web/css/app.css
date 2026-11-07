@@ -424,6 +424,72 @@ input:checked ~ .tick { background: var(--route); border-color: var(--route); co
 .reason-options .chip { position: relative; }
 .dialog-actions { display: flex; justify-content: flex-end; gap: 0.5rem; }
 
+
+/* ---------- College details ---------- */
+
+.details-link { margin-inline-start: auto; align-self: center; }
+.back-link { display: inline-flex; align-items: center; gap: 0.25rem; margin-bottom: 0.75rem; font-size: var(--step--1); }
+.back-link .icon { width: 1rem; height: 1rem; }
+.details-actions { margin-block: 0.5rem 1.5rem; }
+
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(7.75rem, 1fr)); gap: 0.6rem; margin: 0 0 1.5rem; }
+.tile { background: var(--wash); border-radius: var(--radius); padding: 0.75rem 0.9rem; }
+.tile dt { font-size: 0.78rem; color: var(--muted); font-weight: 600; }
+.tile dd { margin: 0.2rem 0 0; display: flex; flex-direction: column; }
+.tile-value { font-size: 1.45rem; font-weight: 800; line-height: 1.15; color: var(--ink); font-variant-numeric: tabular-nums; }
+.tile-note { font-size: 0.75rem; color: var(--muted); }
+
+.why-verify { display: grid; gap: 0.75rem; margin-bottom: 1.5rem; }
+@media (min-width: 40.01rem) { .why-verify { grid-template-columns: 1fr 1fr; } }
+.why, .verify { border-radius: var(--radius); padding: 1rem 1.1rem; }
+.why { background: #E8F5EE; }
+.verify { background: #FFF6D6; }
+.why h2, .verify h2 { font-size: var(--step-0); margin-bottom: 0.5rem; }
+.why ul, .verify ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; font-size: var(--step--1); }
+.why li, .verify li { display: flex; gap: 0.5rem; align-items: flex-start; }
+.why .icon { color: #1F7A4D; stroke-width: 3; width: 1rem; height: 1rem; margin-top: 0.2rem; }
+.verify .box { flex: none; width: 0.95rem; height: 0.95rem; margin-top: 0.25rem; border: 2px solid #9A6B00; border-radius: 3px; }
+
+.lens { border: 2px solid var(--rule); border-radius: var(--radius); margin-bottom: 0.75rem; }
+.lens summary { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; padding: 0.8rem 1rem; cursor: pointer; list-style: none; }
+.lens summary::-webkit-details-marker { display: none; }
+.lens summary::after {
+  content: ""; margin-inline-start: auto; width: 0.55rem; height: 0.55rem;
+  border-inline-end: 2px solid var(--muted); border-block-end: 2px solid var(--muted); transform: rotate(45deg);
+}
+.lens[open] summary::after { transform: rotate(225deg); }
+.lens .option-icon { width: 2.25rem; height: 2.25rem; }
+.lens .option-icon .icon { width: 1.2rem; height: 1.2rem; }
+.lens-title { font-weight: 700; }
+.status { font-size: 0.78rem; font-weight: 700; border-radius: 999px; padding: 0.15rem 0.6rem; }
+.status.ok { background: #E8F5EE; color: #1F6B45; }
+.status.bad { background: #FBE9EA; color: var(--alert); }
+.status.check { background: #FFF6D6; color: #7A5300; }
+.status.info { background: var(--wash); color: var(--route-dark); }
+.status.none { background: #F1F2F4; color: var(--muted); }
+.lens-body { padding: 0 1rem 1rem; }
+.lens-body h3 { font-size: var(--step--1); color: var(--muted); margin: 1rem 0 0.25rem; }
+.fact-list { margin: 0; display: grid; }
+.fact-list > div { padding-block: 0.55rem; border-block-end: 1px solid var(--wash); }
+.fact-list dt { font-size: 0.8rem; color: var(--muted); }
+.fact-list dd { margin: 0.1rem 0 0; display: flex; flex-wrap: wrap; gap: 0.1rem 0.4rem; align-items: baseline; font-size: var(--step--1); }
+.fact-list dd .muted { flex-basis: 100%; font-size: 0.8rem; }
+.lens-body .primary, .link-row a { text-decoration: none; margin-top: 0.75rem; }
+.link-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+.link-row .secondary { text-decoration: none; }
+.link-status { font-size: var(--step--1); color: var(--muted); white-space: pre-line; }
+.link-status:empty { display: none; }
+
+.extras form { display: grid; gap: 0.75rem; }
+.extras h2 { margin: 0; }
+.extras .muted { margin: 0; }
+.pair { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+.pair[hidden] { display: none; }
+.field-label input {
+  font: inherit; min-height: 2.75rem; padding: 0.4rem 0.6rem; width: 9rem;
+  border: 2px solid var(--rule); border-radius: var(--radius);
+}
+
 /* ---------- Bottom bar ---------- */
 
 .moves-bar {

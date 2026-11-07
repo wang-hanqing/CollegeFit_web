@@ -6,7 +6,7 @@
 
 export const GROUPS = ["COMMUNITY_COLLEGE", "PUBLIC_FOUR_YEAR", "PRIVATE"];
 const COST_STEP = 1000, RATE_STEP = 5, ADMIT_STEP = 10;
-const INCOME_KEYS = { UNDER_30K: "NPT41", FROM_30K_TO_48K: "NPT42", FROM_48K_TO_75K: "NPT43", FROM_75K_TO_110K: "NPT44", OVER_110K: "NPT45" };
+const INCOME_KEYS = { UNDER_30K: "NPT41", FROM_30K_TO_48K: "NPT42", FROM_48K_TO_75K: "NPT43", FROM_75K_TO_110K: "NPT44", ABOVE_110K: "NPT45" };
 
 // The student's answers in the shape the ordering needs.
 export function profileFrom(answers) {
@@ -17,7 +17,13 @@ export function profileFrom(answers) {
     home: answers.home || "",
     states: answers.home && answers.scope === "state" ? [answers.home] : [], // empty = anywhere
     priorities: [...answers.priorities],
-    income: answers.income || null,         // not asked yet on the "not sure" path
+    income: INCOME_KEYS[answers.income] ? answers.income : null, // null = not given
+    satReading: answers.satStatus === "PROVIDED" ? answers.satReading : null,
+    satMath: answers.satStatus === "PROVIDED" ? answers.satMath : null,
+    budget: answers.budgetStatus === "KNOWN" ? answers.budget : null,
+    aid: answers.aid || "NOT_SURE",
+    settings: [...(answers.settings || [])],
+    sizes: [...(answers.sizes || [])],
   };
 }
 

@@ -2456,5 +2456,11 @@
   },
   "web.showFewer": {
     "section": "Web app: Explore"
+  },
+  "web.details.missing": {
+    "section": "Web app: College details"
+  },
+  "web.extras.hint": {
+    "section": "Web app: College details"
   }
 }
