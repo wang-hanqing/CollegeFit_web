@@ -2397,9 +2397,6 @@
   "web.family.unknown": {
     "section": "Web app: Your direction"
   },
-  "web.direction.other": {
-    "section": "Web app: Your direction"
-  },
   "web.colleges.in": {
     "section": "Web app: Your direction"
   },
@@ -2552,5 +2549,17 @@
   "web.grade.12.5": {
     "section": "Web app: Compare and Next steps",
     "note": "New content for the web version, not in the Java app. Review with IRC staff before students use it."
+  },
+  "web.dir.remove": {
+    "section": "Web app: Your direction (subject, place, pathway)"
+  },
+  "web.dir.programs.hint": {
+    "section": "Web app: Your direction (subject, place, pathway)"
+  },
+  "web.dir.search.placeholder": {
+    "section": "Web app: Your direction (subject, place, pathway)"
+  },
+  "web.dir.noMatch": {
+    "section": "Web app: Your direction (subject, place, pathway)"
   }
 }

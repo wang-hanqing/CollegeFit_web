@@ -775,7 +775,6 @@
   "family.52": "Business",
   "family.54": "History",
   "web.family.unknown": "Field {0}",
-  "web.direction.other": "This starting point is still being rebuilt. To try the web version now, go back and choose “I'm not sure yet”.",
   "web.colleges.in": "colleges in {0}",
   "web.fields.careerCount": "{0} linked careers",
   "web.fields.liberal.note": "Not linked to specific careers in the federal data.",
@@ -821,5 +820,9 @@
   "web.grade.12.2": "Ask for recommendation letters at least a month before a deadline.",
   "web.grade.12.3": "Ask about application fee waivers if cost is a concern.",
   "web.grade.12.4": "Ask staff which financial aid forms apply to you, and complete them early.",
-  "web.grade.12.5": "Many community colleges accept applications later in the year. Check their deadlines and placement tests."
+  "web.grade.12.5": "Many community colleges accept applications later in the year. Check their deadlines and placement tests.",
+  "web.dir.remove": "Remove {0}",
+  "web.dir.programs.hint": "Search, then tap to add as many as you like.",
+  "web.dir.search.placeholder": "For example: nursing, business, cooking",
+  "web.dir.noMatch": "No programs match. Try a shorter word."
 }

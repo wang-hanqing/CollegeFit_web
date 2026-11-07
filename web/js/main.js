@@ -215,6 +215,9 @@ async function start() {
 
   document.addEventListener("click", onClick);
   document.addEventListener("change", onChange);
+  document.addEventListener("input", (event) => {
+    if (app.data && event.target.closest("#main")) views[app.step].onInput?.(event, context());
+  });
   // <details> open/close does not bubble, so listen while it travels down
   document.addEventListener("toggle", (event) => {
     if (app.data && event.target.closest?.("#main")) views[app.step].onToggle?.(event, context());

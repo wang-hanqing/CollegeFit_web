@@ -541,6 +541,55 @@ button[disabled] { opacity: 0.5; cursor: not-allowed; }
   body { font-size: 11pt; }
 }
 
+
+/* ---------- Your direction: subject, place, pathway ---------- */
+
+.direction-sections { display: grid; gap: 1rem; margin-block: 1.25rem; }
+.direction-card { border: 2px solid var(--rule); border-radius: var(--radius); padding: 1.1rem 1.2rem; display: grid; gap: 0.9rem; }
+.direction-card h2 { display: flex; align-items: center; gap: 0.6rem; margin: 0; font-size: var(--step-1); }
+.direction-card h2 .option-icon { width: 2.5rem; height: 2.5rem; }
+.direction-card h2 .option-icon .icon { width: 1.3rem; height: 1.3rem; }
+.direction-card .chips { margin: 0; }
+.direction-card .chips legend .hint { font-weight: 400; }
+.field-label .hint { font-weight: 400; margin: 0; }
+.search {
+  font: inherit; width: 100%; min-height: 2.9rem; padding: 0.5rem 0.8rem;
+  border: 2px solid var(--rule); border-radius: var(--radius); background: var(--paper); color: var(--ink);
+}
+.search:focus { border-color: var(--route); outline: none; box-shadow: 0 0 0 3px rgb(47 85 212 / 0.2); }
+.program-results {
+  list-style: none; margin: 0; padding: 0.25rem; max-height: 15rem; overflow-y: auto;
+  border: 1px solid var(--rule); border-radius: var(--radius);
+}
+.program-results li > button {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; width: 100%;
+  padding: 0.55rem 0.6rem; border: 0; border-radius: 6px; background: none; color: var(--ink); text-align: start;
+  font-size: var(--step--1);
+}
+.program-results li > button:hover, .program-results li > button:focus-visible { background: var(--wash); }
+.program-results [aria-pressed="true"] { font-weight: 700; }
+.program-name { display: inline-flex; gap: 0.35rem; align-items: center; }
+.program-name .icon { width: 1rem; height: 1rem; color: var(--route); stroke-width: 3; }
+.program-count { color: var(--muted); white-space: nowrap; font-size: 0.8rem; }
+.program-count.none { color: var(--alert); }
+.program-results > .muted { padding: 0.6rem; font-size: var(--step--1); }
+.chosen { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; font-size: var(--step--1); }
+.chip-button {
+  display: inline-flex; align-items: center; gap: 0.4rem; min-height: 2.5rem; padding: 0.3rem 0.9rem;
+  border: 2px solid var(--route); border-radius: 999px; background: var(--route); color: var(--paper);
+  font-weight: 600; font-size: var(--step--1);
+}
+.chip-button:hover { background: var(--route-dark); }
+.add-state { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.add-state select {
+  font: inherit; min-height: 2.5rem; padding: 0.3rem 0.5rem;
+  border: 2px solid var(--rule); border-radius: var(--radius); background: var(--paper); color: var(--ink);
+}
+.extras-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; margin-block: 0.5rem 1rem; }
+.extras-row p { margin: 0; flex: 1 1 18rem; font-size: var(--step--1); }
+.extras-row .secondary .muted { font-weight: 400; }
+.how ul { margin: 0.5rem 0 0; padding-inline-start: 1.1rem; display: grid; gap: 0.35rem; }
+
 /* ---------- Bottom bar ---------- */
 
 .moves-bar {

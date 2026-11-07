@@ -3,15 +3,18 @@
 // tests/java_explore.json was made by tests/ExploreDump.java with the Java app's own classes.
 import { readFileSync } from "node:fs";
 import { prepareData } from "../web/js/data.js";
+import { setLanguage } from "../web/js/i18n.js";
 import { recommend, groups, comparableCost, GROUPS } from "../web/js/logic/explore.js";
 
 const read = (path) => JSON.parse(readFileSync(new URL(path, import.meta.url)));
+globalThis.fetch = async (url) => ({ ok: true, json: async () => read(`../web/${url}`) });
+await setLanguage("en");
 const loaded = {};
 for (const name of ["colleges", "programs", "cip", "interest_links", "meta"]) loaded[name] = read(`../web/data/${name}.json`);
 const data = prepareData(loaded);
 const java = read("./java_explore.json");
 
-// Same cases as ExploreDump.java: fields | home | scope | pathway | priorities
+// Same cases as ExploreDump.java: fields | home | scope (state, anywhere or A+B) | pathway | priorities | settings | sizes
 const CASES = {
   "video": ["51,52", "NY", "state", "NOT_SURE", "COSTS,ADMISSION"],
   "cs-us": ["11", "NY", "anywhere", "BACHELOR", "GRADUATION,COSTS,STUDY"],
@@ -20,6 +23,9 @@ const CASES = {
   "tx-health": ["51", "TX", "state", "NOT_SURE", "ADMISSION,GRADUATION,COSTS"],
   "biz-us-nohome": ["52", "", "anywhere", "NOT_SURE", "CAMPUS"],
   "arts-ny-assoc": ["50", "NY", "state", "ASSOCIATE", "COSTS"],
+  "subject-mix": ["5138,12,1205", "NY", "NY+NJ", "BOTH", "CAMPUS,STUDY", "URBAN", "LARGE"],
+  "place-rural": ["", "CA", "state", "NOT_SURE", "CAMPUS,COSTS", "RURAL,TOWN", "SMALL"],
+  "us-campus": ["52,1101", "TX", "anywhere", "BACHELOR", "STUDY,CAMPUS,GRADUATION", "SUBURBAN", "MEDIUM,LARGE"],
 };
 const list = (s) => (s ? s.split(",") : []);
 
@@ -30,11 +36,11 @@ function check(label, actual, expected) {
   if (a !== e) { failures++; console.log(`FAIL ${label}\n  web:  ${a.slice(0, 400)}\n  java: ${e.slice(0, 400)}`); }
 }
 
-for (const [name, [fields, home, scope, pathway, priorities]] of Object.entries(CASES)) {
+for (const [name, [fields, home, scope, pathway, priorities, settings = "", sizes = ""]] of Object.entries(CASES)) {
   const profile = {
     programs: list(fields), pathway, home,
-    states: home && scope === "state" ? [home] : [],
-    priorities: list(priorities), income: null,
+    states: scope.includes("+") ? scope.split("+") : home && scope === "state" ? [home] : [],
+    priorities: list(priorities), income: null, settings: list(settings), sizes: list(sizes),
   };
   const ranked = recommend(data, profile);
   const byGroup = groups(ranked);

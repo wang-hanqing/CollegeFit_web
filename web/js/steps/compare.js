@@ -6,12 +6,11 @@
 // answers.reasons  UNITID -> reasons for keeping, e.g. ["COSTS", "STUDY"]
 import { t, formatNumber } from "../i18n.js";
 import { escapeHtml } from "../ui.js";
-import { icon } from "../components.js";
 import { familyName } from "./direction.js";
-import { programLine } from "./explore.js";
+import { programLine, campusLine } from "./explore.js";
 import { pageFor } from "./details.js";
 import { profileFrom, comparableCost } from "../logic/explore.js";
-import { evaluateAll, money, sizeOf } from "../logic/evaluate.js";
+import { evaluateAll, money } from "../logic/evaluate.js";
 import { compare, rowOrder, degreeText } from "../logic/compare.js";
 
 export const KEEP_REASONS = ["COSTS", "STUDY", "GRADUATION", "ADMISSION", "CAMPUS", "OTHER"];
@@ -140,14 +139,8 @@ function value(row, e, profile, data) {
         : c.ADM_RATE > 0 ? t("cmp.admission.rate", `${formatNumber(Math.round(c.ADM_RATE * 100))}%`) : t("notReported"));
     case "STUDY":
       return escapeHtml(programLine(e.program, profile, data));
-    default: {
-      const shown = e.social.facts.filter((f) => f.match != null);
-      if (!shown.length) return escapeHtml(t("card.social.none"));
-      return shown.map((f) => {
-        const v = f.label === t("soc.size") ? t(`card.size.${sizeOf(c) || "UNKNOWN"}`) : f.value;
-        return `${escapeHtml(v)} ${f.match ? `<span class="match">${icon("check")}</span>` : '<span class="no-match">✗</span>'}`;
-      }).join(" ");
-    }
+    default:
+      return campusLine(e.social, c);
   }
 }
 

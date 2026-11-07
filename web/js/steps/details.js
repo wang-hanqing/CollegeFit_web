@@ -165,7 +165,7 @@ function select(name, values, prefix, current) {
     `<option value="${v}"${v === current ? " selected" : ""}>${escapeHtml(t(`${prefix}.${v}`))}</option>`).join("")}</select>`;
 }
 
-function extrasDialog(answers, data) {
+export function extrasDialog(answers, data) {
   const states = [...data.states].sort((a, b) => (STATE_NAMES[a] || a).localeCompare(STATE_NAMES[b] || b));
   const home = `<select name="home"><option value=""${answers.home ? "" : " selected"}>${escapeHtml(t("form.notSure"))}</option>${
     states.map((s) => `<option value="${s}"${s === answers.home ? " selected" : ""}>${escapeHtml(STATE_NAMES[s] || s)}</option>`).join("")}</select>`;

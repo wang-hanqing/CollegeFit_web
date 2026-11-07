@@ -14,6 +14,7 @@ import {
   profileFrom, recommend, groups, GROUPS, comparableCost, outOfStatePublic, orderUsed,
 } from "../logic/explore.js";
 import { collegeIdFrom, pageFor, renderDetails, onDetailsClick, onDetailsChange } from "./details.js";
+import { sizeOf } from "../logic/evaluate.js";
 
 // #/explore/college-<UNITID> opens one college
 export function isPage(page) {
@@ -226,9 +227,18 @@ function priorityValue(p, r, profile, data) {
     case "STUDY":
       return escapeHtml(programLine(r, profile, data));
     default:
-      if (!r.campusConsidered) return escapeHtml(t("card.social.none"));
-      return `${escapeHtml(c.STABBR)} ${r.campusMatched ? `<span class="match">${icon("check")}</span>` : `<span class="no-match">✗</span>`}`;
+      return campusLine(r.social, c);
   }
+}
+
+// State, setting and size, each with a match mark; only the ones the student chose
+export function campusLine(social, c) {
+  const shown = social.facts.filter((f) => f.match != null);
+  if (!shown.length) return escapeHtml(t("card.social.none"));
+  return shown.map((f) => {
+    const v = f.label === t("soc.size") ? t(`card.size.${sizeOf(c) || "UNKNOWN"}`) : f.value;
+    return `${escapeHtml(v)} ${f.match ? `<span class="match">${icon("check")}</span>` : '<span class="no-match">✗</span>'}`;
+  }).join(" ");
 }
 
 // ---------- not for me ----------

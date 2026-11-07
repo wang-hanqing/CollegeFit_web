@@ -3,6 +3,7 @@
 // priorities in turn. Close values count as a tie so the next priority decides, and missing or
 // not-comparable values go last instead of getting a false advantage.
 // tests/explore.test.mjs checks the results against the Java version.
+import { socialResult } from "./evaluate.js";
 
 export const GROUPS = ["COMMUNITY_COLLEGE", "PUBLIC_FOUR_YEAR", "PRIVATE"];
 const COST_STEP = 1000, RATE_STEP = 5, ADMIT_STEP = 10;
@@ -10,12 +11,13 @@ const INCOME_KEYS = { UNDER_30K: "NPT41", FROM_30K_TO_48K: "NPT42", FROM_48K_TO_
 
 // The student's answers in the shape the ordering needs.
 export function profileFrom(answers) {
-  const pathway = { two: "ASSOCIATE", four: "BACHELOR" }[answers.degree] || "NOT_SURE";
+  // "both" = not sure, show both; "either" = either degree is fine (Java's BOTH)
+  const pathway = { two: "ASSOCIATE", four: "BACHELOR", either: "BOTH" }[answers.degree] || "NOT_SURE";
   return {
     programs: [...answers.fields],          // 2-digit fields or 4-digit programs
     pathway,
     home: answers.home || "",
-    states: answers.home && answers.scope === "state" ? [answers.home] : [], // empty = anywhere
+    states: statesOf(answers),              // empty = anywhere
     priorities: [...answers.priorities],
     income: INCOME_KEYS[answers.income] ? answers.income : null, // null = not given
     satReading: answers.satStatus === "PROVIDED" ? answers.satReading : null,
@@ -25,6 +27,14 @@ export function profileFrom(answers) {
     settings: [...(answers.settings || [])],
     sizes: [...(answers.sizes || [])],
   };
+}
+
+// States to search. scope "state" = the home state (the "not sure" path), "states" = a list the
+// student built, "anywhere" or "unsure" = every state.
+export function statesOf(answers) {
+  if (answers.scope === "state") return answers.home ? [answers.home] : [];
+  if (answers.scope === "states") return [...(answers.states || [])];
+  return [];
 }
 
 export function levels(pathway) {
@@ -85,9 +95,10 @@ export function evaluate(profile, c) {
     r.bachelorAwarded = anyBachelor;
   }
   r.hasProgramEvidence = !profile.programs.length || r.programsAwarded > 0;
-  // Campus matches: only the preferences the student stated (states for now)
-  r.campusConsidered = profile.states.length ? 1 : 0;
-  r.campusMatched = profile.states.length && profile.states.includes(c.STABBR) ? 1 : 0;
+  // Campus matches: states, setting and size, only where the student stated a preference
+  r.social = socialResult(profile, c);
+  r.campusConsidered = r.social.considered;
+  r.campusMatched = r.social.matched;
   return r;
 }
 
@@ -160,7 +171,7 @@ function compareKeys(a, b) {
 }
 
 // Java's String.CASE_INSENSITIVE_ORDER
-function caseInsensitive(a, b) {
+export function caseInsensitive(a, b) {
   const n = Math.min(a.length, b.length);
   for (let i = 0; i < n; i++) {
     let x = a[i], y = b[i];

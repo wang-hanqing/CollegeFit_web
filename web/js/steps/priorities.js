@@ -5,8 +5,7 @@
 import { t, formatNumber, currentLanguage } from "../i18n.js";
 import { escapeHtml } from "../ui.js";
 import { icon, stepError } from "../components.js";
-import { STATE_NAMES } from "../config.js";
-import { familyName } from "./direction.js";
+import { familyName, where } from "./direction.js";
 
 const PRIORITIES = [
   { id: "COSTS", icon: "dollar" },
@@ -17,7 +16,7 @@ const PRIORITIES = [
 ];
 const MAX = 3;
 
-export function render({ answers }) {
+export function render({ answers, data }) {
   const cards = PRIORITIES.map((p) => card(p, answers.priorities.indexOf(p.id) + 1)).join("");
   const clear = answers.priorities.length
     ? `<button type="button" class="link" data-action="clear-priorities">${escapeHtml(t("pri.clear"))}</button>`
@@ -25,7 +24,7 @@ export function render({ answers }) {
   return `
     <h1 id="page-title" tabindex="-1">${escapeHtml(t("pri.title"))}</h1>
     <p class="lede">${escapeHtml(t("web.pri.subtitle"))}</p>
-    <p class="context">${escapeHtml(t("pri.topic", topic(answers), place(answers)))}</p>
+    <p class="context">${escapeHtml(t("pri.topic", topic(answers, data), place(answers)))}</p>
     ${stepError()}
     <fieldset class="priority-list">
       <legend class="visually-hidden">${escapeHtml(t("pri.title"))}</legend>
@@ -92,8 +91,8 @@ export function continueLabel(answers) {
 
 // ---------- context line: what and where the student is exploring ----------
 
-function topic(answers) {
-  const names = answers.fields.map(familyName);
+function topic(answers, data) {
+  const names = answers.fields.map((code) => (code.length === 2 ? familyName(code) : (data.programNames[code] || code).split(",")[0]));
   if (!names.length) return t("options.topic.all");
   const list = new Intl.ListFormat(currentLanguage().html, { type: "conjunction" });
   if (names.length > 2) return `${names.slice(0, 2).join(", ")} ${t("options.topic.more", formatNumber(names.length - 2))}`;
@@ -101,7 +100,6 @@ function topic(answers) {
 }
 
 function place(answers) {
-  return answers.home && answers.scope === "state"
-    ? t("options.in", STATE_NAMES[answers.home] || answers.home)
-    : t("options.anywhere");
+  const w = where(answers);
+  return w === t("pathway.us") ? t("options.anywhere") : t("options.in", w);
 }

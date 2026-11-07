@@ -62,6 +62,7 @@ node tests/directions.test.mjs   # Step 2: fields, counts, two-year and four-yea
 node tests/explore.test.mjs      # Step 4: which colleges appear, their groups and their order
 node tests/evaluate.test.mjs     # College details: every fact, label, reason and next step, word for word
 node tests/compare.test.mjs      # Compare: markers, trade-off summary and degree levels, word for word
+node tests/programs.test.mjs     # Program search list and college counts per state
 ```
 
 Each compares the web version with a JSON file that a `tests/*Dump.java` program produced from the Java app's

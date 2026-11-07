@@ -2,12 +2,14 @@
 //   interests  What do you enjoy doing? (six O*NET interest types, up to 2, or "not sure")
 //   fields     Fields linked to those interests, or eight common fields
 //   pathway    Two-year and four-year colleges
-// The other starting points (subject, place, pathway) still show a placeholder.
+// The other starting points (subject, place, pathway) share one page, in choose.js.
 import { t, formatNumber, formatMoney, currentLanguage } from "../i18n.js";
 import { escapeHtml } from "../ui.js";
 import { optionCards, choiceChips, bigNumber, stepError, icon } from "../components.js";
 import { COMMON_FIELDS, LIBERAL_ARTS, MAX_INTERESTS, FIELDS_SHOWN, STATE_NAMES } from "../config.js";
 import { linkedFields, fieldCount, pathwaySummary } from "../logic/directions.js";
+import { statesOf } from "../logic/explore.js";
+import * as choose from "./choose.js";
 
 const INTERESTS = ["R", "I", "A", "S", "E", "C"];
 let showAllFields = false; // "Show all fields" on the fields page; not saved
@@ -21,12 +23,19 @@ export function render(ctx) {
   if (page === "interests") return interestsPage(ctx);
   if (page === "fields") return fieldsPage(ctx);
   if (page === "pathway") return pathwayPage(ctx);
-  return `
-    <h1 id="page-title" tabindex="-1">${escapeHtml(t("step.2"))}</h1>
-    <p class="placeholder">${escapeHtml(t("web.direction.other"))}</p>`;
+  return choose.render(ctx);
+}
+
+export function check(answers, page) {
+  return page === "main" ? choose.check(answers) : null;
+}
+
+export function onInput(event, ctx) {
+  if (ctx.page === "main") choose.onInput(event, ctx);
 }
 
 export function onChange(event, ctx) {
+  if (ctx.page === "main") return choose.onChange(event, ctx);
   const { name, value, checked } = event.target;
   const { answers, update, rerender } = ctx;
 
@@ -63,6 +72,7 @@ export function onChange(event, ctx) {
 }
 
 export function onClick(event, ctx) {
+  if (ctx.page === "main") return choose.onClick(event, ctx);
   if (event.target.closest('[data-action="all-fields"]')) {
     showAllFields = !showAllFields;
     ctx.rerender();
@@ -71,12 +81,12 @@ export function onClick(event, ctx) {
 
 // ---------- helpers ----------
 
-function scopeStates(answers) {
-  return answers.home && answers.scope === "state" ? [answers.home] : [];
-}
+const scopeStates = statesOf;
 
-function where(answers) {
+// "New York", "your states" or "the U.S."
+export function where(answers) {
   const states = scopeStates(answers);
+  if (states.length > 1) return t("dir.count.yourStates");
   return states.length ? STATE_NAMES[states[0]] || states[0] : t("pathway.us");
 }
 
@@ -263,11 +273,7 @@ function fieldCard(field, answers, data, place) {
 // ---------- page 3: two-year or four-year ----------
 
 function pathwayPage(ctx) {
-  const { answers, data } = ctx;
-  const place = where(answers);
-  const p = pathwaySummary(data, scopeStates(answers));
-  const four = p.fourPublic.colleges + p.fourPrivate.colleges;
-
+  const { answers } = ctx;
   const choice = choiceChips({
     name: "degree",
     legend: t("web.path.choice"),
@@ -278,9 +284,18 @@ function pathwayPage(ctx) {
       { value: "four", label: t("unsure.four") },
     ],
   });
-
   return `
     ${title(t("unsure.pathway.title"), t("unsure.pathway.subtitle"))}
+    ${pathwayCards(ctx)}
+    ${choice}`;
+}
+
+// Two-year and four-year colleges side by side, with counts and median costs for the chosen states
+export function pathwayCards({ answers, data }) {
+  const place = where(answers);
+  const p = pathwaySummary(data, scopeStates(answers));
+  const four = p.fourPublic.colleges + p.fourPrivate.colleges;
+  return `
     <div class="pathways">
       <section class="pathway">
         <h2>${escapeHtml(t("pathway.two"))} <span class="tag">${escapeHtml(t("pathway.two.tag"))}</span></h2>
@@ -295,6 +310,5 @@ function pathwayPage(ctx) {
            ${escapeHtml(t("web.path.private", formatNumber(p.fourPrivate.colleges), formatMoney(p.fourPrivate.medianCost)))}</p>
         <p class="muted">${escapeHtml(t("web.path.costNote"))}</p>
       </section>
-    </div>
-    ${choice}`;
+    </div>`;
 }

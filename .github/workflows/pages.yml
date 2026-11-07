@@ -30,6 +30,7 @@ jobs:
           node tests/explore.test.mjs
           node tests/evaluate.test.mjs
           node tests/compare.test.mjs
+          node tests/programs.test.mjs
 
   publish:
     needs: check

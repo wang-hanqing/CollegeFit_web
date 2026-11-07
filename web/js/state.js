@@ -18,11 +18,12 @@ export function emptyAnswers() {
     grade: null,       // 9, 10, 11, 12, "none" (prefer not to say) or null (not answered)
     start: null,       // "subject", "place", "pathway" or "not_sure"
     home: DEFAULT_HOME_STATE, // state the student lives in, e.g. "NY"; "" = not sure
-    scope: "state",    // explore colleges "state" (in the home state) or "anywhere"
+    scope: "state",    // "state" (the home state), "states" (the list below), "anywhere" or "unsure"
+    states: [],        // states the student added on the subject, place or pathway page
     interests: [],     // O*NET interest types, up to 2, e.g. ["I", "C"]
     interestsUnsure: false, // "I'm not sure yet" on the interest page
     fields: [],        // program families (2-digit CIP), e.g. ["51", "52"]
-    degree: "both",    // "both", "two" (two-year) or "four" (four-year)
+    degree: "both",    // "both" (not sure, show both), "two", "four" or "either" (either degree is fine)
     priorities: [],    // up to three, in order
     // Optional details that explain colleges but never filter them ("Add scores or cost details")
     satStatus: "NOT_SURE",   // "NOT_SURE", "NOT_YET", "PROVIDED" or "PREFER_NOT_TO_SAY"
