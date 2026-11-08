@@ -8,12 +8,20 @@ export function escapeHtml(value) {
     .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
 
+// "CollegeFit" with "Fit" on a yellow mark. A translated name is shown as it is.
+function brandName() {
+  const title = t("app.title");
+  return title === "CollegeFit"
+    ? `College<span class="brand-fit">Fit</span>`
+    : escapeHtml(title);
+}
+
 export function header(keptCount) {
   const options = LANGUAGES.map((l) =>
     `<option value="${l.code}" lang="${l.html}"${l.code === currentLanguage().code ? " selected" : ""}>${escapeHtml(l.name)}</option>`
   ).join("");
   return `
-    <a class="brand" href="#" data-action="home" title="${escapeHtml(t("nav.home.tip"))}">${escapeHtml(t("app.title"))}</a>
+    <a class="brand" href="#" data-action="home" title="${escapeHtml(t("nav.home.tip"))}">${brandName()}</a>
     <div class="header-tools">
       <label class="language">
         <span class="visually-hidden">${escapeHtml(t("web.lang.label"))}</span>

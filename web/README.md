@@ -19,13 +19,14 @@ Stop the server with Control + C.
 ```
 index.html        page shell; also sets a strict content security policy (no outside scripts, fonts or trackers)
 css/app.css       design tokens at the top; logical properties only, so right-to-left works
+fonts/            Rubik (OFL), split by script: Latin, Latin extended, Cyrillic, Arabic (also Dari)
 js/config.js      languages, steps, data files
 js/main.js        start-up, rendering, navigation, buttons
 js/router.js      addresses like #/explore?lang=ar
 js/state.js       the student's answers, saved links, reload protection
 js/i18n.js        translations, text direction, number formatting
 js/data.js        loads data/*.json and builds lookups
-js/ui.js          header, step line, bottom bar, help
+js/ui.js          header, sidebar (grade, steps, saved link), bottom bar, help
 js/components.js  reusable choices: option cards, chips, error line, privacy note
 js/views.js       which code shows each step; placeholders until a step is ported
 js/steps/*.js     one file per step: render(), onChange(), onClick(), check(), pages()
