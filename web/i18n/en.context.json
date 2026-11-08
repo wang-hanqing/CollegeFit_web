@@ -2400,7 +2400,14 @@
   "web.colleges.in": {
     "section": "Web app: Your direction"
   },
-  "web.fields.careerCount": {
+  "web.fields.programs.count": {
+    "section": "Web app: Your direction",
+    "note": "{0} is a state name or \"your states\"; {1} is how many programs there are"
+  },
+  "web.fields.programs.all": {
+    "section": "Web app: Your direction"
+  },
+  "web.fields.programs.fewer": {
     "section": "Web app: Your direction"
   },
   "web.fields.liberal.note": {

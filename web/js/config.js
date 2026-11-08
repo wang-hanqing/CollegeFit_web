@@ -44,6 +44,7 @@ export const COMMON_FIELDS = ["52", "51", "11", "50", "24", "26", "42", "45"];
 export const LIBERAL_ARTS = "24";
 export const MAX_INTERESTS = 2;
 export const FIELDS_SHOWN = 4;
+export const PROGRAMS_SHOWN = 5;   // programs listed in a field card before "Show all"
 
 export const STATE_NAMES = {
   AL: "Alabama", AK: "Alaska", AZ: "Arizona", AR: "Arkansas", CA: "California", CO: "Colorado",

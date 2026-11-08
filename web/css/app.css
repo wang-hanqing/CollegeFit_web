@@ -398,6 +398,7 @@ input:checked ~ .tick { background: var(--route); border-color: var(--route); co
 .programs ul { list-style: none; margin: 0.25rem 0 0; padding: 0; display: grid; gap: 0.3rem; }
 .programs li { display: flex; justify-content: space-between; gap: 1rem; }
 .programs .count { color: var(--muted); white-space: nowrap; }
+.programs > .link { margin-top: 0.5rem; }
 
 .more { display: inline-block; margin-block: 0.25rem 1rem; font-size: var(--step-0); font-weight: 600; }
 .source { font-size: 0.8rem; color: var(--muted); margin-block: 2rem 0; }

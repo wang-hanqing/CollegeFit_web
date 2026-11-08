@@ -31,7 +31,8 @@ for (const [key, expected] of Object.entries(java.fields)) {
     colleges: f.colleges,
     linkedCareers: f.linkedCareers,
     careers: f.careers.map((c) => c.soc),
-    programs: f.programs.map((p) => [data.programNames[p.cip] ?? p.cip, p.colleges]),
+    // The web page lists every program; the Java version keeps the first three, in the same order
+    programs: f.programs.slice(0, 3).map((p) => [data.programNames[p.cip] ?? p.cip, p.colleges]),
   }));
   check(`linked fields ${key}`, web, expected);
 }

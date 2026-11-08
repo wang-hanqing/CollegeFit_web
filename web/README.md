@@ -69,6 +69,10 @@ node tests/programs.test.mjs     # Program search list and college counts per st
 Each compares the web version with a JSON file that a `tests/*Dump.java` program produced from the Java app's
 own classes.
 
+Where the web version is meant to differ from Java, the test checks only the shared part:
+- Step 2 field cards: the web page lists every program in a field (five, then "Show all"); Java keeps the first
+  three. The test compares the first three.
+
 ## Checking in the browser console
 
 `CollegeFit` holds the current step, answers and loaded data, for example

@@ -29,6 +29,8 @@ export function fieldCount(data, states, code) {
 
 // Fields linked to the chosen interests (O*NET interest -> career -> program family).
 // Order: more linked careers first, then more colleges, then field code. Fields no college in scope offers are left out.
+// programs: every program in the field that a college in scope offers, most colleges first. The Java version keeps the
+// first three; the web page shows five and can show the rest.
 export function linkedFields(data, interests, states) {
   const byFamily = new Map();
   for (const interest of interests) {
@@ -56,7 +58,7 @@ export function linkedFields(data, interests, states) {
       colleges,
       linkedCareers: careers.length,
       careers: careers.slice(0, 3),
-      programs: programs.slice(0, 3),
+      programs,
     });
   }
   return out.sort((a, b) => b.linkedCareers - a.linkedCareers || b.colleges - a.colleges || compare(a.family, b.family));

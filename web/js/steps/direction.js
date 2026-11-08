@@ -6,13 +6,15 @@
 import { t, formatNumber, formatMoney, currentLanguage } from "../i18n.js";
 import { escapeHtml } from "../ui.js";
 import { optionCards, choiceChips, bigNumber, stepError, icon } from "../components.js";
-import { COMMON_FIELDS, LIBERAL_ARTS, MAX_INTERESTS, FIELDS_SHOWN, STATE_NAMES } from "../config.js";
+import { COMMON_FIELDS, LIBERAL_ARTS, MAX_INTERESTS, FIELDS_SHOWN, PROGRAMS_SHOWN, STATE_NAMES } from "../config.js";
 import { linkedFields, fieldCount, pathwaySummary } from "../logic/directions.js";
 import { statesOf } from "../logic/explore.js";
 import * as choose from "./choose.js";
 
 const INTERESTS = ["R", "I", "A", "S", "E", "C"];
 let showAllFields = false; // "Show all fields" on the fields page; not saved
+const openPrograms = new Set(); // fields whose program list is open, so a redraw keeps it open
+const allPrograms = new Set();  // fields showing every program, not only the first few
 
 export function pages(answers) {
   return answers.start === "not_sure" ? ["interests", "fields", "pathway"] : ["main"];
@@ -77,6 +79,21 @@ export function onClick(event, ctx) {
     showAllFields = !showAllFields;
     ctx.rerender();
   }
+  const more = event.target.closest('[data-action="all-programs"]');
+  if (more) {
+    const family = more.dataset.family;
+    if (allPrograms.has(family)) allPrograms.delete(family);
+    else allPrograms.add(family);
+    ctx.rerender();
+  }
+}
+
+// Remember which program lists are open (<details> keeps no state across a redraw)
+export function onToggle(event) {
+  const list = event.target;
+  if (!list.matches?.("details.programs")) return;
+  if (list.open) openPrograms.add(list.dataset.family);
+  else openPrograms.delete(list.dataset.family);
 }
 
 // ---------- helpers ----------
@@ -248,9 +265,15 @@ function fieldCard(field, answers, data, place) {
   const careers = field.careers.map((c) => `
     <li><span class="career">${escapeHtml(c.title)}</span>
       <span class="tag">${escapeHtml(t(`web.jobZone.${c.jobZone}`))}</span></li>`).join("");
-  const programs = field.programs.map((p) => `
+  const showAll = allPrograms.has(field.family);
+  const programs = (showAll ? field.programs : field.programs.slice(0, PROGRAMS_SHOWN)).map((p) => `
     <li><span>${escapeHtml(data.programNames[p.cip] || p.cip)}</span>
       <span class="count">${escapeHtml(t("unsure.fields.programCount", formatNumber(p.colleges)))}</span></li>`).join("");
+  const morePrograms = field.programs.length > PROGRAMS_SHOWN
+    ? `<button type="button" class="link" data-action="all-programs" data-family="${field.family}">${escapeHtml(showAll
+        ? t("web.fields.programs.fewer")
+        : t("web.fields.programs.all", formatNumber(field.programs.length)))}</button>`
+    : "";
   return `
     <div class="field-card${on ? " is-chosen" : ""}">
       <label class="field-head" for="${id}">
@@ -258,14 +281,14 @@ function fieldCard(field, answers, data, place) {
         <span class="tick" aria-hidden="true">${icon("check")}</span>
         <span class="option-text">
           <span class="option-title">${escapeHtml(familyName(field.family))}</span>
-          <span class="option-description">${escapeHtml(t("web.fields.careerCount", formatNumber(field.linkedCareers)))}</span>
         </span>
         ${bigNumber(formatNumber(field.colleges), t("web.colleges.in", place))}
       </label>
       <ul class="careers" aria-label="${escapeHtml(t("unsure.fields.careers"))}">${careers}</ul>
-      <details class="programs">
-        <summary>${escapeHtml(t("unsure.fields.programs", place))}</summary>
+      <details class="programs" data-family="${field.family}"${openPrograms.has(field.family) ? " open" : ""}>
+        <summary>${escapeHtml(t("web.fields.programs.count", place, formatNumber(field.programs.length)))}</summary>
         <ul>${programs}</ul>
+        ${morePrograms}
       </details>
     </div>`;
 }
