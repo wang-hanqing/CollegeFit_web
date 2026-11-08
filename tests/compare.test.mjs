@@ -9,7 +9,7 @@ import { compare, degreeText, ROWS } from "../web/js/logic/compare.js";
 import { familyName } from "../web/js/steps/direction.js";
 
 const read = (path) => JSON.parse(readFileSync(new URL(path, import.meta.url)));
-globalThis.fetch = async (url) => ({ ok: true, json: async () => read(`../web/${url}`) });
+globalThis.fetch = async (url) => ({ ok: true, json: async () => read(`../web/${url.split("?")[0]}`) });
 await setLanguage("en");
 const loaded = {};
 for (const name of ["colleges", "programs", "cip", "interest_links", "meta"]) loaded[name] = read(`../web/data/${name}.json`);

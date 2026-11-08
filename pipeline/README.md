@@ -60,3 +60,9 @@ The last command only needs to run once: after that, `web/i18n/en.json` is edite
 When a new College Scorecard release comes out: replace the two CSV files in `data/raw/`, run steps 2 and 3,
 compare the new row counts with the old ones, update the release date in `help.data` in `web/i18n/en.json`, and commit
 `data/processed/` and `web/data/` together.
+
+## Publishing
+
+`.github/workflows/pages.yml` runs the tests, copies `web/` and runs `stamp_version.py` on the copy, so every
+file of the published site carries the commit id (for example `js/main.js?v=c35a2f3`). Browsers then load a
+matching set of files after each update. Local previews use the version `dev`.

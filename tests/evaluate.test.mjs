@@ -8,7 +8,7 @@ import { evaluateAll } from "../web/js/logic/evaluate.js";
 import { familyName } from "../web/js/steps/direction.js";
 
 const read = (path) => JSON.parse(readFileSync(new URL(path, import.meta.url)));
-globalThis.fetch = async (url) => ({ ok: true, json: async () => read(`../web/${url}`) });
+globalThis.fetch = async (url) => ({ ok: true, json: async () => read(`../web/${url.split("?")[0]}`) });
 await setLanguage("en");
 
 const loaded = {};

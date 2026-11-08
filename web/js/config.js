@@ -28,6 +28,10 @@ export const STEPS = [
   { id: "next",       label: "step.6" },
 ];
 
+// Replaced with the commit id when the site is published (pipeline/stamp_version.py), so browsers
+// fetch new files after each update instead of mixing old and new ones. "dev" while previewing locally.
+export const VERSION = "dev";
+
 export const DATA_FILES = ["colleges", "programs", "cip", "interest_links", "meta"];
 
 // Home state picked when a student first opens CollegeFit (IRC's students are in New York).

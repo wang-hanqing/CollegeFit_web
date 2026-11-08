@@ -1,5 +1,5 @@
 // Screen text in nine languages. English is always loaded and fills any gap in a translation.
-import { LANGUAGES, DEFAULT_LANGUAGE, LANGUAGE_ALIASES } from "./config.js";
+import { LANGUAGES, DEFAULT_LANGUAGE, LANGUAGE_ALIASES, VERSION } from "./config.js";
 
 let english = null;
 let active = {};
@@ -7,7 +7,7 @@ let current = LANGUAGES[0];
 const reportedMissing = new Set();
 
 async function fetchJson(url) {
-  const response = await fetch(url);
+  const response = await fetch(`${url}?v=${VERSION}`);
   if (!response.ok) throw new Error(`${url}: ${response.status}`);
   return response.json();
 }

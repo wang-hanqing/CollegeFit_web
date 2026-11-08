@@ -7,7 +7,7 @@ import { setLanguage } from "../web/js/i18n.js";
 import { recommend, groups, comparableCost, GROUPS } from "../web/js/logic/explore.js";
 
 const read = (path) => JSON.parse(readFileSync(new URL(path, import.meta.url)));
-globalThis.fetch = async (url) => ({ ok: true, json: async () => read(`../web/${url}`) });
+globalThis.fetch = async (url) => ({ ok: true, json: async () => read(`../web/${url.split("?")[0]}`) });
 await setLanguage("en");
 const loaded = {};
 for (const name of ["colleges", "programs", "cip", "interest_links", "meta"]) loaded[name] = read(`../web/data/${name}.json`);

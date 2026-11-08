@@ -1,5 +1,5 @@
 // Loads the files made by pipeline/export_web.py and builds quick lookups.
-import { DATA_FILES } from "./config.js";
+import { DATA_FILES, VERSION } from "./config.js";
 
 // {"fields": [...], "rows": [[...]]} -> [{field: value, ...}, ...]
 function toObjects({ fields, rows }) {
@@ -17,7 +17,7 @@ export async function loadData(onProgress = () => {}) {
   const loaded = {};
   await Promise.all(
     DATA_FILES.map(async (name) => {
-      const response = await fetch(`data/${name}.json`);
+      const response = await fetch(`data/${name}.json?v=${VERSION}`);
       if (!response.ok) throw new Error(`data/${name}.json: ${response.status}`);
       loaded[name] = await response.json();
       onProgress(++done, DATA_FILES.length);
