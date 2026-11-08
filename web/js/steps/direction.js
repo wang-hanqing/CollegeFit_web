@@ -119,9 +119,19 @@ function title(text, subtitle) {
     ${subtitle ? `<p class="lede">${escapeHtml(subtitle)}</p>` : ""}`;
 }
 
-function source(text) {
-  return `<p class="source">${escapeHtml(text)}</p>`;
+// "Data sources" at the foot of a page: one line per source, [what it is, where it comes from]
+function sources(rows) {
+  const lines = rows.map(([what, from]) =>
+    `<div><dt>${escapeHtml(what)}</dt><dd>${escapeHtml(from)}</dd></div>`).join("");
+  return `
+    <div class="sources">
+      <p class="sources-title">${escapeHtml(t("web.source.title"))}</p>
+      <dl>${lines}</dl>
+    </div>`;
 }
+
+const ONET = () => [t("web.source.careers"), t("web.source.onet")];
+const COUNTS = (place) => [t("web.source.counts"), t("web.source.counts.text", place)];
 
 function showError(text) {
   const error = document.getElementById("step-error");
@@ -185,7 +195,7 @@ function interestsPage({ answers }) {
     ${stepError()}
     ${cards}
     ${unsure}
-    ${source(t("unsure.interest.source"))}`;
+    ${sources([[t("web.source.activities"), t("web.source.onet")]])}`;
 }
 
 // ---------- page 2: fields ----------
@@ -217,7 +227,7 @@ function fieldsPage(ctx) {
       ${title(t("unsure.common.title"), t("unsure.common.subtitle"))}
       ${placeRow(ctx)}
       ${cards}
-      ${source(t("unsure.countNote", place))}`;
+      ${sources([COUNTS(place)])}`;
   }
 
   const names = new Intl.ListFormat(currentLanguage().html, { type: "conjunction" })
@@ -239,7 +249,7 @@ function fieldsPage(ctx) {
         options: [{
           value: LIBERAL_ARTS,
           title: t("unsure.fields.liberal", familyName(LIBERAL_ARTS)),
-          description: t("web.fields.liberal.note"),
+          description: t("web.fields.liberal.desc"),
           checked: answers.fields.includes(LIBERAL_ARTS),
           aside: bigNumber(formatNumber(liberalCount), t("web.colleges.in", place)),
         }],
@@ -256,7 +266,7 @@ function fieldsPage(ctx) {
     </fieldset>
     ${more}
     ${liberal}
-    ${source(t("unsure.fields.source", place))}`;
+    ${sources([ONET(), [t("web.source.links"), t("web.source.crosswalk")], COUNTS(place)])}`;
 }
 
 function fieldCard(field, answers, data, place) {
@@ -281,6 +291,7 @@ function fieldCard(field, answers, data, place) {
         <span class="tick" aria-hidden="true">${icon("check")}</span>
         <span class="option-text">
           <span class="option-title">${escapeHtml(familyName(field.family))}</span>
+          <span class="option-description">${escapeHtml(t("web.fields.careers.label"))}</span>
         </span>
         ${bigNumber(formatNumber(field.colleges), t("web.colleges.in", place))}
       </label>

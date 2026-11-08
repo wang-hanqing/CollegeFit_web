@@ -1041,9 +1041,6 @@
   "unsure.fieldCount": {
     "section": "Step 2: not sure"
   },
-  "unsure.countNote": {
-    "section": "Step 2: not sure"
-  },
   "unsure.noFields": {
     "section": "Step 2: not sure"
   },
@@ -1089,10 +1086,6 @@
     "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
   },
   "unsure.interest.notSure.text": {
-    "section": "Step 2: not sure",
-    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
-  },
-  "unsure.interest.source": {
     "section": "Step 2: not sure",
     "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0)."
   },
@@ -1217,10 +1210,6 @@
     "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
   },
   "unsure.fields.liberal.text": {
-    "section": "Step 2: not sure",
-    "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
-  },
-  "unsure.fields.source": {
     "section": "Step 2: not sure",
     "note": "Interest cards: titles use O*NET's own keywords for each career interest type; examples are O*NET illustrative activities (U.S. Department of Labor, O*NET 31.0, CC BY 4.0). Fields linked to the chosen interests"
   },
@@ -2410,8 +2399,38 @@
   "web.fields.programs.fewer": {
     "section": "Web app: Your direction"
   },
-  "web.fields.liberal.note": {
+  "web.fields.liberal.desc": {
     "section": "Web app: Your direction"
+  },
+  "web.fields.careers.label": {
+    "section": "Web app: Your direction",
+    "note": "Small gray label above the three careers on a field card"
+  },
+  "web.source.title": {
+    "section": "Web app: Your direction"
+  },
+  "web.source.activities": {
+    "section": "Web app: Your direction"
+  },
+  "web.source.careers": {
+    "section": "Web app: Your direction"
+  },
+  "web.source.onet": {
+    "section": "Web app: Your direction",
+    "note": "O*NET 31.0, CC BY 4.0. Also the source of the interest cards' examples of activities."
+  },
+  "web.source.links": {
+    "section": "Web app: Your direction"
+  },
+  "web.source.crosswalk": {
+    "section": "Web app: Your direction"
+  },
+  "web.source.counts": {
+    "section": "Web app: Your direction"
+  },
+  "web.source.counts.text": {
+    "section": "Web app: Your direction",
+    "note": "{0} is a state name, \"your states\" or \"the U.S.\""
   },
   "web.jobZone.3": {
     "section": "Web app: Your direction"
