@@ -4,7 +4,7 @@ import { setLanguage, detectLanguage, findLanguage, currentLanguage, t } from ".
 import { readAddress, address, goTo, replaceAddress, stepIndex, stepAt } from "./router.js";
 import { emptyAnswers, encodeAnswers, decodeAnswers, saveSession, loadSession, clearSession } from "./state.js";
 import { loadData } from "./data.js";
-import { header, stepLine, footer, loading, loadError, helpContent, escapeHtml } from "./ui.js";
+import { header, sidebar, footer, loading, loadError, helpContent, escapeHtml } from "./ui.js";
 import { views } from "./views.js";
 
 const app = {
@@ -23,24 +23,33 @@ function render({ focus = false } = {}) {
   const index = stepIndex(app.step);
   document.title = `${t(STEPS[index].label)} | ${t("app.title")}`;
   $("skip").textContent = t("web.skip");
-  $("journey").setAttribute("aria-label", t("web.steps"));
   $("top").innerHTML = header(app.answers.kept.length);
   $("help").innerHTML = helpContent();
 
   if (app.failed) {
-    $("journey").innerHTML = "";
+    $("side").innerHTML = "";
     $("moves").innerHTML = "";
     $("main").innerHTML = loadError();
     return;
   }
   if (!app.data) return; // still loading; the progress bar is in place
 
-  $("journey").innerHTML = stepLine(index);
+  $("side").innerHTML = sidebar(index, app.answers.grade, menuOpen());
   $("main").innerHTML = views[app.step].render(context());
   const pageAt = pagesOf(app.step).indexOf(app.page);
   $("moves").innerHTML = footer(index, pageAt === -1 ? 1 : pageAt,
     views[app.step].continueLabel?.(app.answers, app.page));
   if (focus) $("page-title")?.focus();
+}
+
+// Narrow screens: the sidebar folds into one row; this opens or closes the rest of it.
+function menuOpen() {
+  return $("side").classList.contains("is-open");
+}
+
+function setMenu(open) {
+  $("side").classList.toggle("is-open", open);
+  $("side").querySelector(".side-toggle")?.setAttribute("aria-expanded", String(open));
 }
 
 function context() {
@@ -87,6 +96,7 @@ function update(changes) {
 function setStatus(html) {
   const status = document.querySelector(".save-status");
   if (status) status.innerHTML = html;
+  setMenu(true); // on phones the message is inside the folded sidebar
 }
 
 // ---------- Address changes (links, back button, language) ----------
@@ -111,6 +121,7 @@ async function onAddressChange() {
   app.step = target.step;
   app.page = page;
   replaceAddress(app.step, currentLanguage().code, app.page); // keeps answers out of the address bar
+  if (moved) setMenu(false);
   render({ focus: moved });
   if (moved) window.scrollTo(0, 0);
   if (linkFailed) setStatus(escapeHtml(t("web.save.invalid")));
@@ -157,6 +168,7 @@ async function onClick(event) {
     }
     case "mine": goTo("compare", lang); break;
     case "help": $("help").showModal(); break;
+    case "menu": setMenu(!menuOpen()); break;
     case "reload": location.reload(); break;
     case "save": await copySavedLink(); break;
   }
@@ -165,6 +177,13 @@ async function onClick(event) {
 async function onChange(event) {
   if (event.target.closest("#main")) {
     views[app.step].onChange?.(event, context());
+    return;
+  }
+  if (event.target.dataset.action === "grade") {
+    const value = event.target.value;
+    update({ grade: value === "" ? null : value === "none" ? "none" : Number(value) });
+    render(); // Next steps shows a plan for the grade
+    document.querySelector('[data-action="grade"]')?.focus();
     return;
   }
   if (event.target.dataset.action !== "language") return;

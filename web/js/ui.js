@@ -32,20 +32,56 @@ export function header(keptCount) {
     </div>`;
 }
 
-// The journey as a line with six stops. Finished stops can be revisited.
-export function stepLine(currentIndex) {
+// Grades offered in the sidebar menu. "none" is "Prefer not to say"; no choice at all is also fine.
+const GRADES = [9, 10, 11, 12];
+
+// The left sidebar on every page: the student's grade, the six steps, and the saved link.
+// On narrow screens it folds into one row ("Step 1 of 6" and the step name) that opens the rest.
+export function sidebar(currentIndex, grade, open = false) {
+  const gradeOptions = [
+    `<option value=""${grade == null ? " selected" : ""}>${escapeHtml(t("web.grade.select"))}</option>`,
+    ...GRADES.map((g) =>
+      `<option value="${g}"${grade === g ? " selected" : ""}>${escapeHtml(t("web.grade.option", formatNumber(g)))}</option>`),
+    `<option value="none"${grade === "none" ? " selected" : ""}>${escapeHtml(t("web.grade.none"))}</option>`,
+  ].join("");
+
+  const tick = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>`;
   const stops = STEPS.map((step, i) => {
     const state = i < currentIndex ? "done" : i === currentIndex ? "current" : "ahead";
     const label = escapeHtml(t(step.label));
-    const number = formatNumber(i + 1);
-    const inner = `<span class="stop" aria-hidden="true">${number}</span><span class="stop-label">${label}</span>`;
+    const mark = state === "done" ? tick : formatNumber(i + 1);
+    const inner = `<span class="stop" aria-hidden="true">${mark}</span><span class="stop-label">${label}</span>`;
     const content = state === "done"
       ? `<a href="#" data-action="step" data-step="${step.id}">${inner}</a>`
       : `<span${state === "current" ? ' aria-current="step"' : ""}>${inner}</span>`;
     return `<li class="${state}">${content}</li>`;
   }).join("");
+
   const counter = t("web.step.of", formatNumber(currentIndex + 1), formatNumber(STEPS.length));
-  return `<p class="step-counter">${escapeHtml(counter)}</p><ol class="line">${stops}</ol>`;
+  return `
+    <button type="button" class="side-toggle" data-action="menu" aria-expanded="${open}" aria-controls="side-panel">
+      <span class="side-toggle-text">
+        <span class="side-counter">${escapeHtml(counter)}</span>
+        <span class="side-step">${escapeHtml(t(STEPS[currentIndex].label))}</span>
+      </span>
+      <svg class="icon side-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+    <div id="side-panel" class="side-panel">
+      <label class="grade">
+        <span class="grade-question">${escapeHtml(t("web.grade.question"))}</span>
+        <select data-action="grade">${gradeOptions}</select>
+      </label>
+      <nav class="journey" aria-label="${escapeHtml(t("web.steps"))}">
+        <ol class="line">${stops}</ol>
+      </nav>
+      <div class="save">
+        <button type="button" class="link" data-action="save">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
+          ${escapeHtml(t("web.save.button"))}
+        </button>
+        <p class="save-status" role="status" aria-live="polite"></p>
+      </div>
+    </div>`;
 }
 
 export function footer(currentIndex, pageIndex = 0, continueText = null) {
@@ -55,12 +91,7 @@ export function footer(currentIndex, pageIndex = 0, continueText = null) {
   const next = currentIndex < STEPS.length - 1
     ? `<button type="button" class="primary" data-action="continue">${escapeHtml(continueText || t("web.continue"))}<svg class="icon directional" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>`
     : "";
-  return `
-    <div class="save">
-      <button type="button" class="link" data-action="save">${escapeHtml(t("web.save.button"))}</button>
-      <p class="save-status" role="status" aria-live="polite"></p>
-    </div>
-    <div class="moves">${back}${next}</div>`;
+  return `<div class="moves">${back}${next}</div>`;
 }
 
 export function loading(done = 0, total = 1) {

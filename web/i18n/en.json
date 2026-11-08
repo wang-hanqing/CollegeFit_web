@@ -732,7 +732,7 @@
   "web.start.legend": "Starting point",
   "web.start.error": "Pick a starting point to continue.",
   "web.grade.question": "What grade are you in?",
-  "web.grade.hint": "Your next steps depend on your grade.",
+  "web.grade.select": "Select your grade",
   "web.grade.option": "Grade {0}",
   "web.grade.none": "Prefer not to say",
   "family.01": "Agriculture",
