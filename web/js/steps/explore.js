@@ -94,9 +94,8 @@ function orderRow(profile) {
   const text = profile.priorities.length
     ? `${t("explore.orderedBy")} ${profile.priorities.map((p, i) => `${formatNumber(i + 1)}. ${t(`order.short.${p}`)}`).join(`, ${t("then")} `)}.`
     : t("explore.orderedDefault");
-  const steps = [t("order.how.evidence"), ...order.map((p) => t(`order.how.${p}`))];
-  if (order.includes("STUDY")) steps.push(t("order.how.degrees"));
-  steps.push(t("order.how.name"));
+  const steps = [t("order.how.evidence"), ...order.map((p) => t(`order.how.${p}`)),
+    t("order.how.programs"), t("order.how.degrees"), t("order.how.name")];
   return `
     <div class="order-row">
       <p>${escapeHtml(text)} <button type="button" class="link" data-action="change-priorities">${escapeHtml(t("explore.changePriorities"))}</button></p>

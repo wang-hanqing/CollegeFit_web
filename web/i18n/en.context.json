@@ -1690,9 +1690,6 @@
   "pri.desc.ADMISSION": {
     "section": "Step 5"
   },
-  "pri.desc.STUDY": {
-    "section": "Step 5"
-  },
   "pri.desc.CAMPUS": {
     "section": "Step 5"
   },
@@ -1705,16 +1702,7 @@
   "pri.basis.ADMISSION": {
     "section": "Step 5"
   },
-  "pri.basis.STUDY": {
-    "section": "Step 5"
-  },
   "pri.basis.CAMPUS": {
-    "section": "Step 5"
-  },
-  "pri.how.title": {
-    "section": "Step 5"
-  },
-  "pri.how": {
     "section": "Step 5"
   },
   "pri.order": {
@@ -1757,9 +1745,6 @@
     "section": "Step 5"
   },
   "order.short.ADMISSION": {
-    "section": "Step 5"
-  },
-  "order.short.STUDY": {
     "section": "Step 5"
   },
   "order.short.CAMPUS": {
@@ -2179,11 +2164,11 @@
   "order.how.ADMISSION": {
     "section": "Step 5"
   },
-  "order.how.STUDY": {
-    "section": "Step 5"
-  },
   "order.how.CAMPUS": {
     "section": "Step 5"
+  },
+  "order.how.programs": {
+    "section": "Web app: Explore"
   },
   "order.how.degrees": {
     "section": "Step 5"
@@ -2462,11 +2447,24 @@
   "web.pri.subtitle": {
     "section": "Web app: Priorities"
   },
-  "web.pri.how": {
-    "section": "Web app: Priorities"
-  },
   "web.pri.basis": {
     "section": "Web app: Priorities"
+  },
+  "web.pri.basis.income": {
+    "section": "Web app: Priorities",
+    "note": "Shown under College costs only when the student gave a family income range"
+  },
+  "web.pri.basis.outOfState": {
+    "section": "Web app: Priorities",
+    "note": "Shown under College costs only when the student explores outside their home state"
+  },
+  "web.pri.campus.choose": {
+    "section": "Web app: Priorities",
+    "note": "Campus environment when no setting or size was chosen; links back to Step 2"
+  },
+  "web.pri.campus.unavailable": {
+    "section": "Web app: Priorities",
+    "note": "Campus environment on the I'm not sure yet path, which has no campus questions"
   },
   "web.pri.rank": {
     "section": "Web app: Priorities"

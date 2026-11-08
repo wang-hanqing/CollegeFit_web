@@ -437,23 +437,54 @@ input:checked ~ .tick { background: var(--route); border-color: var(--route); co
 /* ---------- Priorities (Step 3) ---------- */
 
 .context { font-size: var(--step--1); color: var(--muted); margin-top: -0.5rem; }
-.priority-list { display: grid; gap: 0.75rem; margin-block: 1.25rem 0.5rem; }
-.priority .field-head { align-items: center; }
-.priority .option-icon { background: var(--wash); }
+/* One compact row per priority, so the title and all four fit on a laptop screen without scrolling */
+.priority-list { display: grid; gap: 0.5rem; margin-block: 0.75rem 0.25rem; }
+.priority {
+  border: 2px solid var(--rule); border-radius: var(--radius); background: var(--paper);
+  padding: 0.6rem 0.9rem;
+}
+.priority:hover:not(.is-off) { border-color: var(--muted); }
+.priority.is-chosen { border-color: var(--route); background: var(--wash); box-shadow: inset 0 0 0 1px var(--route); }
+.priority:has(input:focus-visible) { outline: 3px solid var(--route); outline-offset: 2px; }
+.priority-head { display: flex; align-items: center; gap: 0.85rem; cursor: pointer; position: relative; }
+.priority-head input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+.priority .option-icon { width: 2.5rem; height: 2.5rem; background: var(--wash); }
+.priority .option-icon .icon { width: 1.3rem; height: 1.3rem; }
 .priority.is-chosen .option-icon { background: var(--route); color: var(--paper); }
+.priority .option-text { flex: 1; min-width: 0; gap: 0.1rem; }
+.priority .option-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 0.75rem; }
+
+.basis-toggle {
+  display: inline-flex; align-items: center; gap: 0.3rem; padding: 0; border: 0; background: none;
+  color: var(--route); font-size: 0.8rem; font-weight: 600; cursor: pointer;
+}
+.basis-toggle::before {
+  content: ""; width: 0.4rem; height: 0.4rem; flex: none;
+  border-inline-end: 2px solid currentColor; border-block-end: 2px solid currentColor; transform: rotate(-45deg);
+}
+[dir="rtl"] .basis-toggle::before { transform: rotate(135deg); }
+.basis-toggle[aria-expanded="true"]::before { transform: rotate(45deg); }
+.basis-toggle:hover { text-decoration: underline; }
+.basis { padding-inline-start: 3.35rem; margin-top: 0.45rem; font-size: var(--step--1); }
+.basis p { max-width: none; margin: 0 0 0.35rem; color: var(--ink); }
+.basis p:last-child { margin-bottom: 0.1rem; }
+
+.priority.is-off { background: var(--wash); border-style: dashed; }
+.priority.is-off .priority-head { cursor: default; }
+.priority.is-off .option-title, .priority.is-off .option-description, .priority.is-off .option-icon { color: var(--muted); }
+.priority-off { padding-inline-start: 3.35rem; margin: 0.3rem 0 0; font-size: var(--step--1); color: var(--muted); }
+
 .rank {
   display: grid; place-items: center; flex: none; margin-inline-start: auto;
-  width: 2.5rem; height: 2.5rem; border-radius: 50%;
+  width: 2.25rem; height: 2.25rem; border-radius: 50%;
   border: 2px solid var(--rule); font-weight: 700; font-size: var(--step--1);
 }
 .rank.on { background: var(--route); border-color: var(--route); color: var(--paper); }
-.basis { padding-inline-start: 4rem; }
-.basis p { margin: 0.25rem 0 0; color: var(--ink); }
-.priority-tools { min-height: 1.5rem; }
+.priority-tools { min-height: 1.5rem; margin-top: 0.25rem; }
 .how { margin-top: 1.5rem; padding: 0.9rem 1rem; background: var(--wash); border-radius: var(--radius); font-size: var(--step--1); }
 .how summary { cursor: pointer; font-weight: 600; }
 .how p { margin: 0.5rem 0 0; }
-@media (max-width: 40rem) { .basis { padding-inline-start: 0; } }
+@media (max-width: 40rem) { .basis, .priority-off { padding-inline-start: 0; } }
 
 
 /* ---------- Explore (Step 4) ---------- */

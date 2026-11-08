@@ -2,8 +2,11 @@
 // No overall score: colleges are grouped by type, and each group is ordered by the student's
 // priorities in turn. Close values count as a tie so the next priority decides, and missing or
 // not-comparable values go last instead of getting a false advantage.
-// tests/explore.test.mjs checks the results against the Java version.
+// tests/explore.test.mjs checks which colleges appear against the Java version, and the order against the
+// web rules below. Web only: there is no "My area of study" priority; after the student's priorities, colleges
+// offering more of their programs come first, then the degree level they plan, then larger programs (size).
 import { socialResult } from "./evaluate.js";
+import { PRIORITIES } from "../config.js";
 
 export const GROUPS = ["COMMUNITY_COLLEGE", "PUBLIC_FOUR_YEAR", "PRIVATE"];
 const COST_STEP = 1000, RATE_STEP = 5, ADMIT_STEP = 10;
@@ -18,7 +21,7 @@ export function profileFrom(answers) {
     pathway,
     home: answers.home || "",
     states: statesOf(answers),              // empty = anywhere
-    priorities: [...answers.priorities],
+    priorities: answers.priorities.filter((p) => PRIORITIES.includes(p)),
     income: INCOME_KEYS[answers.income] ? answers.income : null, // null = not given
     satReading: answers.satStatus === "PROVIDED" ? answers.satReading : null,
     satMath: answers.satStatus === "PROVIDED" ? answers.satMath : null,
@@ -137,7 +140,7 @@ function studyRelevance(profile, r) {
 }
 
 // Smaller key = earlier; null = last. Close values share a key so the next priority decides.
-function sortKey(priority, profile, r) {
+export function sortKey(priority, profile, r) {
   const c = r.college;
   switch (priority) {
     case "COSTS": {
@@ -159,8 +162,11 @@ function sortKey(priority, profile, r) {
   }
 }
 
+// The priorities that order colleges: the student's, or campus matches when they skipped.
+// Program matches, degree level and program size always follow (see recommend).
 export function orderUsed(profile) {
-  return profile.priorities.length ? profile.priorities : ["CAMPUS", "STUDY"];
+  const chosen = profile.priorities.filter((p) => PRIORITIES.includes(p));
+  return chosen.length ? chosen : ["CAMPUS"];
 }
 
 function compareKeys(a, b) {
@@ -194,8 +200,7 @@ export function recommend(data, profile) {
     if (!r.hasProgramEvidence) continue;
     out.push(r);
   }
-  const order = orderUsed(profile);
-  const byDegrees = order.includes("STUDY");
+  const order = [...orderUsed(profile), "STUDY"];  // STUDY: more of your programs, then your degree level
   const keys = new Map(out.map((r) => [r, order.map((p) => sortKey(p, profile, r))]));
   out.sort((a, b) => {
     const ka = keys.get(a), kb = keys.get(b);
@@ -203,7 +208,7 @@ export function recommend(data, profile) {
       const d = compareKeys(ka[i], kb[i]);
       if (d) return d;
     }
-    if (byDegrees && a.recentDegrees !== b.recentDegrees) return b.recentDegrees - a.recentDegrees;
+    if (a.recentDegrees !== b.recentDegrees) return b.recentDegrees - a.recentDegrees;  // program size, not quality
     return caseInsensitive(a.college.INSTNM, b.college.INSTNM);
   });
   return out;

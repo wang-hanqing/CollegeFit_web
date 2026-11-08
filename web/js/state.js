@@ -7,7 +7,7 @@
 //   a saved link    only when the student asks for one; the answers sit after the # in the link,
 //                   and browsers never send that part to the website
 
-import { DEFAULT_HOME_STATE } from "./config.js";
+import { DEFAULT_HOME_STATE, PRIORITIES } from "./config.js";
 
 const VERSION = 1;
 const SESSION_KEY = "collegefit.answers";
@@ -49,6 +49,7 @@ function cleanUp(data) {
     if (key in data && typeof data[key] === typeof answers[key]) answers[key] = data[key];
     else if (key in data && answers[key] === null) answers[key] = data[key];
   }
+  if (Array.isArray(answers.priorities)) answers.priorities = answers.priorities.filter((p) => PRIORITIES.includes(p));
   return answers;
 }
 
