@@ -618,9 +618,6 @@
   "step.budget": {
     "section": "Next steps from \"not sure\" answers"
   },
-  "step.income": {
-    "section": "Next steps from \"not sure\" answers"
-  },
   "step.support": {
     "section": "Next steps from \"not sure\" answers"
   },
@@ -763,12 +760,6 @@
     "section": "My list"
   },
   "export.state": {
-    "section": "My list"
-  },
-  "export.steps": {
-    "section": "My list"
-  },
-  "export.note": {
     "section": "My list"
   },
   "lens.program": {
@@ -1483,27 +1474,6 @@
   "mine.completion": {
     "section": "Step 5"
   },
-  "mine.todo": {
-    "section": "Step 5"
-  },
-  "mine.questions": {
-    "section": "Step 5"
-  },
-  "mine.q1": {
-    "section": "Step 5"
-  },
-  "mine.q2": {
-    "section": "Step 5"
-  },
-  "mine.q3": {
-    "section": "Step 5"
-  },
-  "mine.q4": {
-    "section": "Step 5"
-  },
-  "mine.q.programFallback": {
-    "section": "Step 5"
-  },
   "mine.back": {
     "section": "Step 5"
   },
@@ -1858,31 +1828,7 @@
   "cmp.row.CAMPUS.note": {
     "section": "Step 5"
   },
-  "cmp.row.REASONS": {
-    "section": "Step 5"
-  },
-  "cmp.row.REASONS.note": {
-    "section": "Step 5"
-  },
   "cmp.costBefore": {
-    "section": "Step 5"
-  },
-  "keepReason.COSTS": {
-    "section": "Step 5"
-  },
-  "keepReason.STUDY": {
-    "section": "Step 5"
-  },
-  "keepReason.GRADUATION": {
-    "section": "Step 5"
-  },
-  "keepReason.ADMISSION": {
-    "section": "Step 5"
-  },
-  "keepReason.CAMPUS": {
-    "section": "Step 5"
-  },
-  "keepReason.OTHER": {
     "section": "Step 5"
   },
   "cmp.mark.differentPath": {
@@ -1910,9 +1856,6 @@
     "section": "Step 5"
   },
   "cmp.mark.moreGraduates": {
-    "section": "Step 5"
-  },
-  "cmp.tradeoffs": {
     "section": "Step 5"
   },
   "cmp.degree": {
@@ -1972,21 +1915,6 @@
   "cmp.closing": {
     "section": "Step 5"
   },
-  "cmp.glance": {
-    "section": "Step 5"
-  },
-  "cmp.glance.types": {
-    "section": "Step 5"
-  },
-  "cmp.glance.degrees": {
-    "section": "Step 5"
-  },
-  "cmp.glance.admission": {
-    "section": "Step 5"
-  },
-  "cmp.glance.note": {
-    "section": "Step 5"
-  },
   "cmp.footer": {
     "section": "Step 5"
   },
@@ -2002,16 +1930,7 @@
   "next.subtitle": {
     "section": "Step 5"
   },
-  "next.myReasons": {
-    "section": "Step 5"
-  },
-  "next.noReasons": {
-    "section": "Step 5"
-  },
   "next.back": {
-    "section": "Step 5"
-  },
-  "export.reasons": {
     "section": "Step 5"
   },
   "prog.earnings": {
@@ -2479,6 +2398,180 @@
   },
   "web.cmp.mark.higherAccept": {
     "section": "Web app: Compare"
+  },
+  "web.tier.label": {
+    "section": "Web app: Compare",
+    "note": "The student's own call; the app never assigns it"
+  },
+  "web.tier.note": {
+    "section": "Web app: Compare"
+  },
+  "web.tier.short": {
+    "section": "Web app: Compare"
+  },
+  "web.tier.SAFETY": {
+    "section": "Web app: Compare"
+  },
+  "web.tier.TARGET": {
+    "section": "Web app: Compare"
+  },
+  "web.tier.REACH": {
+    "section": "Web app: Compare"
+  },
+  "web.tier.NOT_SURE": {
+    "section": "Web app: Compare"
+  },
+  "web.tier.decide": {
+    "section": "Web app: Compare"
+  },
+  "web.next.notOffered": {
+    "section": "Web app: Next steps"
+  },
+  "web.next.oos": {
+    "section": "Web app: Next steps"
+  },
+  "web.next.programs": {
+    "section": "Web app: Next steps"
+  },
+  "web.next.programs.year": {
+    "section": "Web app: Next steps"
+  },
+  "web.next.npc": {
+    "section": "Web app: Next steps"
+  },
+  "web.next.every": {
+    "section": "Web app: Next steps"
+  },
+  "web.next.list.title": {
+    "section": "Web app: Next steps"
+  },
+  "web.next.balance.noneMost": {
+    "section": "Web app: Next steps"
+  },
+  "web.next.balance.noneMostNY": {
+    "section": "Web app: Next steps"
+  },
+  "web.next.balance.allSelective": {
+    "section": "Web app: Next steps"
+  },
+  "web.next.tiers.none": {
+    "section": "Web app: Next steps"
+  },
+  "web.next.tiers.noSafety": {
+    "section": "Web app: Next steps"
+  },
+  "web.next.cc": {
+    "section": "Web app: Next steps"
+  },
+  "web.next.private": {
+    "section": "Web app: Next steps"
+  },
+  "web.next.year.title": {
+    "section": "Web app: Next steps"
+  },
+  "web.next.year.pick": {
+    "section": "Web app: Next steps"
+  },
+  "web.next.year.pickButton": {
+    "section": "Web app: Next steps"
+  },
+  "web.nyc.9.1": {
+    "section": "Web app: Next steps (New York City)"
+  },
+  "web.nyc.9.2": {
+    "section": "Web app: Next steps (New York City)"
+  },
+  "web.nyc.9.3": {
+    "section": "Web app: Next steps (New York City)"
+  },
+  "web.nyc.10.1": {
+    "section": "Web app: Next steps (New York City)"
+  },
+  "web.nyc.10.2": {
+    "section": "Web app: Next steps (New York City)"
+  },
+  "web.nyc.10.3": {
+    "section": "Web app: Next steps (New York City)",
+    "note": "Source: CUNY College Now pages: some courses open to 10th graders"
+  },
+  "web.nyc.11.1": {
+    "section": "Web app: Next steps (New York City)",
+    "note": "Source: CUNY College Now pages (Lehman, Bronx CC, City College)"
+  },
+  "web.nyc.11.2": {
+    "section": "Web app: Next steps (New York City)"
+  },
+  "web.nyc.11.3": {
+    "section": "Web app: Next steps (New York City)"
+  },
+  "web.nyc.11.4": {
+    "section": "Web app: Next steps (New York City)"
+  },
+  "web.nyc.11.5": {
+    "section": "Web app: Next steps (New York City)"
+  },
+  "web.nyc.12.1": {
+    "section": "Web app: Next steps (New York City)"
+  },
+  "web.nyc.12.2": {
+    "section": "Web app: Next steps (New York City)",
+    "note": "Source: CUNY college SEEK pages (e.g. Hunter, John Jay): apply in the SEEK/College Discovery section of the CUNY freshman application"
+  },
+  "web.nyc.12.3": {
+    "section": "Web app: Next steps (New York City)",
+    "note": "Source: SUNY ApplySUNY FAQs"
+  },
+  "web.nyc.12.4": {
+    "section": "Web app: Next steps (New York City)"
+  },
+  "web.nyc.12.5": {
+    "section": "Web app: Next steps (New York City)",
+    "note": "Source: governor.ny.gov, 2026 College Application Initiative release (FAFSA, TAP, NYS DREAM Act)"
+  },
+  "web.nyc.12.6": {
+    "section": "Web app: Next steps (New York City)"
+  },
+  "web.csv.type": {
+    "section": "Web app: Next steps"
+  },
+  "web.csv.programs": {
+    "section": "Web app: Next steps"
+  },
+  "web.csv.yes": {
+    "section": "Web app: Next steps"
+  },
+  "web.csv.noRecent": {
+    "section": "Web app: Next steps"
+  },
+  "web.csv.net": {
+    "section": "Web app: Next steps"
+  },
+  "web.csv.sticker": {
+    "section": "Web app: Next steps"
+  },
+  "web.csv.notCompared": {
+    "section": "Web app: Next steps"
+  },
+  "web.csv.transfer": {
+    "section": "Web app: Next steps"
+  },
+  "web.csv.size": {
+    "section": "Web app: Next steps"
+  },
+  "web.csv.checks": {
+    "section": "Web app: Next steps"
+  },
+  "web.type.COMMUNITY_COLLEGE": {
+    "section": "Web app: Next steps"
+  },
+  "web.type.PUBLIC_FOUR_YEAR": {
+    "section": "Web app: Next steps"
+  },
+  "web.type.PRIVATE": {
+    "section": "Web app: Next steps"
+  },
+  "web.csv.npc": {
+    "section": "Web app: Next steps"
   },
   "web.pri.basis": {
     "section": "Web app: Priorities"

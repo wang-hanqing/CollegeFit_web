@@ -733,7 +733,17 @@ input:checked ~ .tick { background: var(--route); border-color: var(--route); co
 .glance .muted { margin: 0.6rem 0 0; font-size: 0.8rem; }
 
 .next-cards { margin-block: 1.25rem; }
-.reasons-line { font-size: var(--step--1); margin: 0.25rem 0 0.5rem; }
+.tier-line { display: flex; align-items: center; gap: 0.5rem; font-size: var(--step--1); margin: 0.35rem 0 0.5rem; }
+.tier-tag { padding: 0.1rem 0.65rem; border-radius: 999px; font-weight: 600; font-size: 0.8rem; }
+.tier-safety { background: #E3F4EA; color: #1F6B45; }
+.tier-target { background: var(--wash); color: var(--route); }
+.tier-reach { background: #FFF1DC; color: #8A4B00; }
+.college-checks { margin: 0 0 0.5rem; padding-inline-start: 1.1rem; font-size: var(--step--1); display: grid; gap: 0.3rem; }
+.card-links { display: flex; flex-wrap: wrap; gap: 0.35rem 1rem; margin-top: auto; padding-top: 0.5rem; font-size: var(--step--1); font-weight: 600; }
+.next-card { display: flex; flex-direction: column; }
+.list-check { margin-bottom: 0.75rem; }
+.tiers .chip span { min-height: 2.25rem; padding: 0.2rem 0.75rem; font-size: 0.8rem; }
+.tier-evidence { display: block; font-size: 0.75rem; margin-top: 0.35rem; }
 .grade-plan { margin-bottom: 0.75rem; background: #FFF6D6; border-color: var(--signal); }
 .checklist { list-style: none; padding: 0 !important; }
 .checklist label { display: flex; gap: 0.6rem; align-items: flex-start; cursor: pointer; }

@@ -38,7 +38,8 @@ export function emptyAnswers() {
     kept: [],          // UNITIDs of colleges the student kept, in the order kept
     compare: [],       // up to 3 kept UNITIDs shown side by side
     notForMe: {},      // UNITID -> reason key ("" = no reason given)
-    reasons: {},       // UNITID -> reasons for keeping, e.g. ["COSTS", "STUDY"]
+    reasons: {},       // UNITID -> reasons for keeping (Java version; no longer asked in the web version)
+    tiers: {},         // UNITID -> the student's own call: "SAFETY", "TARGET", "REACH" or "NOT_SURE"
   };
 }
 

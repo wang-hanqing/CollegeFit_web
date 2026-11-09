@@ -1,10 +1,10 @@
 // Step 5: Compare. Ported from ComparePanel.java.
 // Up to three kept colleges side by side, rows in the order of her priorities, markers only where
-// a difference is large and measured the same way, and her own reasons. (Web: no trade-off summary;
-// the table shows the differences.)
+// a difference is large and measured the same way, and the student's own safety / target / reach call.
+// (Web: no trade-off summary or list summary; the table shows the differences.)
 //
 // answers.compare  up to 3 kept UNITIDs
-// answers.reasons  UNITID -> reasons for keeping, e.g. ["COSTS", "STUDY"]
+// answers.tiers    UNITID -> "SAFETY", "TARGET", "REACH" or "NOT_SURE": the student's call, never the app's
 import { t, formatNumber } from "../i18n.js";
 import { escapeHtml } from "../ui.js";
 import { familyName } from "./direction.js";
@@ -15,7 +15,7 @@ import { evaluateAll, money, evidence } from "../logic/evaluate.js";
 import { icon } from "../components.js";
 import { compare, rowOrder, degreeText } from "../logic/compare.js";
 
-export const KEEP_REASONS = ["COSTS", "STUDY", "GRADUATION", "ADMISSION", "CAMPUS", "OTHER"];
+export const TIERS = ["SAFETY", "TARGET", "REACH", "NOT_SURE"];
 const MAX = 3;
 
 // Kept colleges chosen for comparison. If fewer than 2 are chosen, kept colleges fill in.
@@ -55,13 +55,6 @@ export function render(ctx) {
     <p id="step-error" class="step-error" role="alert"></p>
     ${result.differentDegrees ? `<p class="notice">${escapeHtml(t("cmp.degreeBanner"))}</p>` : ""}
     ${table(profile, evaluations, result, answers, data)}
-    <div class="why-verify">
-      <section class="glance">
-        <h2>${escapeHtml(t("cmp.glance"))}</h2>
-        ${glance(profile, evaluations)}
-        <p class="muted">${escapeHtml(t("cmp.glance.note"))}</p>
-      </section>
-    </div>
     <p class="source">${escapeHtml(t("web.next.privacy"))}</p>`;
 }
 
@@ -96,12 +89,15 @@ function table(profile, evaluations, result, answers, data) {
       </tr>`;
   }).join("");
 
-  const reasons = evaluations.map((e) => {
+  // The student's own call. Next to it, her SAT against the college's middle 50% when she gave scores.
+  const tiers = evaluations.map((e) => {
     const id = e.college.UNITID;
-    const mine = answers.reasons[id] || [];
-    const chips = KEEP_REASONS.map((k) => `
-      <label class="chip"><input type="checkbox" name="reason-${id}" value="${k}"${mine.includes(k) ? " checked" : ""}><span>${escapeHtml(t(`keepReason.${k}`))}</span></label>`).join("");
-    return `<td data-college="${escapeHtml(e.college.INSTNM)}"><div class="chip-row reasons">${chips}</div></td>`;
+    const mine = answers.tiers[id] || "";
+    const chips = TIERS.map((k) => `
+      <label class="chip"><input type="radio" name="tier-${id}" value="${k}"${mine === k ? " checked" : ""}><span>${escapeHtml(t(`web.tier.${k}`))}</span></label>`).join("");
+    const sat = e.academic.facts.filter((f) => f.label === t("ac.sat.reading") || f.label === t("ac.sat.math"))
+      .map((f) => `<span class="muted tier-evidence">${escapeHtml(`${f.label}: ${f.value}`)}</span>`).join("");
+    return `<td data-college="${escapeHtml(e.college.INSTNM)}"><div class="chip-row tiers">${chips}</div>${sat}</td>`;
   }).join("");
 
   return `
@@ -110,8 +106,8 @@ function table(profile, evaluations, result, answers, data) {
         <thead><tr><td></td>${head}</tr></thead>
         <tbody>${rows}
           <tr class="reasons-row">
-            <th scope="row">${escapeHtml(t("cmp.row.REASONS"))} <span class="muted">${escapeHtml(t("cmp.row.REASONS.note"))}</span></th>
-            ${reasons}
+            <th scope="row">${escapeHtml(t("web.tier.label"))} <span class="muted">${escapeHtml(t("web.tier.note"))}</span></th>
+            ${tiers}
           </tr>
         </tbody>
       </table>
@@ -156,25 +152,6 @@ function programsHere(c, profile, data) {
   }).join("")}</span>`;
 }
 
-// Plain description of the list: types, degree levels, admission policies (not her chances)
-function glance(profile, evaluations) {
-  const types = new Map(), degrees = new Map();
-  let open = 0, rated = 0;
-  for (const e of evaluations) {
-    const type = t(`group.${e.college.type}`).toLowerCase();
-    types.set(type, (types.get(type) || 0) + 1);
-    const d = degreeText(profile, e);
-    degrees.set(d, (degrees.get(d) || 0) + 1);
-    if (e.college.openAdmission === true) open++; else if (e.college.ADM_RATE != null) rated++;
-  }
-  const join = (m) => [...m].map(([k, n]) => `${formatNumber(n)} ${k}`).join(", ");
-  return `<ul>
-    <li>${escapeHtml(t("cmp.glance.types", join(types)))}</li>
-    <li>${escapeHtml(t("cmp.glance.degrees", join(degrees)))}</li>
-    <li>${escapeHtml(t("cmp.glance.admission", formatNumber(open), formatNumber(rated)))}</li>
-  </ul>`;
-}
-
 export function onChange(event, { answers, update, rerender }) {
   const { name, value, checked } = event.target;
   if (name === "compare") {
@@ -190,10 +167,8 @@ export function onChange(event, { answers, update, rerender }) {
     }
     update({ compare: list });
     rerender();
-  } else if (name?.startsWith("reason-")) {
-    const id = name.slice(7);
-    const mine = (answers.reasons[id] || []).filter((k) => k !== value);
-    update({ reasons: { ...answers.reasons, [id]: checked ? [...mine, value] : mine } });
+  } else if (name?.startsWith("tier-")) {
+    update({ tiers: { ...answers.tiers, [name.slice(5)]: value } });
   }
 }
 
