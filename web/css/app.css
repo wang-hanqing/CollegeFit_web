@@ -327,6 +327,7 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 .privacy .icon { margin-top: 0.15em; color: var(--route); }
 /* Next steps: the note sits just under Download and Print, on one line where there is room */
 .link-row + .link-status:empty + .privacy { margin-top: 0.6rem; max-width: none; }
+.source.list-note { margin-top: 0.75rem; max-width: none; }   /* Compare: one line under the table */
 
 
 /* ---------- Checkbox cards, big numbers (Step 2) ---------- */

@@ -55,7 +55,7 @@ export function render(ctx) {
     <p id="step-error" class="step-error" role="alert"></p>
     ${result.differentDegrees ? `<p class="notice">${escapeHtml(t("cmp.degreeBanner"))}</p>` : ""}
     ${table(profile, evaluations, result, answers, data)}
-    <p class="source">${escapeHtml(t("web.next.privacy"))}</p>`;
+    <p class="source list-note">${escapeHtml(t("web.next.privacy"))}</p>`;
 }
 
 export function continueLabel() {
