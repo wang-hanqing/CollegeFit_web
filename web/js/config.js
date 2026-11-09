@@ -1,8 +1,10 @@
-// Languages offered, in the order shown in the menu.
+// Languages, in the order shown in the menu.
 // code: translation file name (web/i18n/<code>.json); html: value for <html lang>; dir: text direction.
 // Names are written in each language so students can find their own.
+// ready: the translation is done. Only ready languages are offered; the menu appears once there are two.
+// Set ready: true when web/i18n/<code>.json is filled in and reviewed.
 export const LANGUAGES = [
-  { code: "en",  html: "en",      dir: "ltr", name: "English" },
+  { code: "en",  html: "en",      dir: "ltr", name: "English", ready: true },
   { code: "es",  html: "es",      dir: "ltr", name: "Español" },
   { code: "ar",  html: "ar",      dir: "rtl", name: "العربية" },
   { code: "prs", html: "fa-AF",   dir: "rtl", name: "دری" },
@@ -12,6 +14,8 @@ export const LANGUAGES = [
   { code: "zh",  html: "zh-Hans", dir: "ltr", name: "中文" },
   { code: "tr",  html: "tr",      dir: "ltr", name: "Türkçe" },
 ];
+
+export const READY_LANGUAGES = LANGUAGES.filter((l) => l.ready);
 
 export const DEFAULT_LANGUAGE = "en";
 

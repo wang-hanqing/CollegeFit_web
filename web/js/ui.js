@@ -1,5 +1,5 @@
 // Shared pieces of the page around each step.
-import { LANGUAGES, STEPS } from "./config.js";
+import { READY_LANGUAGES, STEPS } from "./config.js";
 import { t, currentLanguage, formatNumber } from "./i18n.js";
 
 export function escapeHtml(value) {
@@ -17,17 +17,17 @@ function brandName() {
 }
 
 export function header(keptCount) {
-  const options = LANGUAGES.map((l) =>
+  const options = READY_LANGUAGES.map((l) =>
     `<option value="${l.code}" lang="${l.html}"${l.code === currentLanguage().code ? " selected" : ""}>${escapeHtml(l.name)}</option>`
   ).join("");
   return `
     <a class="brand" href="#" data-action="home" title="${escapeHtml(t("nav.home.tip"))}">${brandName()}</a>
     <div class="header-tools">
-      <label class="language">
+      ${READY_LANGUAGES.length > 1 ? `<label class="language">
         <span class="visually-hidden">${escapeHtml(t("web.lang.label"))}</span>
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>
         <select data-action="language">${options}</select>
-      </label>
+      </label>` : ""}
       <button type="button" class="quiet mine-button" data-action="mine" aria-label="${escapeHtml(t("nav.mine", formatNumber(keptCount)))}">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>
         <span class="mine-text" aria-hidden="true">${escapeHtml(t("nav.mine", formatNumber(keptCount)))}</span>

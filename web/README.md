@@ -34,6 +34,7 @@ js/logic/*.js     counting, ordering, lens results and comparisons, kept apart f
 data/             made by pipeline/export_web.py; do not edit by hand
 i18n/en.json      English text, the source for every translation
 i18n/<code>.json  translations; missing keys fall back to English
+                  (only languages marked ready in js/config.js are offered; the menu appears once two are)
 ```
 
 ## Rules to keep

@@ -1,5 +1,5 @@
 // Screen text in nine languages. English is always loaded and fills any gap in a translation.
-import { LANGUAGES, DEFAULT_LANGUAGE, LANGUAGE_ALIASES, VERSION } from "./config.js";
+import { LANGUAGES, READY_LANGUAGES, DEFAULT_LANGUAGE, LANGUAGE_ALIASES, VERSION } from "./config.js";
 
 let english = null;
 let active = {};
@@ -12,8 +12,9 @@ async function fetchJson(url) {
   return response.json();
 }
 
+// Only languages whose translation is ready; ?lang=ar opens in English until Arabic is ready
 export function findLanguage(code) {
-  return LANGUAGES.find((l) => l.code === code) || null;
+  return READY_LANGUAGES.find((l) => l.code === code) || null;
 }
 
 // First language in the browser's list that CollegeFit offers; English otherwise.
