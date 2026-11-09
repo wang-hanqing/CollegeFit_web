@@ -1,4 +1,4 @@
-// Compare and decide. Ported from Comparison.java.
+// Compare (web step 5; "Compare and decide" in Java). Ported from Comparison.java.
 // Marks a difference only when it is large and measured the same way, never calls one college "better",
 // and writes a short trade-off summary in the order of the student's priorities.
 // tests/compare.test.mjs checks the English text against the Java version.

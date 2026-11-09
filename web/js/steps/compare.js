@@ -1,16 +1,18 @@
-// Step 5: Compare and decide. Ported from ComparePanel.java.
+// Step 5: Compare. Ported from ComparePanel.java.
 // Up to three kept colleges side by side, rows in the order of her priorities, markers only where
-// a difference is large and measured the same way, her own reasons, and a short trade-off summary.
+// a difference is large and measured the same way, and her own reasons. (Web: no trade-off summary;
+// the table shows the differences.)
 //
 // answers.compare  up to 3 kept UNITIDs
 // answers.reasons  UNITID -> reasons for keeping, e.g. ["COSTS", "STUDY"]
 import { t, formatNumber } from "../i18n.js";
 import { escapeHtml } from "../ui.js";
 import { familyName } from "./direction.js";
-import { programLine, campusLine } from "./explore.js";
+import { campusLine } from "./explore.js";
 import { pageFor } from "./details.js";
-import { profileFrom, comparableCost } from "../logic/explore.js";
-import { evaluateAll, money } from "../logic/evaluate.js";
+import { profileFrom, comparableCost, levels } from "../logic/explore.js";
+import { evaluateAll, money, evidence } from "../logic/evaluate.js";
+import { icon } from "../components.js";
 import { compare, rowOrder, degreeText } from "../logic/compare.js";
 
 export const KEEP_REASONS = ["COSTS", "STUDY", "GRADUATION", "ADMISSION", "CAMPUS", "OTHER"];
@@ -54,10 +56,6 @@ export function render(ctx) {
     ${result.differentDegrees ? `<p class="notice">${escapeHtml(t("cmp.degreeBanner"))}</p>` : ""}
     ${table(profile, evaluations, result, answers, data)}
     <div class="why-verify">
-      <section class="tradeoffs">
-        <h2>${escapeHtml(t("cmp.tradeoffs"))}</h2>
-        <ul>${result.summary.map((x, i) => `<li${i === result.summary.length - 1 ? ' class="muted"' : ""}>${escapeHtml(x)}</li>`).join("")}</ul>
-      </section>
       <section class="glance">
         <h2>${escapeHtml(t("cmp.glance"))}</h2>
         ${glance(profile, evaluations)}
@@ -82,7 +80,9 @@ function table(profile, evaluations, result, answers, data) {
   const rows = rowOrder(profile).map((row) => {
     const rank = profile.priorities.indexOf(row) + 1;
     const cells = evaluations.map((e) => {
-      const marker = result.markers.get(e)[row];
+      // Same marker as Java, worded "acceptance rate" to match the row name in the web version
+      const raw = result.markers.get(e)[row];
+      const marker = raw === t("cmp.mark.higherAdmit") ? t("web.cmp.mark.higherAccept") : raw;
       const warning = marker && (marker === t("cmp.mark.notComparable") || marker === t("cmp.mark.differentPath")
         || marker.startsWith(t("cmp.mark.measurePrefix")));
       return `<td data-college="${escapeHtml(e.college.INSTNM)}">${value(row, e, profile, data)}${
@@ -136,12 +136,24 @@ function value(row, e, profile, data) {
         : `${strong(`${formatNumber(Math.round(c.completionRate * 100))}%`)} ${escapeHtml(t("card.completion.measure", formatNumber(c.completionYears)))}`;
     case "ADMISSION":
       return strong(c.openAdmission === true ? t("ac.open")
-        : c.ADM_RATE > 0 ? t("cmp.admission.rate", `${formatNumber(Math.round(c.ADM_RATE * 100))}%`) : t("notReported"));
+        : c.ADM_RATE > 0 ? `${formatNumber(Math.round(c.ADM_RATE * 100))}%` : t("notReported"));
     case "STUDY":
-      return escapeHtml(programLine(e.program, profile, data));
+      return programsHere(c, profile, data);
     default:
       return campusLine(e.social, c);
   }
+}
+
+// Which of the student's programs this college offers (a check or a cross), without degree counts
+function programsHere(c, profile, data) {
+  if (!profile.programs.length) return escapeHtml(t("web.cmp.anyProgram"));
+  const lv = levels(profile.pathway);
+  return `<span class="programs-here">${profile.programs.slice(0, 6).map((code) => {
+    const name = code.length === 2 ? familyName(code) : (data.programNames[code] || code).split(",")[0];
+    return lv.some((level) => evidence(c, code, level) === 0)
+      ? `<span class="program-here">${icon("check")}${escapeHtml(name)}</span>`
+      : `<span class="program-here missing"><span aria-hidden="true">✗</span> ${escapeHtml(name)}<span class="visually-hidden">${escapeHtml(t("web.details.notOffered"))}</span></span>`;
+  }).join("")}</span>`;
 }
 
 // Plain description of the list: types, degree levels, admission policies (not her chances)

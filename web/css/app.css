@@ -694,13 +694,20 @@ input:checked ~ .tick { background: var(--route); border-color: var(--route); co
 
 /* ---------- Compare and Next steps ---------- */
 
-.compare-picker { margin-block: 1rem 0.5rem; }
-.compare-picker .chip span { font-weight: 600; }
+/* The picker is a quiet control; the college names in the table are the headline */
+.compare-picker { margin-block: 0.5rem 0.25rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.75rem; }
+.compare-picker legend { float: left; font-size: var(--step--1); font-weight: 600; color: var(--muted); margin: 0; padding: 0; }
+.compare-picker .chip span {
+  min-height: 2.25rem; padding: 0.25rem 0.8rem; gap: 0.35rem; font-size: 0.8rem; font-weight: 500;
+  border-width: 1px; border-color: var(--rule); color: var(--muted); background: var(--paper);
+}
+.compare-picker .chip input:checked + span { background: var(--wash); border-color: var(--route); color: var(--ink); }
+.compare-picker .chip input:checked + span::before { content: "✓"; color: var(--route); font-weight: 700; }
 .table-wrap { margin-block: 1rem 1.5rem; }
 .compare-table { width: 100%; border-collapse: collapse; font-size: var(--step--1); }
 .compare-table th, .compare-table td { text-align: start; vertical-align: top; padding: 0.7rem 0.6rem; border-block-start: 1px solid var(--wash); }
 .compare-table thead th { border: 0; }
-.compare-table thead .college-name { display: block; font-size: var(--step-0); line-height: 1.3; }
+.compare-table thead .college-name { display: block; font-size: var(--step-1); font-weight: 700; line-height: 1.25; margin-bottom: 0.2rem; }
 .compare-table th .muted { display: block; font-weight: 400; font-size: 0.78rem; }
 .compare-table tbody th { width: 11rem; font-weight: 600; }
 .compare-table td strong { font-size: 1.05rem; }

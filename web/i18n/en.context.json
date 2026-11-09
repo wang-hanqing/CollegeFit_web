@@ -2014,9 +2014,6 @@
   "export.reasons": {
     "section": "Step 5"
   },
-  "cmp.admission.rate": {
-    "section": "Step 5"
-  },
   "prog.earnings": {
     "section": "Step 5"
   },
@@ -2475,6 +2472,13 @@
   },
   "web.cost.tuition": {
     "section": "Web app: College details"
+  },
+  "web.cmp.anyProgram": {
+    "section": "Web app: Compare",
+    "note": "Programs row when the student picked no programs"
+  },
+  "web.cmp.mark.higherAccept": {
+    "section": "Web app: Compare"
   },
   "web.pri.basis": {
     "section": "Web app: Priorities"
