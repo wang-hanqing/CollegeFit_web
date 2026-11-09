@@ -325,6 +325,8 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
   margin-block: 2.5rem 0; font-size: var(--step--1); color: var(--muted);
 }
 .privacy .icon { margin-top: 0.15em; color: var(--route); }
+/* Next steps: the note sits just under Download and Print, on one line where there is room */
+.link-row + .link-status:empty + .privacy { margin-top: 0.6rem; max-width: none; }
 
 
 /* ---------- Checkbox cards, big numbers (Step 2) ---------- */
