@@ -6,8 +6,8 @@ import { escapeHtml } from "../ui.js";
 import { icon } from "../components.js";
 import { STATE_NAMES } from "../config.js";
 import { familyName } from "./direction.js";
-import { profileFrom } from "../logic/explore.js";
-import { evaluateAll, money, outOfStateCost } from "../logic/evaluate.js";
+import { profileFrom, comparableCost } from "../logic/explore.js";
+import { evaluateAll, money, outOfStateCost, setting, sizeOf } from "../logic/evaluate.js";
 
 const PAGE = /^college-(\d+)$/;
 
@@ -71,23 +71,31 @@ export function renderDetails(ctx, id) {
 
 // ---------- pieces ----------
 
+// Four numbers, in the order of the priorities: cost after grants, admission, completion, campus.
+// The cost is the same number the Explore card shows; the price before aid is the note.
 function tiles(r, profile) {
   const c = r.college;
   const open = c.openAdmission === true;
   const oos = c.isPublic && profile.home && profile.home !== c.STABBR;
-  const cost = oos ? outOfStateCost(c) : c.COSTT4_A;
   const pct = (x) => formatNumber(x, { style: "percent", maximumFractionDigits: 0 });
+  const net = comparableCost(profile, c);
+  const sticker = oos ? outOfStateCost(c) : c.COSTT4_A;
+  const costTile = net != null
+    ? [t("web.tile.netCost"), money(net), sticker != null ? t("web.tile.netCost.note", money(sticker)) : t("web.perYear")]
+    : [t("tile.cost"), money(sticker), t(oos ? "tile.cost.oos" : "web.tile.cost.noNet")];
+  const transfer = c.completionYears === 3 ? c.TRANS_L4 : c.TRANS_4;
+  const within = c.completionYears ? t("tile.completion.within", formatNumber(c.completionYears)) : "";
+  const where = setting(c);
+  const size = sizeOf(c);
   const items = [
-    [profile.programs.length ? t("tile.degrees") : t("tile.degreesAll"),
-      r.program.recentDegrees > 0 ? formatNumber(r.program.recentDegrees) : t("notReported"),
-      r.program.recentDegrees > 0 ? levelText(r.program) : ""],
+    costTile,
     [t(open ? "tile.admission" : "tile.admissionRate"),
       open ? t("ac.open") : c.ADM_RATE > 0 ? pct(c.ADM_RATE) : t("notReported"),
       t(open ? "tile.admission.open" : "tile.admission.note")],
-    [t("tile.cost"), money(cost), t(oos ? "tile.cost.oos" : c.isPublic ? "tile.cost.public" : "tile.cost.private")],
     [t("tile.completion"), c.completionRate == null ? t("notReported") : pct(c.completionRate),
-      c.completionYears ? t("tile.completion.within", formatNumber(c.completionYears)) : ""],
-    [t("tile.size"), c.UGDS == null ? t("notReported") : formatNumber(c.UGDS), t("tile.size.note")],
+      transfer != null && within ? t("web.tile.completion.transfer", within, pct(transfer)) : within],
+    [t("web.tile.campus"), where === "NOT_SURE" ? t("notReported") : t(`CampusSetting.${where}`),
+      size ? t("web.tile.campus.note", t(`web.size.${size}`), formatNumber(c.UGDS)) : ""],
   ];
   return `
     <dl class="tiles">

@@ -1,6 +1,7 @@
 // Step 4: Explore. Ported from OptionsPanel.java and OptionCard.java.
 // Colleges are grouped by type and ordered by the student's priorities (logic/explore.js).
-// Each card is short on purpose: the program, the top two priorities, Keep and Not for me.
+// Each card is short on purpose: the top two priorities, Keep and Not for me, and a tag when the college
+// offers only some of the student's programs. The three groups sit side by side (tabs on narrow screens).
 //
 // answers.kept      UNITIDs kept, in the order kept
 // answers.compare   up to 3 kept UNITIDs shown side by side in Step 5
@@ -11,7 +12,7 @@ import { icon } from "../components.js";
 import { STATE_NAMES } from "../config.js";
 import { familyName } from "./direction.js";
 import {
-  profileFrom, recommend, groups, GROUPS, comparableCost, outOfStatePublic, orderUsed,
+  profileFrom, recommend, groups, GROUPS, comparableCost, outOfStatePublic,
 } from "../logic/explore.js";
 import { collegeIdFrom, pageFor, renderDetails, onDetailsClick, onDetailsChange } from "./details.js";
 import { sizeOf } from "../logic/evaluate.js";
@@ -28,7 +29,9 @@ const REASONS = ["COST", "FAR", "ADMISSION", "PROGRAM", "SIZE", "OTHER"];
 const MAX_COMPARE = 3;
 
 // Page state that is not saved with the answers
-const shown = {};                 // group -> number of cards shown
+const shown = {};                 // group -> number of cards shown in the one-group view
+let focus = null;                 // group shown on its own after "Show all", or null for all three
+let tab = null;                   // group shown on narrow screens, where the three columns become tabs
 const openSetAside = new Set();   // groups whose "Not for me" list is open
 const dismissedTips = new Set();
 let pendingReason = null;         // UNITID waiting for a reason in the dialog
@@ -44,12 +47,10 @@ export function render(ctx) {
 
   return `
     <h1 id="page-title" tabindex="-1">${escapeHtml(t("options.title", topicText(profile, data), place))}</h1>
-    ${directionRow(profile, data)}
-    ${orderRow(profile)}
-    <p class="counts"><span>${escapeHtml(t("options.count", formatNumber(ranked.length), place))}</span>
-      <span>${escapeHtml(t("explore.counts", formatNumber(answers.kept.length), formatNumber(Object.keys(answers.notForMe).length)))}</span></p>
+    <p class="lede explore-count">${escapeHtml(t("options.count", formatNumber(ranked.length), place))}</p>
+    ${summaryPanel(profile, data)}
     ${tip(answers, profile)}
-    ${GROUPS.map((g) => groupSection(g, byGroup[g], answers, profile, data)).join("")}
+    ${focus ? focusView(focus, byGroup[focus], answers, profile, data) : groupColumns(byGroup, answers, profile, data)}
     <p class="source">${escapeHtml(t("options.footnote.all"))}</p>
     ${reasonDialog()}`;
 }
@@ -78,32 +79,31 @@ function programName(code, data) {
   return (data.programNames[code] || code).split(",")[0]; // "Registered Nursing", not the full title
 }
 
-function directionRow(profile, data) {
+// Direction and order in one panel: what the student chose (white chips), their priorities
+// (blue, numbered) and the steps that always follow (gray). Each row has one Edit button.
+function summaryPanel(profile, data) {
   const level = { ASSOCIATE: t("unsure.two"), BACHELOR: t("unsure.four") }[profile.pathway] || t("options.anyLevel");
-  const chips = [...profile.programs.map((c) => programName(c, data)), level, ...profile.states.map((s) => STATE_NAMES[s] || s)];
+  const direction = [...profile.programs.map((c) => programName(c, data)), level, ...profile.states.map((s) => STATE_NAMES[s] || s)];
+  const chosen = profile.priorities;
+  const auto = [...(chosen.length ? [] : [t("web.order.auto.campus")]),
+    ...(profile.programs.length
+      ? [t("web.order.auto.programs"), t("web.order.auto.degree"), t("web.order.auto.size")]
+      : [t("web.order.auto.collegeSize")]),
+    t("web.order.auto.name")];
+  const edit = (action, hidden) => `
+    <button type="button" class="panel-edit" data-action="${action}">${icon("edit")}<span aria-hidden="true">${escapeHtml(t("web.panel.edit"))}</span><span class="visually-hidden">${escapeHtml(hidden)}</span></button>`;
   return `
-    <div class="direction-row">
-      <span class="muted">${escapeHtml(t("options.direction"))}</span>
-      ${chips.map((c) => `<span class="tag">${escapeHtml(c)}</span>`).join("")}
-      <button type="button" class="link" data-action="change-direction">${escapeHtml(t("options.change"))}</button>
-    </div>`;
-}
-
-function orderRow(profile) {
-  const order = orderUsed(profile);
-  const text = profile.priorities.length
-    ? `${t("explore.orderedBy")} ${profile.priorities.map((p, i) => `${formatNumber(i + 1)}. ${t(`order.short.${p}`)}`).join(`, ${t("then")} `)}.`
-    : t("explore.orderedDefault");
-  const steps = [t("order.how.evidence"), ...order.map((p) => t(`order.how.${p}`)),
-    t("order.how.programs"), t("order.how.degrees"), t("order.how.name")];
-  return `
-    <div class="order-row">
-      <p>${escapeHtml(text)} <button type="button" class="link" data-action="change-priorities">${escapeHtml(t("explore.changePriorities"))}</button></p>
-      <details class="how">
-        <summary>${escapeHtml(t("order.how.title"))}</summary>
-        <ol>${steps.map((s) => `<li>${escapeHtml(s)}</li>`).join("")}</ol>
-        <p>${escapeHtml(t("order.how.note"))}</p>
-      </details>
+    <div class="summary-panel">
+      <span class="panel-label" id="panel-direction">${escapeHtml(t("web.panel.direction"))}</span>
+      <ul class="panel-chips" aria-labelledby="panel-direction">${direction.map((d) => `<li class="chip-plain">${escapeHtml(d)}</li>`).join("")}</ul>
+      ${edit("change-direction", t("web.panel.editDirection"))}
+      <span class="panel-label" id="panel-order">${escapeHtml(t("web.panel.order"))}</span>
+      <ol class="panel-chips" aria-labelledby="panel-order">
+        ${chosen.map((p, i) => `<li class="chip-priority"><span class="chip-number">${escapeHtml(formatNumber(i + 1))}</span>${escapeHtml(t(`web.order.chip.${p}`))}</li>`).join("")}
+        ${chosen.length ? `<li class="chip-sep" aria-hidden="true">${icon("arrow", "directional")}</li>` : ""}
+        ${auto.map((a) => `<li class="chip-auto">${escapeHtml(a)}</li>`).join("")}
+      </ol>
+      ${edit("change-priorities", t("web.panel.editOrder"))}
     </div>`;
 }
 
@@ -125,28 +125,64 @@ function tip(answers) {
 
 // ---------- groups and cards ----------
 
-function groupSection(group, recs, answers, profile, data) {
+// The three groups side by side (as in the Java version), so no group looks like the first choice.
+// On narrow screens the columns become tabs; the tab for the student's degree path opens first.
+function groupColumns(byGroup, answers, profile, data) {
+  const active = (g) => byGroup[g].filter((r) => !(r.college.UNITID in answers.notForMe));
+  const open = tab || defaultTab(profile, (g) => active(g).length);
+  const tabs = GROUPS.map((g) => `
+    <button type="button" role="tab" class="group-tab" data-action="tab" data-group="${g}" aria-selected="${g === open}"
+      aria-controls="column-${g}">${escapeHtml(t(`web.tab.${g}`))} <span class="group-count">${escapeHtml(formatNumber(active(g).length))}</span></button>`).join("");
+  return `
+    <div class="groups-wrap">
+      <div class="group-tabs" role="tablist" aria-label="${escapeHtml(t("web.tabs.label"))}">${tabs}</div>
+      <div class="groups">
+        ${GROUPS.map((g) => groupColumn(g, byGroup[g], answers, profile, data, g === open)).join("")}
+      </div>
+    </div>`;
+}
+
+function defaultTab(profile, count) {
+  if (profile.pathway === "BACHELOR") return "PUBLIC_FOUR_YEAR";
+  if (profile.pathway === "ASSOCIATE") return "COMMUNITY_COLLEGE";
+  return GROUPS.find((g) => count(g) > 0) || GROUPS[0];
+}
+
+function groupColumn(group, recs, answers, profile, data, isOpen) {
   const active = recs.filter((r) => !(r.college.UNITID in answers.notForMe));
   const setAside = recs.filter((r) => r.college.UNITID in answers.notForMe);
-  const count = Math.min(shown[group] || FIRST, active.length);
-  const cards = active.slice(0, count).map((r) => card(r, answers, profile, data)).join("");
-
-  let more = "";
-  if (active.length > count) {
-    more = count === FIRST
-      ? `<button type="button" class="secondary" data-action="show-all" data-group="${group}">${escapeHtml(t("options.showAll", formatNumber(active.length)))}</button>`
-      : `<button type="button" class="secondary" data-action="show-more" data-group="${group}">${escapeHtml(t("options.more"))}</button>`;
-  } else if (count > FIRST) {
-    more = `<button type="button" class="link" data-action="show-fewer" data-group="${group}">${escapeHtml(t("web.showFewer"))}</button>`;
-  }
-
+  const cards = active.slice(0, FIRST).map((r) => card(r, answers, profile, data)).join("");
+  const more = active.length > FIRST
+    ? `<button type="button" class="secondary small" data-action="show-all" data-group="${group}">${escapeHtml(t("options.showAll", formatNumber(active.length)))}</button>`
+    : "";
   return `
+    <section class="group group-column${isOpen ? " is-open" : ""}" id="column-${group}" aria-labelledby="group-${group}">
+      <div class="group-head">
+        <h2 id="group-${group}">${escapeHtml(t(`group.${group}`))} <span class="group-count">${escapeHtml(formatNumber(active.length))}</span></h2>
+        <p class="muted">${escapeHtml(t(`group.${group}.sub`))}</p>
+      </div>
+      ${active.length ? "" : `<p class="empty">${emptyText(group, profile)}</p>`}
+      <div class="college-list">${cards}</div>
+      ${more ? `<div class="group-more">${more}</div>` : ""}
+      ${setAside.length ? setAsideBox(group, setAside, answers) : ""}
+    </section>`;
+}
+
+// After "Show all": one group across the full width, three cards a row
+function focusView(group, recs, answers, profile, data) {
+  const active = recs.filter((r) => !(r.college.UNITID in answers.notForMe));
+  const setAside = recs.filter((r) => r.college.UNITID in answers.notForMe);
+  const count = Math.min(shown[group] || BATCH, active.length);
+  const more = active.length > count
+    ? `<button type="button" class="secondary" data-action="show-more" data-group="${group}">${escapeHtml(t("options.more"))}</button>`
+    : "";
+  return `
+    <button type="button" class="link back-link" data-action="all-groups">${icon("back", "directional")}${escapeHtml(t("web.allGroups"))}</button>
     <section class="group" aria-labelledby="group-${group}">
       <h2 id="group-${group}">${escapeHtml(t(`group.${group}`))} <span class="group-count">${escapeHtml(formatNumber(active.length))}</span></h2>
       <p class="muted">${escapeHtml(t(`group.${group}.sub`))}</p>
-      ${active.length ? "" : `<p class="empty">${emptyText(group, profile)}</p>`}
-      <div class="college-grid">${cards}</div>
-      <div class="group-more">${more}</div>
+      <div class="college-grid">${active.slice(0, count).map((r) => card(r, answers, profile, data)).join("")}</div>
+      ${more ? `<div class="group-more">${more}</div>` : ""}
       ${setAside.length ? setAsideBox(group, setAside, answers) : ""}
     </section>`;
 }
@@ -165,13 +201,12 @@ function card(r, answers, profile, data) {
   const kept = answers.kept.includes(id);
   const top = profile.priorities.length ? profile.priorities.slice(0, 2) : ["COSTS", "ADMISSION"];
   const lines = [];
-  if (!top.includes("STUDY")) lines.push(fact("", t("card.label.STUDY"), escapeHtml(programLine(r, profile, data))));
   top.forEach((p, i) => lines.push(fact(profile.priorities.length ? `#${formatNumber(i + 1)}` : "", t(`card.label.${p}`), priorityValue(p, r, profile, data))));
 
   return `
     <article class="college-card${kept ? " is-kept" : ""}" aria-labelledby="college-${id}">
       <h3 id="college-${id}">${escapeHtml(c.INSTNM)}</h3>
-      <p class="where">${escapeHtml(`${c.CITY}, ${c.STABBR}`)} <span class="tag">${escapeHtml(t(c.twoYear ? "tag.two" : "tag.four"))}</span></p>
+      <p class="where">${escapeHtml(`${c.CITY}, ${c.STABBR}`)} <span class="tag">${escapeHtml(t(c.twoYear ? "tag.two" : "tag.four"))}</span>${partialTag(r, profile, data)}</p>
       <dl class="facts">${lines.join("")}</dl>
       <div class="card-actions">
         <button type="button" class="${kept ? "primary" : "secondary"} small" data-action="keep" data-id="${id}" aria-pressed="${kept}">
@@ -180,6 +215,14 @@ function card(r, answers, profile, data) {
         <button type="button" class="link details-link" data-action="details" data-id="${id}">${escapeHtml(t("card.detailsShort"))}</button>
       </div>
     </article>`;
+}
+
+// "Business only" when the student picked several programs and this college offers some of them
+function partialTag(r, profile, data) {
+  if (profile.programs.length < 2 || r.programsAwarded >= profile.programs.length) return "";
+  const names = new Intl.ListFormat(currentLanguage().html, { type: "conjunction" })
+    .format(r.awardedNames.map((code) => programName(code, data)));
+  return ` <span class="tag partial">${escapeHtml(t("web.card.only", names))}</span>`;
 }
 
 function fact(rank, label, valueHtml) {
@@ -338,9 +381,10 @@ export function onClick(event, ctx) {
       rerender();
       break;
     }
-    case "show-all": shown[group] = FIRST + BATCH; rerender(); break;
-    case "show-more": shown[group] = (shown[group] || FIRST) + BATCH; rerender(); break;
-    case "show-fewer": shown[group] = FIRST; rerender(); document.getElementById(`group-${group}`)?.scrollIntoView(); break;
+    case "show-all": focus = group; shown[group] = BATCH; rerender(); document.getElementById(`group-${group}`)?.scrollIntoView(); break;
+    case "show-more": shown[group] = (shown[group] || BATCH) + BATCH; rerender(); break;
+    case "all-groups": focus = null; rerender(); document.querySelector(".groups-wrap")?.scrollIntoView(); break;
+    case "tab": tab = group; rerender(); document.querySelector(`[data-action="tab"][data-group="${group}"]`)?.focus(); break;
     case "include-both": update({ degree: "both" }); rerender(); break;
     case "details": go("explore", pageFor(id)); break;
     case "change-direction": go("direction"); break;

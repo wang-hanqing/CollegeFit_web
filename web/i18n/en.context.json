@@ -1300,12 +1300,6 @@
   "options.anywhere": {
     "section": "Step 3"
   },
-  "options.direction": {
-    "section": "Step 3"
-  },
-  "options.change": {
-    "section": "Step 3"
-  },
   "options.anyLevel": {
     "section": "Step 3"
   },
@@ -1462,12 +1456,6 @@
   "tab.place": {
     "section": "Step 4"
   },
-  "tile.degrees": {
-    "section": "Step 4"
-  },
-  "tile.degreesAll": {
-    "section": "Step 4"
-  },
   "tile.admission": {
     "section": "Step 4"
   },
@@ -1477,12 +1465,6 @@
   "tile.cost": {
     "section": "Step 4"
   },
-  "tile.cost.public": {
-    "section": "Step 4"
-  },
-  "tile.cost.private": {
-    "section": "Step 4"
-  },
   "tile.cost.oos": {
     "section": "Step 4"
   },
@@ -1490,12 +1472,6 @@
     "section": "Step 4"
   },
   "tile.completion.within": {
-    "section": "Step 4"
-  },
-  "tile.size": {
-    "section": "Step 4"
-  },
-  "tile.size.note": {
     "section": "Step 4"
   },
   "mine.title": {
@@ -1651,9 +1627,6 @@
   "step.6": {
     "section": "Step 5"
   },
-  "then": {
-    "section": "Step 5"
-  },
   "error.priorities": {
     "section": "Step 5"
   },
@@ -1723,31 +1696,7 @@
   "pri.footnote": {
     "section": "Step 5"
   },
-  "explore.orderedBy": {
-    "section": "Step 5"
-  },
-  "explore.orderedDefault": {
-    "section": "Step 5"
-  },
-  "explore.changePriorities": {
-    "section": "Step 5"
-  },
-  "explore.counts": {
-    "section": "Step 5"
-  },
   "explore.toCompare": {
-    "section": "Step 5"
-  },
-  "order.short.COSTS": {
-    "section": "Step 5"
-  },
-  "order.short.GRADUATION": {
-    "section": "Step 5"
-  },
-  "order.short.ADMISSION": {
-    "section": "Step 5"
-  },
-  "order.short.CAMPUS": {
     "section": "Step 5"
   },
   "card.detailsShort": {
@@ -2149,36 +2098,6 @@
   "options.includeBachelor": {
     "section": "Step 5"
   },
-  "order.how.title": {
-    "section": "Step 5"
-  },
-  "order.how.evidence": {
-    "section": "Step 5"
-  },
-  "order.how.COSTS": {
-    "section": "Step 5"
-  },
-  "order.how.GRADUATION": {
-    "section": "Step 5"
-  },
-  "order.how.ADMISSION": {
-    "section": "Step 5"
-  },
-  "order.how.CAMPUS": {
-    "section": "Step 5"
-  },
-  "order.how.programs": {
-    "section": "Web app: Explore"
-  },
-  "order.how.degrees": {
-    "section": "Step 5"
-  },
-  "order.how.name": {
-    "section": "Step 5"
-  },
-  "order.how.note": {
-    "section": "Step 5"
-  },
   "web.link.title": {
     "section": "Step 5"
   },
@@ -2447,6 +2366,98 @@
   "web.pri.subtitle": {
     "section": "Web app: Priorities"
   },
+  "web.panel.direction": {
+    "section": "Web app: Explore"
+  },
+  "web.panel.order": {
+    "section": "Web app: Explore"
+  },
+  "web.panel.edit": {
+    "section": "Web app: Explore"
+  },
+  "web.panel.editDirection": {
+    "section": "Web app: Explore"
+  },
+  "web.panel.editOrder": {
+    "section": "Web app: Explore"
+  },
+  "web.order.chip.COSTS": {
+    "section": "Web app: Explore"
+  },
+  "web.order.chip.ADMISSION": {
+    "section": "Web app: Explore",
+    "note": "Short label in the Explore order panel; elsewhere this priority is called Admission"
+  },
+  "web.order.chip.GRADUATION": {
+    "section": "Web app: Explore"
+  },
+  "web.order.chip.CAMPUS": {
+    "section": "Web app: Explore"
+  },
+  "web.order.auto.campus": {
+    "section": "Web app: Explore"
+  },
+  "web.order.auto.programs": {
+    "section": "Web app: Explore"
+  },
+  "web.order.auto.degree": {
+    "section": "Web app: Explore"
+  },
+  "web.order.auto.size": {
+    "section": "Web app: Explore"
+  },
+  "web.order.auto.collegeSize": {
+    "section": "Web app: Explore"
+  },
+  "web.order.auto.name": {
+    "section": "Web app: Explore"
+  },
+  "web.tab.COMMUNITY_COLLEGE": {
+    "section": "Web app: Explore"
+  },
+  "web.tab.PUBLIC_FOUR_YEAR": {
+    "section": "Web app: Explore"
+  },
+  "web.tab.PRIVATE": {
+    "section": "Web app: Explore"
+  },
+  "web.tabs.label": {
+    "section": "Web app: Explore"
+  },
+  "web.allGroups": {
+    "section": "Web app: Explore"
+  },
+  "web.card.only": {
+    "section": "Web app: Explore",
+    "note": "{0} lists the student's programs this college offers, e.g. Business only"
+  },
+  "web.tile.netCost": {
+    "section": "Web app: College details"
+  },
+  "web.tile.netCost.note": {
+    "section": "Web app: College details"
+  },
+  "web.tile.cost.noNet": {
+    "section": "Web app: College details"
+  },
+  "web.tile.completion.transfer": {
+    "section": "Web app: College details"
+  },
+  "web.tile.campus": {
+    "section": "Web app: College details"
+  },
+  "web.tile.campus.note": {
+    "section": "Web app: College details"
+  },
+  "web.size.SMALL": {
+    "section": "Web app: College details"
+  },
+  "web.size.MEDIUM": {
+    "section": "Web app: College details"
+  },
+  "web.size.LARGE": {
+    "section": "Web app: College details"
+  },
   "web.pri.basis": {
     "section": "Web app: Priorities"
   },
@@ -2473,9 +2484,6 @@
     "section": "Web app: Explore"
   },
   "web.admitted": {
-    "section": "Web app: Explore"
-  },
-  "web.showFewer": {
     "section": "Web app: Explore"
   },
   "web.details.missing": {
