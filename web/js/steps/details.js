@@ -43,7 +43,7 @@ export function renderDetails(ctx, id) {
 
     ${tiles(r, profile)}
     ${section("cap", t("details.academics"), academics(r, c, profile, data, id))}
-    ${section("dollar", t("tab.costs"), costs(r, c, profile))}
+    ${section("dollar", t("tab.costs"), costs(r, c, profile, id))}
     ${section("pin", t("tab.place"), place(r, c))}
 
     <div class="link-row">
@@ -73,7 +73,7 @@ function tiles(r, profile) {
   const size = sizeOf(c);
   const items = [
     costTile,
-    [t(open ? "tile.admission" : "tile.admissionRate"),
+    [t("tile.admissionRate"),
       open ? t("ac.open") : c.ADM_RATE > 0 ? pct(c.ADM_RATE) : t("notReported"),
       t(open ? "tile.admission.open" : "tile.admission.note")],
     [t("tile.completion"), c.completionRate == null ? t("notReported") : pct(c.completionRate),
@@ -163,14 +163,13 @@ function academics(r, c, profile, data, id) {
     <h3>${escapeHtml(t("web.details.earnings"))}</h3>
     ${earningsBlock}
     <div class="link-row">
-      ${c.INSTURL ? `<a class="secondary" href="${escapeHtml(c.INSTURL)}" target="_blank" rel="noopener noreferrer">${escapeHtml(t("details.site"))}</a>` : ""}
-      <button type="button" class="secondary" data-action="copy-links" data-id="${id}">${escapeHtml(t("details.copy"))}</button>
-    </div>
-    <p class="link-status" role="status"></p>`;
+      ${c.INSTURL ? `<a class="primary" href="${escapeHtml(c.INSTURL)}" target="_blank" rel="noopener noreferrer">${escapeHtml(t("details.site"))}</a>` : ""}
+      ${copyLinks(id)}
+    </div>`;
 }
 
 // Costs: cost after grants first (the number Explore uses), then the price before aid and tuition
-function costs(r, c, profile) {
+function costs(r, c, profile, id) {
   const oos = c.isPublic && profile.home && profile.home !== c.STABBR;
   const net = comparableCost(profile, c);
   const yearNote = profile.income ? t("web.cost.income", t(`IncomeBracket.${profile.income}`)) : t("web.cost.year");
@@ -190,7 +189,7 @@ function costs(r, c, profile) {
   if (budget) items.push([budget.label, budget.value, budget.note, budget.match]);
   return `
     ${miniTiles(items)}
-    <div class="link-row">${calculator(c)}</div>`;
+    <div class="link-row">${calculator(c)}${copyLinks(id)}</div>`;
 }
 
 // Location and size: a check or a cross only where the student stated a preference
@@ -205,6 +204,13 @@ function place(r, c) {
       [t("web.details.size"), s ? t(`web.size.${s}`) : t("notReported"), c.UGDS == null ? "" : t("web.details.size.note", formatNumber(c.UGDS)), size?.match ?? null],
     ], "three")}
     <p class="tour">${escapeHtml(t("web.details.tour"))}</p>`;
+}
+
+// The same small button next to each link: copies the college website and net price calculator links
+function copyLinks(id) {
+  return `
+    <button type="button" class="copy-links" data-action="copy-links" data-id="${id}">${icon("copy")}${escapeHtml(t("details.copy"))}</button>
+    <span class="link-status" role="status"></span>`;
 }
 
 function calculator(c) {
@@ -290,7 +296,7 @@ export function onDetailsClick(event, ctx) {
     case "copy-links": {
       const c = data.collegeById.get(Number(target.dataset.id));
       const text = [c.INSTURL, c.NPCURL].filter(Boolean).join("\n");
-      const status = document.querySelector(".link-status");
+      const status = target.parentElement.querySelector(".link-status");
       navigator.clipboard?.writeText(text)
         .then(() => (status.textContent = t("details.copied")))
         .catch(() => (status.textContent = text));

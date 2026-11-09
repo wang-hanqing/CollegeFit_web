@@ -79,4 +79,5 @@ ICONS.back = '<path d="M15 5l-7 7 7 7"/>';
 ICONS.check = '<path d="M5 12.5l4.5 4.5L19 7.5"/>';
 ICONS.edit = '<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/>';
 ICONS.arrow = '<path d="M5 12h14"/><path d="M13 6l6 6-6 6"/>';
+ICONS.copy = '<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h9"/>';
 ICONS.shield = '<path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/>';
