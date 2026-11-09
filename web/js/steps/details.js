@@ -1,13 +1,15 @@
 // One college, opened from an Explore card. Ported from DetailsPanel.java and ExtraInfoPanel.java.
-// Address: #/explore/college-<UNITID>. The Java version's four tabs become one page:
-// key numbers, why explore it and what to verify, then three sections that open on demand.
+// Address: #/explore/college-<UNITID>. Web version: four key numbers, then three short sections laid out
+// as small tiles (academics and programs, costs, location and size), each ending with its next step.
 import { t, formatNumber } from "../i18n.js";
 import { escapeHtml } from "../ui.js";
 import { icon } from "../components.js";
 import { STATE_NAMES } from "../config.js";
 import { familyName } from "./direction.js";
-import { profileFrom, comparableCost } from "../logic/explore.js";
-import { evaluateAll, money, outOfStateCost, setting, sizeOf } from "../logic/evaluate.js";
+import { profileFrom, comparableCost, levels } from "../logic/explore.js";
+import {
+  evaluateAll, money, outOfStateCost, setting, sizeOf, evidence, programEarnings, fieldEarnings,
+} from "../logic/evaluate.js";
 
 const PAGE = /^college-(\d+)$/;
 
@@ -40,31 +42,13 @@ export function renderDetails(ctx, id) {
     </div>
 
     ${tiles(r, profile)}
-    ${r.program.nursingBachelor ? `<p class="notice">${escapeHtml(t("prog.next.license"))}</p>` : ""}
-
-    <div class="why-verify">
-      <section class="why">
-        <h2>${escapeHtml(t("details.why"))}</h2>
-        ${r.reasons.length
-          ? `<ul>${r.reasons.map((x) => `<li>${icon("check")}<span>${escapeHtml(x)}</span></li>`).join("")}</ul>`
-          : `<p>${escapeHtml(t("details.why.none"))}</p>`}
-      </section>
-      <section class="verify">
-        <h2>${escapeHtml(t("details.verify"))}</h2>
-        <ul>${r.steps.map((x) => `<li><span class="box" aria-hidden="true"></span><span>${escapeHtml(x)}</span></li>`).join("")}</ul>
-      </section>
-    </div>
-
-    ${section("academics", "cap", t("details.academics"), r.academic, academics(r, c))}
-    ${section("costs", "dollar", t("tab.costs"), r.financial, facts(r.financial.facts) + calculator(c))}
-    ${section("place", "pin", t("tab.place"), r.social, facts(r.social.facts) + `<p class="muted">${escapeHtml(t("details.place.note"))}</p>`)}
+    ${section("cap", t("details.academics"), academics(r, c, profile, data, id))}
+    ${section("dollar", t("tab.costs"), costs(r, c, profile))}
+    ${section("pin", t("tab.place"), place(r, c))}
 
     <div class="link-row">
-      ${c.INSTURL ? `<a class="secondary" href="${escapeHtml(c.INSTURL)}" target="_blank" rel="noopener noreferrer">${escapeHtml(t("details.site"))}</a>` : ""}
-      <button type="button" class="secondary" data-action="copy-links" data-id="${id}">${escapeHtml(t("details.copy"))}</button>
       <button type="button" class="secondary" data-action="open-extras">${escapeHtml(t("details.addInfo"))}</button>
     </div>
-    <p class="link-status" role="status"></p>
     <p class="source">${escapeHtml(t("details.disclaimer"))}</p>
     ${extrasDialog(answers, data)}`;
 }
@@ -107,53 +91,120 @@ function tiles(r, profile) {
     </dl>`;
 }
 
-function levelText(program) {
-  if (program.associateAwarded && program.bachelorAwarded) return t("level.both");
-  return t(program.bachelorAwarded ? "level.bachelor" : "level.associate");
-}
-
-const STATUS_CLASS = { MATCH: "ok", MISMATCH: "bad", NEEDS_VERIFICATION: "check", INFO: "info", UNKNOWN: "none" };
-
-function section(id, iconName, title, lens, body) {
+function section(iconName, title, body) {
   return `
-    <details class="lens" id="lens-${id}">
-      <summary>
-        <span class="option-icon">${icon(iconName)}</span>
-        <span class="lens-title">${escapeHtml(title)}</span>
-        <span class="status ${STATUS_CLASS[lens.status]}">${escapeHtml(lens.label)}</span>
-      </summary>
-      <div class="lens-body">${body}</div>
-    </details>`;
+    <section class="detail-section">
+      <h2><span class="option-icon">${icon(iconName)}</span>${escapeHtml(title)}</h2>
+      ${body}
+    </section>`;
 }
 
-function facts(list) {
-  return `<dl class="fact-list">${list.map((f) => `
-    <div>
-      <dt>${escapeHtml(f.label)}</dt>
-      <dd>${f.match === true ? `<span class="match">${icon("check")}</span>` : f.match === false ? '<span class="no-match">✗</span>' : ""}
-        <strong>${escapeHtml(f.value)}</strong>
-        ${f.note ? `<span class="muted">${escapeHtml(f.note)}</span>` : ""}</dd>
-    </div>`).join("")}</dl>`;
+// Small tiles like the four at the top: [label, value, note, match] (match: true, false or null)
+function miniTiles(items, className = "") {
+  return `
+    <dl class="tiles mini-tiles ${className}">
+      ${items.map(([label, value, note, match]) => `
+        <div class="tile">
+          <dt>${escapeHtml(label)}</dt>
+          <dd><span class="tile-value">${escapeHtml(value)}${match === true ? ` <span class="match">${icon("check")}</span>`
+            : match === false ? ' <span class="no-match">✗</span>' : ""}</span>${note ? `<span class="tile-note">${escapeHtml(note)}</span>` : ""}</dd>
+        </div>`).join("")}
+    </dl>`;
 }
 
-function academics(r, c) {
-  const pct = (x) => formatNumber(x, { style: "percent", maximumFractionDigits: 0 });
-  const outcomes = [
-    { label: t("out.completion"), value: c.completionRate == null ? t("notReported") : pct(c.completionRate),
-      note: c.completionRate == null ? "" : t("out.completion.note", formatNumber(c.completionYears)), match: null },
+function programName(code, data, full = false) {
+  if (code.length === 2) return familyName(code);
+  const name = data.programNames[code] || code;
+  return full ? name : name.split(",")[0];
+}
+
+// Academics: the student's programs here, admissions, students per faculty, earnings after graduating.
+// Admission, completion and transfer rates are in the four tiles at the top, so they are not repeated.
+function academics(r, c, profile, data, id) {
+  const lv = levels(profile.pathway);
+  const offered = (code) => lv.some((level) => evidence(c, code, level) === 0);
+  const chosen = profile.programs.slice(0, 6);
+  const programs = chosen.length ? `
+    <p class="programs-here"><span class="muted">${escapeHtml(t("web.details.programsHere"))}</span>
+      ${chosen.map((code) => offered(code)
+        ? `<span class="program-here">${icon("check")}${escapeHtml(programName(code, data))}</span>`
+        : `<span class="program-here missing"><span aria-hidden="true">✗</span> ${escapeHtml(programName(code, data))}<span class="visually-hidden">${escapeHtml(t("web.details.notOffered"))}</span></span>`).join("")}
+    </p>` : "";
+
+  const skip = new Set([t("ac.rateLabel"), t("ac.policy")]);
+  const admissions = r.academic.facts.filter((f) => !skip.has(f.label)).map((f) =>
+    [f.label, f.label === t("ac.program") ? t("web.details.programAdmission") : f.value,
+      f.label === t("ac.test") ? "" : f.label === t("ac.program") ? t("web.details.programAdmission.note") : f.note, f.match]);
+
+  const earnings = [];
+  for (const code of chosen.filter(offered)) {
+    for (const level of lv) {
+      if (evidence(c, code, level) !== 0) continue;
+      const lvName = t(`prog.level.${level}`).toLowerCase();
+      const list = code.length === 4
+        ? [{ cip: code, earnings: programEarnings(c, code, level) }].filter((x) => x.earnings != null)
+        : fieldEarnings(c, code, level, 3);
+      list.forEach((x) => earnings.push([`${programName(x.cip, data, true)} (${lvName})`, money(x.earnings)]));
+    }
+  }
+  const earningsBlock = !chosen.length ? `<p class="muted">${escapeHtml(t("web.details.earnings.pick"))}</p>`
+    : earnings.length ? `
+      <dl class="earnings">${earnings.map(([name, pay]) => `<div><dt>${escapeHtml(name)}</dt><dd>${escapeHtml(pay)}</dd></div>`).join("")}</dl>
+      <p class="tile-footnote">${escapeHtml(t("web.details.earnings.note"))}</p>`
+    : `<p class="muted">${escapeHtml(t("web.details.earnings.none"))}</p>`;
+
+  return `
+    ${programs}
+    <h3>${escapeHtml(t("details.part.1"))}</h3>
+    ${miniTiles(admissions, "two")}
+    ${r.program.nursingBachelor ? `<p class="notice">${escapeHtml(t("prog.next.license"))}</p>` : ""}
+    <h3>${escapeHtml(t("res.ratio"))}</h3>
+    ${miniTiles([["", c.STUFACR == null ? t("notReported") : t("res.ratio.value", formatNumber(c.STUFACR)), t("web.details.ratio.note"), null]], "one")}
+    <h3>${escapeHtml(t("web.details.earnings"))}</h3>
+    ${earningsBlock}
+    <div class="link-row">
+      ${c.INSTURL ? `<a class="secondary" href="${escapeHtml(c.INSTURL)}" target="_blank" rel="noopener noreferrer">${escapeHtml(t("details.site"))}</a>` : ""}
+      <button type="button" class="secondary" data-action="copy-links" data-id="${id}">${escapeHtml(t("details.copy"))}</button>
+    </div>
+    <p class="link-status" role="status"></p>`;
+}
+
+// Costs: cost after grants first (the number Explore uses), then the price before aid and tuition
+function costs(r, c, profile) {
+  const oos = c.isPublic && profile.home && profile.home !== c.STABBR;
+  const net = comparableCost(profile, c);
+  const yearNote = profile.income ? t("web.cost.income", t(`IncomeBracket.${profile.income}`)) : t("web.cost.year");
+  const items = [
+    oos ? [t("web.tile.netCost"), t("fin.net.oos"), t("fin.net.oos.note"), null]
+      : [t("web.tile.netCost"), net == null ? t("notReported") : money(net), net == null ? "" : yearNote, null],
+    [t("web.cost.sticker"), money(c.COSTT4_A), c.isPublic ? t("web.cost.inState") : t("web.cost.year"), null],
   ];
-  const transfer = c.TRANS_4 ?? c.TRANS_L4 ?? null;
-  const transferYears = c.TRANS_4 != null ? 6 : c.TRANS_L4 != null ? 3 : 0;
-  outcomes.push({ label: t("out.transfer"), value: transfer == null ? t("notReported") : pct(transfer),
-    note: transfer == null ? "" : t(c.twoYear ? "out.transfer.note.two" : "out.transfer.note.four", formatNumber(transferYears)), match: null });
-  const resources = [{ label: t("res.ratio"), value: c.STUFACR == null ? t("notReported") : t("res.ratio.value", formatNumber(c.STUFACR)),
-    note: t("res.ratio.note"), match: null }];
+  if (oos) items.push([t("web.cost.oosEstimate"), money(outOfStateCost(c)), t("web.cost.year"), null]);
+  if (c.isPublic) {
+    items.push([t("web.cost.tuitionIn"), money(c.TUITIONFEE_IN), t("web.cost.year"), null]);
+    items.push([t("web.cost.tuitionOut"), money(c.TUITIONFEE_OUT), t("web.cost.year"), null]);
+  } else {
+    items.push([t("web.cost.tuition"), money(c.TUITIONFEE_IN), t("web.cost.year"), null]);
+  }
+  const budget = r.financial.facts.find((f) => f.label === t("fin.budget"));
+  if (budget) items.push([budget.label, budget.value, budget.note, budget.match]);
   return `
-    <h3>${escapeHtml(t("details.part.0"))}</h3>${facts(r.program.facts)}
-    <h3>${escapeHtml(t("details.part.1"))}</h3>${facts(r.academic.facts)}
-    <h3>${escapeHtml(t("details.part.2"))}</h3>${facts(outcomes)}
-    <h3>${escapeHtml(t("details.part.3"))}</h3>${facts(resources)}
-    <p class="muted">${escapeHtml(t("res.explore"))}</p>`;
+    ${miniTiles(items)}
+    <div class="link-row">${calculator(c)}</div>`;
+}
+
+// Location and size: a check or a cross only where the student stated a preference
+function place(r, c) {
+  const [state, where, size] = r.social.facts;
+  const s = sizeOf(c);
+  const settingKey = setting(c);
+  return `
+    ${miniTiles([
+      [t("soc.state"), STATE_NAMES[c.STABBR] || c.STABBR, "", state?.match ?? null],
+      [t("web.details.setting"), settingKey === "NOT_SURE" ? t("notReported") : t(`CampusSetting.${settingKey}`), "", where?.match ?? null],
+      [t("web.details.size"), s ? t(`web.size.${s}`) : t("notReported"), c.UGDS == null ? "" : t("web.details.size.note", formatNumber(c.UGDS)), size?.match ?? null],
+    ], "three")}
+    <p class="tour">${escapeHtml(t("web.details.tour"))}</p>`;
 }
 
 function calculator(c) {

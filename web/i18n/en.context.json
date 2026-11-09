@@ -792,15 +792,6 @@
   "details.undergrads": {
     "section": "Card and details"
   },
-  "details.why": {
-    "section": "Card and details"
-  },
-  "details.why.none": {
-    "section": "Card and details"
-  },
-  "details.verify": {
-    "section": "Card and details"
-  },
   "details.website": {
     "section": "Card and details"
   },
@@ -1441,9 +1432,6 @@
   "details.addInfo": {
     "section": "Step 4"
   },
-  "details.place.note": {
-    "section": "Step 4"
-  },
   "tab.overview": {
     "section": "Step 4"
   },
@@ -2041,43 +2029,13 @@
   "details.academics": {
     "section": "Step 5"
   },
-  "details.part.0": {
-    "section": "Step 5"
-  },
   "details.part.1": {
-    "section": "Step 5"
-  },
-  "details.part.2": {
-    "section": "Step 5"
-  },
-  "details.part.3": {
-    "section": "Step 5"
-  },
-  "out.completion": {
-    "section": "Step 5"
-  },
-  "out.completion.note": {
-    "section": "Step 5"
-  },
-  "out.transfer": {
-    "section": "Step 5"
-  },
-  "out.transfer.note.two": {
-    "section": "Step 5"
-  },
-  "out.transfer.note.four": {
     "section": "Step 5"
   },
   "res.ratio": {
     "section": "Step 5"
   },
   "res.ratio.value": {
-    "section": "Step 5"
-  },
-  "res.ratio.note": {
-    "section": "Step 5"
-  },
-  "res.explore": {
     "section": "Step 5"
   },
   "options.showAll": {
@@ -2456,6 +2414,69 @@
     "section": "Web app: College details"
   },
   "web.size.LARGE": {
+    "section": "Web app: College details"
+  },
+  "web.details.programsHere": {
+    "section": "Web app: College details"
+  },
+  "web.details.notOffered": {
+    "section": "Web app: College details"
+  },
+  "web.details.programAdmission": {
+    "section": "Web app: College details"
+  },
+  "web.details.programAdmission.note": {
+    "section": "Web app: College details"
+  },
+  "web.details.ratio.note": {
+    "section": "Web app: College details"
+  },
+  "web.details.earnings": {
+    "section": "Web app: College details"
+  },
+  "web.details.earnings.note": {
+    "section": "Web app: College details"
+  },
+  "web.details.earnings.none": {
+    "section": "Web app: College details"
+  },
+  "web.details.earnings.pick": {
+    "section": "Web app: College details"
+  },
+  "web.details.setting": {
+    "section": "Web app: College details"
+  },
+  "web.details.size": {
+    "section": "Web app: College details"
+  },
+  "web.details.size.note": {
+    "section": "Web app: College details"
+  },
+  "web.details.tour": {
+    "section": "Web app: College details"
+  },
+  "web.cost.year": {
+    "section": "Web app: College details"
+  },
+  "web.cost.inState": {
+    "section": "Web app: College details"
+  },
+  "web.cost.income": {
+    "section": "Web app: College details"
+  },
+  "web.cost.sticker": {
+    "section": "Web app: College details"
+  },
+  "web.cost.oosEstimate": {
+    "section": "Web app: College details"
+  },
+  "web.cost.tuitionIn": {
+    "section": "Web app: College details"
+  },
+  "web.cost.tuitionOut": {
+    "section": "Web app: College details"
+  },
+  "web.cost.tuition": {
     "section": "Web app: College details"
   },
   "web.pri.basis": {

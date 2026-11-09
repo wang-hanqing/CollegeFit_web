@@ -606,6 +606,32 @@ input:checked ~ .tick { background: var(--route); border-color: var(--route); co
 .tile-value { font-size: 1.45rem; font-weight: 700; line-height: 1.15; color: var(--ink); font-variant-numeric: tabular-nums; }
 .tile-note { font-size: 0.75rem; color: var(--muted); }
 
+/* Details: three short sections, each laid out as small tiles like the four key numbers */
+.detail-section {
+  border: 2px solid var(--rule); border-radius: var(--radius); padding: 1rem 1.1rem 1.1rem; margin-bottom: 1rem;
+}
+.detail-section h2 { display: flex; align-items: center; gap: 0.6rem; font-size: var(--step-1); margin-bottom: 0.75rem; }
+.detail-section h2 .option-icon { width: 2.25rem; height: 2.25rem; }
+.detail-section h2 .option-icon .icon { width: 1.2rem; height: 1.2rem; }
+.detail-section h3 { font-size: var(--step--1); color: var(--muted); margin: 1rem 0 0.4rem; }
+.mini-tiles { margin: 0; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); }
+.mini-tiles.two { grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.mini-tiles.three { grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); }
+.mini-tiles.one { grid-template-columns: minmax(0, 14rem); }
+.mini-tiles .tile-value { font-size: 1.2rem; }
+.mini-tiles .match .icon { width: 1rem; height: 1rem; }
+.programs-here { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.9rem; margin: 0 0 0.25rem; font-size: var(--step--1); }
+.program-here { display: inline-flex; align-items: center; gap: 0.3rem; font-weight: 600; }
+.program-here .icon { width: 1rem; height: 1rem; color: #1F7A4D; stroke-width: 3; }
+.program-here.missing { color: var(--muted); }
+.earnings { margin: 0; display: grid; }
+.earnings > div { display: flex; justify-content: space-between; gap: 1rem; padding-block: 0.4rem; border-block-end: 1px solid var(--wash); font-size: var(--step--1); }
+.earnings dd { margin: 0; font-weight: 700; font-variant-numeric: tabular-nums; }
+.tile-footnote { font-size: 0.75rem; color: var(--muted); margin: 0.4rem 0 0; }
+.detail-section .link-row { margin-top: 1rem; align-items: center; }
+.detail-section .link-row a { margin-top: 0; }
+.tour { margin: 0.75rem 0 0; font-size: var(--step--1); }
+
 .why-verify { display: grid; gap: 0.75rem; margin-bottom: 1.5rem; }
 @media (min-width: 40.01rem) { .why-verify { grid-template-columns: 1fr 1fr; } }
 .why, .verify { border-radius: var(--radius); padding: 1rem 1.1rem; }

@@ -59,7 +59,7 @@ function familyProgramsAwarded(c, family, level) {
 }
 
 // Largest programs in a field with reported earnings: [{ cip, earnings }]
-function fieldEarnings(c, family, level, limit) {
+export function fieldEarnings(c, family, level, limit) {
   return rows(c, family, level)
     .filter((p) => p.EARN_MDN_1YR != null && evidenceOfRow(p) === 0)
     .map((p) => ({ cip: p.CIPCODE, earnings: p.EARN_MDN_1YR, size: recentDegrees(c, p.CIPCODE, level) }))
@@ -67,7 +67,7 @@ function fieldEarnings(c, family, level, limit) {
     .slice(0, limit);
 }
 
-function programEarnings(c, cip, level) {
+export function programEarnings(c, cip, level) {
   return rows(c, cip, level).find((p) => p.CIPCODE === cip)?.EARN_MDN_1YR ?? null;
 }
 
